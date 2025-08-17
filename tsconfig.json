@@ -18,8 +18,9 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".", 
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"]   // root se import karega (components, lib, etc.)
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

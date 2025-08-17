@@ -1,4 +1,4 @@
-import ProductCategoriesSection from "../components/ProductCategoriesSection";
+import ProductCategoriesSection from "@/components/ProductCategoriesSection";
 
 export default function ProductPage() {
   return (
