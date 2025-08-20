@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => {
       {/* Main Hero Container */}
       <div
         className="relative w-full max-w-[1440px] rounded-3xl overflow-hidden shadow-2xl mx-2 md:mx-6 bg-[var(--white)]"
-        style={{ minHeight: "clamp(520px, 76vh, 900px)" }}
+        style={{ minHeight: "clamp(637px, 76vh, 820px)" }}
       >
         {/* Background Image */}
         <Image
@@ -32,16 +32,16 @@ const HeroSection: React.FC = () => {
 
         {/* Content Container */}
         <div
-          className="relative h-full flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 py-12 md:py-20"
+          className="relative h-full flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 py-12 md:py-45"
           style={{ zIndex: 2 }}
         >
-          <div className="max-w-5xl text-center sm:text-left mx-auto md:mx-0">
-            <h1 className="font-bold text-[var(--white)] mb-5 md:mb-7 tracking-normal leading-[1.1]  text-3xl sm:text-4xl md:text-5xl lg:text-[56px]">
+          <div className="max-w-[930px] text-center sm:text-left mx-auto md:mx-0">
+            <h1 className="md:font-bold text-[var(--white)] mb-5 md:mb-7 tracking-normal leading-[32px] md:leading-[72px]  text-[32px] font-semibold md:text-[56px]">
               Welcome to <br className="hidden sm:block" />
               Vexlure International
             </h1>
 
-            <p className="font-medium text-lg md:text-xl leading-[1.4] tracking-normal text-[var(--white)]/90 mb-9 max-w-xl">
+            <p className="font-medium text-base md:text-xl leading-[24px] md:leading-[32px] tracking-normal text-[var(--white)]/90 mb-9 max-w-[824px]">
               At Vexlure International, we are dedicated to bridging global
               markets and delivering quality products from India to the world.
               With a strong foundation in Surat, India, and an expanding
@@ -52,10 +52,10 @@ const HeroSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
               <Link
                 href="/about-us"
-                className="inline-flex items-center justify-center min-w-[140px] h-11 rounded-full px-7 py-2 text-base gap-2 font-bold tracking-tight bg-[var(--orange)] text-[var(--white)] hover:bg-orange-500 focus:outline-none focus:ring-0 "
+                className="inline-flex items-center justify-center min-w-[140px] h-11 rounded-full px-7 py-2 text-sm md:text-base gap-2 font-medium tracking-tight bg-[var(--orange)] text-[var(--white)] hover:bg-orange-600 focus:outline-none focus:ring-0 "
               >
                 About Us
-                <HiArrowUpRight />
+                <HiArrowUpRight className="text-sm md:text-base font-medium"/>
               </Link>
             </div>
           </div>
@@ -63,20 +63,19 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Logo Marquee */}
-<div className="flex justify-center w-full px-4 sm:px-6 lg:px-8 mt-7 md:mt-12">
+<div className="flex justify-center w-full mt-9 md:mt-12">
   <div
     className="
       relative 
       bg-white 
       rounded-[16px] md:rounded-[24px] 
-      shadow-[0_8px_36px_0_rgba(0,0,0,0.11)] 
       flex items-center justify-center 
-      -mt-16 sm:-mt-16 md:-mt-24 
+      -mt-20 md:-mt-28 lg:-mt-34 
       z-10 
       overflow-hidden 
       w-full 
-      max-w-[90%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl
-      min-h-[92px] md:min-h-[120px]
+      max-w-[90%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-[1200px]
+      min-h-[92px] md:min-h-[120px] lg:max-h-[186px]
     "
   >
     <CertificateLogos />

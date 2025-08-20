@@ -1,7 +1,8 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { LuMoveRight,LuMoveLeft } from "react-icons/lu";
+
 
 interface Industry {
   title: string;
@@ -13,7 +14,7 @@ const industries: Industry[] = [
   {
     title: "Agriculture & Spices",
     description:
-      "At Vexlure International, agriculture isn't just a business; it's in our roots.",
+      "At Vexlure International, agriculture isn't just a business it's in our roots.",
     image: "/image/industry-agriculture.png",
     link: "#",
   },
@@ -96,10 +97,10 @@ const IndustrySection: React.FC = () => {
       <div className="max-w-[1440px] mx-auto">
         <div className="mb-7 flex items-center px-0  justify-between ">
           <div className="px-6">
-            <span className="block text-sm text-[var(--black)] mb-1 font-medium tracking-wide">
+            <span className="block text-sm md:text-base leading-[22px] text-[var(--black)] mb-1 font-medium tracking-wide">
               • Our Industry
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--black)] mb-2 max-w-2xl tracking-tight">
+            <h2 className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-2 max-w-2xl tracking-tight">
               Customized Business Solutions for Your Industry
             </h2>
           </div>
@@ -109,17 +110,17 @@ const IndustrySection: React.FC = () => {
               aria-label="Scroll left"
               onClick={() => scrollBy("left")}
               disabled={scrollPos <= 0}
-              className={`w-9 h-9 rounded-full cursor-pointer flex items-center justify-center shadow-md border  border-gray-200 bg-white text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition disabled:opacity-40 disabled:bg-gray-200 focus:outline-none focus:ring-0`}
+              className={`w-10 h-10 rounded-full cursor-pointer flex items-center justify-center shadow-md border  border-gray-200 bg-white text-black hover:bg-[var(--orange)] hover:text-white transition disabled:opacity-40 disabled:bg-gray-200 disabled:text-gray-400 focus:outline-none focus:ring-0`}
             >
-              <FaArrowLeft />
+              <LuMoveLeft className="text-xl" />
             </button>
             <button
               aria-label="Scroll right"
               onClick={() => scrollBy("right")}
               disabled={scrollPos >= maxScroll - 4}
-              className={`w-9 h-9 rounded-full cursor-pointer flex items-center justify-center shadow-md border  border-gray-200 bg-orange-500 text-white hover:bg-orange-600 transition disabled:opacity-40 disabled:bg-orange-500 focus:outline-none focus:ring-0`}
+              className={`w-10 h-10 rounded-full cursor-pointer flex items-center justify-center shadow-md border  border-gray-200 bg-white text-black hover:bg-[var(--orange)] hover:text-white transition disabled:opacity-40 disabled:bg-gray-200 disabled:text-gray-400 focus:outline-none focus:ring-0`}
             >
-              <FaArrowRight />
+              <LuMoveRight className="text-xl" />
             </button>
           </div>
         </div>
@@ -147,19 +148,19 @@ const IndustrySection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 m-4 rounded-2xl backdrop-blur-2xl bg-white/8 border border-white/16 p-5 h-[180px] flex flex-col justify-between">
   <div>
-    <h3 className="text-lg sm:text-2xl font-semibold text-white mb-1 drop-shadow-lg line-clamp-1">
+    <h3 className="text-lg md:text-2xl font-semibold leading-[28px] md:leading-[36px] text-white mb-1 drop-shadow-lg line-clamp-1">
       {ind.title}
     </h3>
-    <p className="text-xs sm:text-base text-white/90 mb-3 drop-shadow-md line-clamp-2">
+    <p className="text-xs md:text-base font-normal leading-[20px] md:leading-[24px] tracking-[0%] text-white/90 mb-3 drop-shadow-md line-clamp-2">
       {ind.description}
     </p>
   </div>
   <a
     href={ind.link}
-    className="inline-flex items-center text-white font-semibold text-sm hover:underline focus:outline-none focus:ring-0"
+    className="inline-flex items-center text-white font-semibold text-sm leading-[20px] hover:underline focus:outline-none focus:ring-0"
   >
-    Read more
-    <Image src="/right-arrow.svg" alt="Right Arrow" width={20} height={20} className="ml-2 text-sm" />
+    <span className="align-middle">Read more</span>
+    <LuMoveRight className="ml-2 align-middle text-lg" />
   </a>
 </div>
 

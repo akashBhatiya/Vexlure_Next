@@ -64,15 +64,15 @@ const CertificateLogos: React.FC = () => {
             {marqueeLogos.map((logo, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 flex items-center justify-center h-8 md:h-14 px-2 md:px-6"
+                className="flex-shrink-0 flex items-center justify-center h-8 md:h-12 lg:h-[90px] px-2 md:px-6"
                 style={{ width: "auto" }}
               >
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   width={120}
-                  height={60}
-                  className="h-8 md:h-12 lg:h-14 w-auto object-contain opacity-90 group-hover:opacity-100 transition"
+                  height={90}
+                  className="h-8 md:h-12 lg:h-[90px] w-auto object-contain opacity-90 group-hover:opacity-100 transition"
                   draggable={false}
                 />
               </div>

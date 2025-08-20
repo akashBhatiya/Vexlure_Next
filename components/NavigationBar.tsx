@@ -22,16 +22,16 @@ const NavigationBar: React.FC = () => {
   return (
     <>
       {/* NAVIGATION BAR */}
-      <nav className="shadow-md fixed border-1 top-0  w-full bg-[var(--white)] z-30">
-        <div className=" my-3 px-4 sm:px-6 max-w-[1440px] mx-auto lg:px-8">
+      <nav className=" fixed top-0  w-full bg-[var(--white)] z-30">
+        <div className=" my-3 px-7  max-w-[1440px] mx-auto ">
           <div className="flex justify-between h-11 items-center">
             {/* Logo */}
-            <div className="flex-shrink-0 text-3xl font-bold text-[var(--orange)] cursor-pointer">
+            <Link href="/" className="flex-shrink-0 text-[32px] font-bold text-[var(--orange)] cursor-pointer focus:outline-none focus:ring-0">
               Vexlure.
-            </div>
+            </Link>
 
             {/* Nav Links (Desktop) */}
-            <div className="hidden md:flex gap-4 text-xl space-x-6">
+            <div className="hidden md:flex gap-4 text-base font-medium space-x-6">
               <Link href="/" className={`${pathname === '/' ? 'text-[var(--orange)] font-bold' : 'text-[var(--black)]'} hover:text-[var(--orange)] active:text-[var(--orange)] focus:text-[var(--orange)] focus:outline-none focus:ring-0 `}>
                 Home
               </Link>
@@ -50,7 +50,7 @@ const NavigationBar: React.FC = () => {
             <div className="hidden md:flex">
               <Link
                 href="/contact-us"
-                className="bg-[var(--black)]/95 text-[var(--white)] px-4 py-2 rounded-4xl hover:bg-[var(--black)] focus:outline-none focus:ring-0 "
+                className="bg-[#181818]/95 text-base text-[var(--white)] px-4 py-2 rounded-4xl hover:bg-[var(--black)] focus:outline-none focus:ring-0 "
               >
                 Contact Us
               </Link>
@@ -61,7 +61,7 @@ const NavigationBar: React.FC = () => {
               <div className="md:hidden">
                 <button
                   onClick={toggleMobileMenu}
-                  className="text-[var(--gray-text)] text-3xl mx-8 focus:outline-none"
+                  className="text-[var(--gray-text)] text-2xl mx-5 focus:outline-none"
                 >
                   <HiBars2 />
                 </button>
@@ -83,19 +83,19 @@ const NavigationBar: React.FC = () => {
     >
       {/* Header with logo and close */}
       <div className="flex justify-between   items-center mb-4">
-        <div className="text-3xl font-bold text-[var(--orange)]">
+        <div className="text-2xl font-bold text-[var(--orange)]">
           Vexlure.
         </div>
         <button
           onClick={toggleMobileMenu}
-          className="text-3xl text-[var(--gray-text)] "
+          className="text-xl text-[var(--gray-text)] "
         >
           <RiCloseLargeFill />
         </button>
       </div>
 
       {/* Mobile Nav Links */}
-      <div className="flex flex-col gap-4 text-lg">
+      <div className="flex flex-col gap-4 text-sm">
         <Link href="/" className={`${pathname === '/' ? 'text-[var(--orange)] font-bold' : 'text-[var(--black)]'} hover:text-[var(--orange)] active:text-[var(--orange)] focus:text-[var(--orange)] focus:outline-none focus:ring-0`} onClick={() => setIsOpen(false)}>
           Home
         </Link>
@@ -110,7 +110,7 @@ const NavigationBar: React.FC = () => {
         </Link>
         <Link
           href="/contact-us"
-          className="mt-2 bg-[var(--black)]/95 text-[var(--white)] px-4 py-2 rounded-full text-center hover:bg-[var(--black)] active:bg-[var(--black)] focus:bg-[var(--black)] h-11  focus:outline-none focus:ring-0"
+          className="mt-2 bg-[#181818]/95 text-sm text-[var(--white)] px-4 py-2 rounded-full text-center hover:bg-[var(--black)] active:bg-[var(--black)] focus:bg-[var(--black)] h-10  focus:outline-none focus:ring-0"
           onClick={() => setIsOpen(false)}
         >
           Contact Us
