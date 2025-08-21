@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
 
-      <main className="flex flex-col mt-6 ">
+      <main className="flex flex-col  ">
         <HeroSection />
         <IndustrySection />
         <WhyChooseUsSection />

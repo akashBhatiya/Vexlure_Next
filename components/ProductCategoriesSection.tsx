@@ -5,7 +5,7 @@ import { CATEGORIES_DATA } from "./categoriesData";
 
 const ProductCategoriesSection: React.FC = () => {
   return (
-    <section className="w-full py-16 px-4 md:px-8 flex flex-col items-center bg-[var(--white)]">
+    <section className="w-full py-20 px-4 md:px-8 flex flex-col items-center bg-[var(--white)]">
       {/* Header */}
       <div className="max-w-[900px] md:w-full mx-auto mb-10">
         <span className="block text-sm md:text-base text-[var(--black)] mb-2 md:mb-3 leading-[22px] md:leading-[24px] font-medium tracking-wide text-center">• Our Products</span>

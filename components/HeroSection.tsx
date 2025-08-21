@@ -9,7 +9,7 @@ const HeroSection: React.FC = () => {
       id="home"
       role="banner"
       aria-label="Vexlure International Hero Section"
-      className="w-full flex flex-col items-center justify-center mt-6 md:mt-9 bg-[var(--white)] px-6 pt-9 pb-10 md:pt-8 md:pb-16"
+      className="w-full flex flex-col items-center justify-center mt-0 md:mt-0 bg-[var(--white)] px-6 pt-20 pb-10 md:pt-20 md:pb-16"
     >
       {/* Main Hero Container */}
       <div
