@@ -10,7 +10,7 @@ interface Logo {
 const logos: Logo[] = [
   { src: "/logo/apeda.png", alt: "APEDA" },
   { src: "/logo/efsa.png", alt: "EFSA" },
-  { src: "/logo/fda.png", alt: "FDA" },
+  { src: "/logo/FDA.png", alt: "FDA" },
   { src: "/logo/fieo.png", alt: "FIEO" },
   { src: "/logo/fssai.png", alt: "FSSAI" },
   { src: "/logo/iso.png", alt: "ISO" },
