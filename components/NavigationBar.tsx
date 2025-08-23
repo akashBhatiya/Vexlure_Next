@@ -74,7 +74,7 @@ const NavigationBar: React.FC = () => {
             {/* Logo */}
             <Link
               href="/"
-              className="flex-shrink-0 text-[32px] leading-[44px] font-bold text-[var(--orange)] cursor-pointer"
+              className="flex-shrink-0 text-[32px] leading-[44px] font-bold text-[var(--orange)] cursor-pointer focus:outline-none focus:ring-0"
             >
               Vexlure.
             </Link>
@@ -87,7 +87,7 @@ const NavigationBar: React.FC = () => {
                   pathname === "/"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px]`}
+                } hover:text-[var(--orange)] px-3 py-[7px] focus:outline-none focus:ring-0`}
               >
                 Home
               </Link>
@@ -97,7 +97,7 @@ const NavigationBar: React.FC = () => {
                   pathname === "/about-us"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px]`}
+                } hover:text-[var(--orange)] px-3 py-[7px] focus:outline-none focus:ring-0`}
               >
                 About Us
               </Link>
@@ -107,7 +107,7 @@ const NavigationBar: React.FC = () => {
                   pathname.startsWith("/product")
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px]`}
+                } hover:text-[var(--orange)] px-3 py-[7px] focus:outline-none focus:ring-0`}
               >
                 Product
               </Link>
@@ -117,7 +117,7 @@ const NavigationBar: React.FC = () => {
                   pathname === "/blog"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px]`}
+                } hover:text-[var(--orange)] px-3 py-[7px] focus:outline-none focus:ring-0`}
               >
                 Blog
               </Link>
@@ -127,7 +127,7 @@ const NavigationBar: React.FC = () => {
             <div className="hidden md:flex">
               <Link
                 href="/contact-us"
-                className="bg-[#181818] text-white px-5 py-2 rounded-full hover:bg-black transition"
+                className="bg-[#181818] text-white px-5 py-2 rounded-full hover:bg-black transition focus:outline-none focus:ring-0"
               >
                 Contact Us
               </Link>
@@ -138,7 +138,7 @@ const NavigationBar: React.FC = () => {
               <div className="md:hidden">
                 <button
                   onClick={toggleMobileMenu}
-                  className="text-[var(--gray-text)] text-2xl flex items-center justify-center"
+                  className="text-[var(--gray-text)] text-2xl flex items-center justify-center focus:outline-none focus:ring-0"
                 >
                   <HiBars2 />
                 </button>
@@ -177,7 +177,7 @@ const NavigationBar: React.FC = () => {
             <div className="flex flex-col gap-4 text-sm">
               <Link
                 href="/"
-                className={`${
+                className={`focus:outline-none focus:ring-0 ${
                   pathname === "/"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
@@ -188,7 +188,7 @@ const NavigationBar: React.FC = () => {
               </Link>
               <Link
                 href="/about-us"
-                className={`${
+                className={`focus:outline-none focus:ring-0 ${
                   pathname === "/about-us"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
@@ -199,7 +199,7 @@ const NavigationBar: React.FC = () => {
               </Link>
               <Link
                 href="/product"
-                className={`${
+                className={`focus:outline-none focus:ring-0 ${
                   pathname === "/product"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
@@ -210,7 +210,7 @@ const NavigationBar: React.FC = () => {
               </Link>
               <Link
                 href="/blog"
-                className={`${
+                className={`focus:outline-none focus:ring-0 ${
                   pathname === "/blog"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
@@ -221,7 +221,7 @@ const NavigationBar: React.FC = () => {
               </Link>
               <Link
                 href="/contact-us"
-                className="mt-2 bg-[#181818] text-white px-4 py-2 rounded-full text-center hover:bg-black transition"
+                className="mt-2 bg-[#181818] text-white px-4 py-2 rounded-full text-center hover:bg-black transition focus:outline-none focus:ring-0"
                 onClick={() => setIsOpen(false)}
               >
                 Contact Us

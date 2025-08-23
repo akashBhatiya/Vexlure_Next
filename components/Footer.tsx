@@ -12,6 +12,9 @@ import {
   FaXTwitter,
   FaWhatsapp,
 } from "react-icons/fa6";
+import SplitText from "./SplitText";
+import AnimatedSection from "./AnimatedSection";
+import AnimatedCard from "./AnimatedCard";
 
 const NAV_LINKS: { name: string; path: string }[] = [
   { name: "Home", path: "/" },
@@ -55,14 +58,15 @@ const Footer = () => {
     <footer className="relative w-full bg-[var(--secondary-bg)] pt-12  px-4 md:px-10 overflow-hidden ">
       <div
         className="relative z-10 max-w-[1440px] mx-auto w-full 
-  pb-24 md:pb-40 lg:pb-[220px] 2xl:pb-[280px]"
+  pb-24 sm:pb-30 md:pb-40 lg:pb-[220px] 2xl:pb-[280px]"
       >
         {" "}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-25 w-full min-w-0 break-words">
-          <div className="flex flex-col gap-5 md:gap-6 text-base font-medium min-w-0 break-words ">
-            <div className="text-[32px] leading-[44px] font-bold text-[var(--orange)] mb-2">
-              Vexlure.
-            </div>
+        <AnimatedSection className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-25 w-full min-w-0 break-words">
+          <AnimatedCard index={0} delay={0.2} className="flex flex-col gap-5 md:gap-6 text-base font-medium min-w-0 break-words ">
+            <SplitText 
+              text="Vexlure."
+              className="text-[32px] leading-[44px] font-bold text-[var(--orange)] mb-2"
+            />
 
             {/* India */}
             <div className="text-base leading-[22px]">
@@ -113,9 +117,9 @@ const Footer = () => {
                 +49 15566-345594
               </div>
             </div>
-          </div>
+          </AnimatedCard>
 
-          <div className="flex flex-col gap-4 md:gap-6 text-base font-medium items-start md:w-[500px] ">
+          <AnimatedCard index={1} delay={0.3} className="flex flex-col gap-4 md:gap-6 text-base font-medium items-start md:w-[500px] ">
             <div className="font-bold text-lg text-[var(--black)]">
               For Support
             </div>
@@ -145,9 +149,9 @@ const Footer = () => {
                 sales@vexlureinternational.com
               </div>
             </div>
-          </div>
+          </AnimatedCard>
 
-          <div className="flex flex-col gap-3 text-base font-medium  items-start pl-0 md:pl-20 md:w-[240px]">
+          <AnimatedCard index={2} delay={0.4} className="flex flex-col gap-3 text-base font-medium  items-start pl-0 md:pl-20 md:w-[240px]">
             <div className="font-bold text-lg text-[var(--black)]">Company</div>
             {NAV_LINKS.map((link) => (
               <Link
@@ -166,10 +170,10 @@ const Footer = () => {
                 {link.name}
               </Link>
             ))}
-          </div>
-        </div>
-        <div className="relative mt-10 z-10 max-w-7xl w-full flex flex-col md:flex-row justify-between gap-y-6 md:gap-8 text-base font-medium ">
-          <div className="flex gap-3">
+          </AnimatedCard>
+        </AnimatedSection>
+        <AnimatedSection className="relative mt-10 z-10 max-w-7xl w-full flex flex-col md:flex-row justify-between gap-y-6 md:gap-8 text-base font-medium ">
+          <AnimatedCard index={0} delay={0.2} className="flex gap-3">
             {SOCIAL_LINKS.map(({ href, icon, label }) => (
               <a
                 key={label}
@@ -182,12 +186,12 @@ const Footer = () => {
                 <Image src={icon} alt={label} width={24} height={24} className="group-hover:brightness-0 group-hover:invert" />
               </a>
             ))}
-          </div>
-          <div className="font-medium text-[var(--gray-text)] order-2 md:order-1">
+          </AnimatedCard>
+          <AnimatedCard index={1} delay={0.3} className="font-medium text-[var(--gray-text)] order-2 md:order-1">
             &copy; Copyrigth {new Date().getFullYear()} Vexlure International, All
             Rights Reserved.
-          </div>
-          <div className="flex gap-10 order-1 md:order-2">
+          </AnimatedCard>
+          <AnimatedCard index={2} delay={0.4} className="flex gap-10 order-1 md:order-2">
             <Link
               href="/privacy-policy"
               className="hover:text-[var(--orange)] text-[var(--gray-text)] focus:outline-none focus:ring-0 "
@@ -200,8 +204,8 @@ const Footer = () => {
             >
               Terms & Conditions
             </Link>
-          </div>
-        </div>
+          </AnimatedCard>
+        </AnimatedSection>
         <div
           className="flex absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/5 w-full justify-center items-center pointer-events-none select-none"
           style={{ zIndex: 0 }}

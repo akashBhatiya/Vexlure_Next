@@ -3,6 +3,9 @@ import Image from "next/image";
 import { HiArrowUpRight } from "react-icons/hi2";
 import Link from "next/link";
 import { LuMoveRight } from "react-icons/lu";
+import SplitText from "./SplitText";
+import AnimatedSection from "./AnimatedSection";
+import AnimatedCardMobile from "./AnimatedCardMobile";
 
 interface Product {
   title: string;
@@ -48,18 +51,16 @@ const ProductsSection: React.FC = () => {
       className="w-full py-16 px-6 md:px-8 flex flex-col items-center bg-[var(--white)]"
     >
       
-        {/* Subtitle */}
-        <div className="text-center mb-10 max-w-[335px] md:max-w-z-2xl  lg:max-w-[740px] mx-auto">
-
-        <span className="block text-sm md:text-base leading-[22px] md:leading-[24px] text-[var(--black)] mb-2 md:mb-3 font-medium tracking-wide text-center">
-          • Our Products
-        </span>
-
-        {/* Title */}
-        <h2 className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)]  text-center  mx-auto">
-          Supplying Industries with Reliable Global Products
-        </h2>
-        </div>
+        {/* Header */}
+        <AnimatedSection className="text-center mb-10 max-w-[335px] md:max-w-z-2xl  lg:max-w-[740px] mx-auto">
+          <span className="block text-sm md:text-base leading-[22px] md:leading-[24px] text-[var(--black)] mb-2 md:mb-3 font-medium tracking-wide text-center">
+            • Our Products
+          </span>
+          <SplitText 
+            text="Supplying Industries with Reliable Global Products"
+            className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] text-center mx-auto"
+          />
+        </AnimatedSection>
       
 
       {/* Product Grid */}
@@ -68,24 +69,24 @@ const ProductsSection: React.FC = () => {
           const isLarge = i % 4 === 0 || i % 4 === 3;
 
           return (
-            <div
-              key={i}
-              className={`w-full bg-[#F4F4F6] rounded-2xl  overflow-hidden
-                  flex flex-col md:flex-row-reverse items-stretch h-full md:h-[328px]
-                  ${
-                    isLarge
-                      ? "xl:max-w-[630px] 2xl:max-w-[820px]"
-                      : "xl:max-w-[550px] 2xl:max-w-[590px]"
-                  }`}
-            >
+            <AnimatedCardMobile key={i} index={i} delay={0.2}>
+              <div
+                className={`w-full bg-[#F4F4F6] rounded-2xl  overflow-hidden group
+                    flex flex-col md:flex-row-reverse items-stretch h-full md:h-[328px]
+                    ${
+                      isLarge
+                        ? "xl:max-w-[630px] 2xl:max-w-[820px]"
+                        : "xl:max-w-[550px] 2xl:max-w-[590px]"
+                    }`}
+              >
               {/* Image */}
-              <div className="flex-shrink-0 p-5 ">
+              <div className="flex-shrink-0 p-5 overflow-hidden">
                 <Image
                   src={p.image}
                   alt={p.title}
                   width={400}
                   height={320}
-                  className="object-cover w-full rounded-2xl h-[190px] md:h-full md:w-[240px] "
+                  className="object-cover w-full rounded-2xl h-[190px] md:h-full md:w-[240px] transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
 
@@ -107,7 +108,8 @@ const ProductsSection: React.FC = () => {
                   <LuMoveRight className="ml-2 align-middle text-xl  text-[var(--black)]" />
                 </a>
               </div>
-            </div>
+              </div>
+            </AnimatedCardMobile>
           );
         })}
       </div>

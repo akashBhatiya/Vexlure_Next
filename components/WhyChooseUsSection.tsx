@@ -1,6 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { HiArrowUpRight } from "react-icons/hi2";
+import SplitText from "./SplitText";
+import AnimatedSection from "./AnimatedSection";
+import AnimatedCard from "./AnimatedCard";
 
 interface Feature {
   title: string;
@@ -48,14 +51,17 @@ const WhyChooseUsSection: React.FC = () => {
       className="w-full bg-[var(--white)] py-16 px-5 md:px-8"
     >
       <div className="max-w-[1440px] mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4">
+        <AnimatedSection className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4" delay={0.2} staggerDelay={0.3}>
           <div>
             <span className="block text-sm md:text-base font-medium leading-[22px] text-[var(--black)] mb-1">
               • Why Choose Us
             </span>
-            <h2 className="text-2xl  md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-2 tracking-tight max-w-2xl">
-              Why Global Clients Trust Vexlure International
-            </h2>
+            <SplitText 
+              text="Why Global Clients Trust Vexlure International"
+              className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-2 tracking-tight max-w-2xl"
+              delay={0.1}
+              duration={0.06}
+            />
           </div>
           <Link
             href="/contact-us"
@@ -63,17 +69,17 @@ const WhyChooseUsSection: React.FC = () => {
           >
             Contact Us <HiArrowUpRight />
           </Link>
-        </div>
+        </AnimatedSection>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8 md:gap-14">
           {features.map((f, i) => (
-            <div key={i} className="">
+            <AnimatedCard key={i} index={i} delay={0.4} className="">
               <h3 className="text-xl md:text-2xl font-semibold leading-[30px] md:leading-[36px] text-[var(--black)] mb-3">
                 {f.title}
               </h3>
               <p className="text-sm md:text-lg font-normal  text-[var(--gray-text)] leading-[22px] md:leading-[28px]">
                 {f.desc}
               </p>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
       </div>

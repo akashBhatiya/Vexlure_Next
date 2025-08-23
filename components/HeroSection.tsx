@@ -3,6 +3,7 @@ import Image from "next/image";
 import { HiArrowUpRight } from "react-icons/hi2";
 import Link from "next/link";
 import CertificateLogos from "./CertificateLogos";
+import AnimatedSection from "./AnimatedSection";
 const HeroSection: React.FC = () => {
   return (
     <section
@@ -35,8 +36,8 @@ const HeroSection: React.FC = () => {
           className="relative h-full flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 py-12 md:py-45"
           style={{ zIndex: 2 }}
         >
-          <div className="max-w-[930px] text-center sm:text-left mx-auto md:mx-0">
-            <h1 className="md:font-bold text-[var(--white)] mb-5 md:mb-7 tracking-normal leading-[32px] md:leading-[72px]  text-[32px] font-semibold md:text-[56px]">
+          <AnimatedSection className="max-w-[930px] text-center sm:text-left mx-auto md:mx-0" delay={0.2} staggerDelay={0.3}>
+            <h1 className="md:font-bold text-[var(--white)] mb-5 md:mb-7 tracking-normal leading-[44px] md:leading-[72px] text-[32px] font-semibold md:text-[56px]">
               Welcome to <br className="hidden sm:block" />
               Vexlure International
             </h1>
@@ -52,13 +53,13 @@ const HeroSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
               <Link
                 href="/about-us"
-                className="inline-flex items-center justify-center min-w-[140px] h-11 rounded-full px-7 py-2 text-sm md:text-base gap-2 font-medium tracking-tight bg-[var(--orange)] text-[var(--white)] hover:bg-orange-600 focus:outline-none focus:ring-0 "
+                className="inline-flex items-center justify-center min-w-[140px] h-11 rounded-full px-7 py-2 text-sm md:text-base gap-2 leading-[22px] md:leading-[24px] font-medium tracking-tight bg-[var(--orange)] text-[var(--white)] hover:bg-orange-600 focus:outline-none focus:ring-0 "
               >
                 About Us
                 <HiArrowUpRight className="text-sm md:text-base font-medium"/>
               </Link>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </div>
 

@@ -1,6 +1,10 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import SplitText from "./SplitText";
+import AnimatedSection from "./AnimatedSection";
+import AnimatedCard from "./AnimatedCard";
+import AnimatedCardMobile from "./AnimatedCardMobile";
 
 interface Testimonial {
   name: string;
@@ -57,20 +61,25 @@ const TestimonialsSection: React.FC = () => {
     >
       <div className="max-w-[1728px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-10 max-w-[335px] md:max-w-2xl lg:max-w-[740px] mx-auto">
+        <AnimatedSection className="text-center mb-10 max-w-[335px] md:max-w-2xl lg:max-w-[740px] mx-auto" delay={0.2} staggerDelay={0.3}>
           <span className="block text-sm md:text-base font-medium leading-[22px] md:leading-[24px] text-[var(--black)] mb-2 md:mb-3">
             • Testimonials
           </span>
-          <h2 className="text-2xl  md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-12 text-center  mx-auto">
-          Customer Feedback That Reflects Our Commitment to Excellence
-          </h2>
-        </div>
+          <SplitText 
+            text="Customer Feedback That Reflects Our Commitment to Excellence"
+            className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-12 text-center mx-auto"
+            delay={0.1}
+            duration={0.06}
+          />
+        </AnimatedSection>
 
         {/* Desktop staggered grid */}
         <div className="hidden xl:flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory w-full h-[580px]">
           {testimonials.map((t, i) => (
-            <div
+            <AnimatedCard
               key={i}
+              index={i}
+              delay={0.3}
               className={`flex flex-col justify-between p-8 shadow-md rounded-2xl transition-colors duration-200 cursor-pointer
         ${t.cardStyle} w-[420px] sm:w-[340px] lg:w-full h-[480px]
         ${i % 2 ? "mt-0 mb-20" : "mt-20 mb-0"} hover:bg-[var(--black)] hover:text-white group`}
@@ -104,15 +113,17 @@ const TestimonialsSection: React.FC = () => {
                   <div className={`text-sm font-normal leading-[22px] text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
                 </div>
               </div>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
 
         {/* Mobile & Tablet scroll slider */}
         <div className="flex  xl:hidden gap-6 overflow-x-auto scroll-hidden snap-x snap-mandatory p-4 w-full">
           {testimonials.map((t, i) => (
-            <div
+            <AnimatedCardMobile
               key={i}
+              index={i}
+              delay={0.4}
               className={`flex flex-col justify-between p-4 shadow-md rounded-2xl transition-colors duration-200 cursor-pointer
         ${t.cardStyle} min-w-[335px] w-[335px] h-[412px] snap-center hover:bg-[var(--black)] hover:text-white group`}
             >
@@ -145,7 +156,7 @@ const TestimonialsSection: React.FC = () => {
                   <div className={`text-xs leading-[20px] font-normal text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
                 </div>
               </div>
-            </div>
+            </AnimatedCardMobile>
           ))}
         </div>
       </div>

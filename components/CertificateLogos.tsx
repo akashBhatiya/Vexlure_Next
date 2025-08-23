@@ -8,16 +8,16 @@ interface Logo {
   alt: string;
 }
 const logos: Logo[] = [
-  { src: "/image/apeda.png", alt: "APEDA" },
-  { src: "/image/efsa.png", alt: "EFSA" },
-  { src: "/image/fda.png", alt: "FDA" },
-  { src: "/image/fieo.png", alt: "FIEO" },
-  { src: "/image/fssai.png", alt: "FSSAI" },
-  { src: "/image/iso.png", alt: "ISO" },
-  { src: "/image/makeinindia.png", alt: "Make in India" },
-  { src: "/image/msme.png", alt: "MSME" },
-  { src: "/image/sgs.png", alt: "SGS" },
-  { src: "/image/sea.png", alt: "SEA" },
+  { src: "/logo/apeda.png", alt: "APEDA" },
+  { src: "/logo/efsa.png", alt: "EFSA" },
+  { src: "/logo/fda.png", alt: "FDA" },
+  { src: "/logo/fieo.png", alt: "FIEO" },
+  { src: "/logo/fssai.png", alt: "FSSAI" },
+  { src: "/logo/iso.png", alt: "ISO" },
+  { src: "/logo/makeinindia.png", alt: "Make in India" },
+  { src: "/logo/msme.png", alt: "MSME" },
+  { src: "/logo/sgs.png", alt: "SGS" },
+  { src: "/logo/sea.png", alt: "SEA" },
 ];
 
 // To create infinite loop, repeat the logos

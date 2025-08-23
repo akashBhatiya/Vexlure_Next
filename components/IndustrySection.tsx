@@ -2,6 +2,10 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { LuMoveRight,LuMoveLeft } from "react-icons/lu";
+import SplitText from "./SplitText";
+import AnimatedSection from "./AnimatedSection";
+import AnimatedCard from "./AnimatedCard";
+import AnimatedCardMobile from "./AnimatedCardMobile";
 
 
 interface Industry {
@@ -95,14 +99,15 @@ const IndustrySection: React.FC = () => {
       className="w-full bg-[var(--secondary-bg)] py-16"
     >
       <div className="max-w-[1440px] mx-auto">
-        <div className="mb-7 flex items-center px-0  justify-between ">
+        <AnimatedSection className="mb-7 flex items-center px-0  justify-between ">
           <div className="px-6">
             <span className="block text-sm md:text-base leading-[22px] text-[var(--black)] mb-1 font-medium tracking-wide">
               • Our Industry
             </span>
-            <h2 className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-2 max-w-2xl tracking-tight">
-              Customized Business Solutions for Your Industry
-            </h2>
+            <SplitText 
+              text="Customized Business Solutions for Your Industry"
+              className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-2 max-w-2xl tracking-tight"
+            />
           </div>
   
           <div className="hidden md:flex gap-2 mx-2 mr-16">
@@ -123,7 +128,7 @@ const IndustrySection: React.FC = () => {
               <LuMoveRight className="text-xl" />
             </button>
           </div>
-        </div>
+        </AnimatedSection>
         <div className="ml-6">
  
         <div
@@ -133,9 +138,11 @@ const IndustrySection: React.FC = () => {
         >
           {/* Start Spacer */}
           {industries.map((ind, idx) => (
-            <div
+            <AnimatedCardMobile
               key={idx}
-              className=" w-xs md:w-[420px] 
+              index={idx}
+              delay={0.2}
+              className="w-xs md:w-[420px] 
                  h-[400px] md:h-[560px] rounded-2xl overflow-hidden 
                  shadow-lg relative bg-gray-100 snap-start flex-shrink-0"
             >
@@ -146,25 +153,24 @@ const IndustrySection: React.FC = () => {
                 className="absolute inset-0 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/60 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 m-4 rounded-2xl backdrop-blur-2xl bg-white/8 border border-white/16 p-5 h-[180px] flex flex-col justify-between">
-  <div>
-    <h3 className="text-lg md:text-2xl font-semibold leading-[28px] md:leading-[36px] text-white mb-1 drop-shadow-lg line-clamp-1">
-      {ind.title}
-    </h3>
-    <p className="text-xs md:text-base font-normal leading-[20px] md:leading-[24px] tracking-[0%] text-white/90 mb-3 drop-shadow-md line-clamp-2">
-      {ind.description}
-    </p>
-  </div>
-  <a
-    href={ind.link}
-    className="inline-flex items-center text-white font-semibold text-sm leading-[20px] hover:underline focus:outline-none focus:ring-0"
-  >
-    <span className="align-middle">Read more</span>
-    <LuMoveRight className="ml-2 align-middle text-lg" />
-  </a>
-</div>
-
-            </div>
+              <div className="absolute bottom-4 left-4 right-4 rounded-2xl backdrop-blur-2xl bg-white/8 border border-white/16 p-5 h-[180px] flex flex-col justify-between">
+                <div>
+                  <h3 className="text-lg md:text-2xl font-semibold leading-[28px] md:leading-[36px] text-white mb-1 drop-shadow-lg line-clamp-1">
+                    {ind.title}
+                  </h3>
+                  <p className="text-xs md:text-base font-normal leading-[20px] md:leading-[24px] tracking-[0%] text-white/90 mb-3 drop-shadow-md line-clamp-2">
+                    {ind.description}
+                  </p>
+                </div>
+                <a
+                  href={ind.link}
+                  className="inline-flex items-center text-white font-semibold text-sm leading-[20px] hover:underline focus:outline-none focus:ring-0"
+                >
+                  <span className="align-middle">Read more</span>
+                  <LuMoveRight className="ml-2 align-middle text-lg" />
+                </a>
+              </div>
+            </AnimatedCardMobile>
           ))}
           {/* End Spacer */}
           <div className="flex-shrink-0 w-1" />
