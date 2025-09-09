@@ -57,17 +57,17 @@ const NavigationBar: React.FC = () => {
     <>
       {/* NAVIGATION BAR */}
       <nav
-        className={`fixed top-0 w-full z-30 transition-all duration-500 ${
+        className={`fixed top-0 w-full z-30 transition-all duration-700 ease-out ${
           scrolled ? "bg-none " : "bg-[var(--white)]"
         } ${visible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div
-          className={`${scrolled ? "w-[95%] max-w-[992px] h-[48px] md:h-[44px]" :"max-w-[1440px]"}  mx-auto px-7 transition-all duration-500 ${visible ? "my-4" : "my-6"}`}
+          className={`${scrolled ? "w-[95%] max-w-[992px] h-[48px] md:h-[44px]" :"max-w-[1440px]"}  mx-auto px-7 transition-all duration-700 ease-out ${visible ? "my-4" : "my-6"}`}
         >
           <div
-            className={`flex justify-between items-center transition-all duration-500 ${
+            className={`flex justify-between items-center transition-all duration-700 ease-out ${
               scrolled
-                ? "bg-[#F3F3F3CC] rounded-full px-6 py-3 shadow-md"
+                ? "bg-[#F3F3F3CC] rounded-full px-6 py-3 shadow-lg backdrop-blur-md"
                 : "bg-[var(--white)]"
             }`}
           >
@@ -87,7 +87,7 @@ const NavigationBar: React.FC = () => {
                   pathname === "/"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px] focus:outline-none focus:ring-0`}
+                } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0`}
               >
                 Home
               </Link>
@@ -97,7 +97,7 @@ const NavigationBar: React.FC = () => {
                   pathname === "/about-us"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px] focus:outline-none focus:ring-0`}
+                } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0`}
               >
                 About Us
               </Link>
@@ -107,7 +107,7 @@ const NavigationBar: React.FC = () => {
                   pathname.startsWith("/product")
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px] focus:outline-none focus:ring-0`}
+                } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0`}
               >
                 Product
               </Link>
@@ -117,7 +117,7 @@ const NavigationBar: React.FC = () => {
                   pathname === "/blog"
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px] focus:outline-none focus:ring-0`}
+                } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0`}
               >
                 Blog
               </Link>
@@ -127,7 +127,7 @@ const NavigationBar: React.FC = () => {
             <div className="hidden md:flex">
               <Link
                 href="/contact-us"
-                className="bg-[#181818] text-white px-5 py-2 rounded-full hover:bg-black transition focus:outline-none focus:ring-0"
+                className="bg-[#181818] text-white px-5 py-2 rounded-full hover:bg-black transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0"
               >
                 Contact Us
               </Link>

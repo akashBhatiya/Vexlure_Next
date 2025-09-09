@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CATEGORIES_DATA } from "./categoriesData";
-import SplitText from "./SplitText";
-import AnimatedSection from "./AnimatedSection";
-import AnimatedCardMobile from "./AnimatedCardMobile";
+import SplitText from "./Animation/SplitText";
+import AnimatedSection from "./Animation/AnimatedSection";
+import AnimatedCardMobile from "./Animation/AnimatedCardMobile";
 
 const ProductCategoriesSection: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const ProductCategoriesSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-14 w-full max-w-[1240px]">
         {CATEGORIES_DATA.map((cat, idx) => {
           // 1st card full width, rest in 2x2 grid
-          if (idx === 0) {
+          if (idx === 0 || idx===5 ) {
             return (
               <AnimatedCardMobile key={cat.slug} index={idx} delay={0.2} className="md:col-span-2">
                 <Link href={`/product/${cat.slug}`} className="bg-[var(--white)] rounded-2xl overflow-hidden flex flex-col h-full group/card">

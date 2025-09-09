@@ -12,9 +12,9 @@ import {
   FaXTwitter,
   FaWhatsapp,
 } from "react-icons/fa6";
-import SplitText from "./SplitText";
-import AnimatedSection from "./AnimatedSection";
-import AnimatedCard from "./AnimatedCard";
+import SplitText from "./Animation/SplitText";
+import AnimatedSection from "./Animation/AnimatedSection";
+import AnimatedCard from "./Animation/AnimatedCard";
 
 const NAV_LINKS: { name: string; path: string }[] = [
   { name: "Home", path: "/" },
@@ -55,7 +55,7 @@ const SOCIAL_LINKS: { href: string; icon: string; label: string }[] = [
 const Footer = () => {
   const pathname = usePathname();
   return (
-    <footer className="relative w-full bg-[var(--secondary-bg)] pt-12  px-4 md:px-10 overflow-hidden ">
+    <footer className="relative w-full bg-[var(--secondary-bg)] pt-12  px-5 md:px-10 overflow-hidden ">
       <div
         className="relative z-10 max-w-[1440px] mx-auto w-full 
   pb-24 sm:pb-30 md:pb-40 lg:pb-[220px] 2xl:pb-[280px]"

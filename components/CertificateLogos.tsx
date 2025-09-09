@@ -8,16 +8,18 @@ interface Logo {
   alt: string;
 }
 const logos: Logo[] = [
+  { src: "/logo/msme.png", alt: "MSME" },
   { src: "/logo/apeda.png", alt: "APEDA" },
-  { src: "/logo/efsa.png", alt: "EFSA" },
-  { src: "/logo/FDA.png", alt: "FDA" },
-  { src: "/logo/fieo.png", alt: "FIEO" },
+  { src: "/logo/spicesborder.png", alt: "SEA" },
   { src: "/logo/fssai.png", alt: "FSSAI" },
   { src: "/logo/iso.png", alt: "ISO" },
-  { src: "/logo/makeinindia.png", alt: "Make in India" },
-  { src: "/logo/msme.png", alt: "MSME" },
-  { src: "/logo/sgs.png", alt: "SGS" },
-  { src: "/logo/sea.png", alt: "SEA" },
+  { src: "/logo/haccp.png", alt: "HACCP" },
+  { src: "/logo/kosher.png", alt: "Kosher" },
+  { src: "/logo/halal.png", alt: "Halal" },
+  { src: "/logo/usda-organic.png", alt: "USDA Organic" },
+  { src: "/logo/india-organic.png", alt: "India Organic" },
+  { src: "/logo/brcgs.png", alt: "BRCGS" },
+  { src: "/logo/fssc22000.png", alt: "FSSC 22000" },
 ];
 
 // To create infinite loop, repeat the logos
@@ -32,22 +34,43 @@ const CertificateLogos: React.FC = () => {
     const marquee = marqueeRef.current;
     if (!marquee) return;
 
+    // Responsive scroll speed based on screen size
+    const getScrollSpeed = () => {
+      const width = window.innerWidth;
+      if (width < 768) return 0.2; // Mobile - very slow
+      if (width < 1024) return 0.25; // Tablet - slow
+      return 0.5; // Desktop - moderate
+    };
+
+    let scrollSpeed = getScrollSpeed();
+
     const scroll = () => {
       if (!marquee) return;
-      scrollPos += 0.5; // px per frame
+      scrollPos += scrollSpeed;
       if (scrollPos >= marquee.scrollWidth / 2) {
         scrollPos = scrollPos - marquee.scrollWidth / 2;
       }
       marquee.scrollLeft = scrollPos;
       animationFrame = requestAnimationFrame(scroll);
     };
+
+    // Update scroll speed on resize
+    const handleResize = () => {
+      scrollSpeed = getScrollSpeed();
+    };
+
+    window.addEventListener('resize', handleResize);
     animationFrame = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(animationFrame);
+    
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
     <div
-  className=" w-full max-w-6xl"
+  className=" w-full "
 >
       <div
   className="w-full overflow-x-hidden"
@@ -64,7 +87,7 @@ const CertificateLogos: React.FC = () => {
             {marqueeLogos.map((logo, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 flex items-center justify-center h-8 md:h-12 lg:h-[90px] px-2 md:px-6"
+                className="flex-shrink-0 flex items-center justify-center h-15 md:h-[90px] px-2 md:px-6"
                 style={{ width: "auto" }}
               >
                 <Image
@@ -72,7 +95,7 @@ const CertificateLogos: React.FC = () => {
                   alt={logo.alt}
                   width={120}
                   height={90}
-                  className="h-8 md:h-12 lg:h-[90px] w-auto object-contain opacity-90 group-hover:opacity-100 transition"
+                  className="h-15 md:h-[90px] w-auto object-contain opacity-90 group-hover:opacity-100 transition"
                   draggable={false}
                 />
               </div>
