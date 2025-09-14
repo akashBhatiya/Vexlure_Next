@@ -69,10 +69,13 @@ export default function AboutUsPage() {
                 Connecting India's Harvests to Global Markets
               </h3>
               <p className="text-base md:text-2xl text-[var(--gray-text)] font-medium leading-9 mb-6">
-                Rooted in Gujarat's farmlands and headquartered in Surat, with a base in Munich, we deliver authentic, high-quality agricultural products and spices that reflect India's farming tradition.
+                Rooted in Gujarat's farmlands and headquartered in Surat, with a
+                base in Munich, we deliver authentic, high-quality agricultural
+                products and spices that reflect India's farming tradition.
               </p>
               <blockquote className=" text-lg leading-7  text-[var(--black)] mb-6">
-                "We exist for one purpose: to connect the dedication of Indian farmers with the needs of international businesses."
+                "We exist for one purpose: to connect the dedication of Indian
+                farmers with the needs of international businesses."
               </blockquote>
               <p className="text-lg leading-7 text-[var(--black)]">
                 - Jash Sanghvi, Founder and CEO
@@ -91,29 +94,76 @@ export default function AboutUsPage() {
               {/* Quality Assured Badge */}
               <div className="absolute top-4 right-4 bg-white rounded-[8px] px-3 py-1 shadow-md flex items-center gap-2">
                 <div className="w-[18px] h-[18px] rounded-full">
-                  <Image src="/about-us/Frame.svg" alt="Quality Assured" width={20} height={20} />
+                  <Image
+                    src="/about-us/Frame.svg"
+                    alt="Quality Assured"
+                    width={20}
+                    height={20}
+                  />
                 </div>
-                <span className="text-xs leading-5 font-medium text-[var(--black)]">Quality Assured</span>
+                <span className="text-xs leading-5 font-medium text-[var(--black)]">
+                  Quality Assured
+                </span>
               </div>
               {/* Global Sourcing Badge */}
               <div className="absolute bottom-4 left-4 bg-white rounded-[8px] px-3 py-1 shadow-md flex items-center gap-2">
                 <div className="w-[18px] h-[18px] rounded-full">
-                  <Image src="/about-us/Global.svg" alt="Global Sourcing" width={20} height={20} />
+                  <Image
+                    src="/about-us/Global.svg"
+                    alt="Global Sourcing"
+                    width={20}
+                    height={20}
+                  />
                 </div>
-                <span className="text-xs leading-5 font-medium text-[var(--black)]">Global Sourcing</span>
+                <span className="text-xs leading-5 font-medium text-[var(--black)]">
+                  Global Sourcing
+                </span>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="w-full pt-20 pb-16 px-4 md:px-8 flex flex-col items-center bg-[var(--white)] min-h-[60vh]">
-        <div className="w-full max-w-[1440px] flex flex-col items-center justify-center text-center h-full">
-          <span className="text-sm md:text-base font-medium text-[var(--black)] mb-4 block">
-            • Our Story
-          </span>
-          <h1 className="text-3xl md:text-5xl font-semibold text-[var(--black)] leading-tight max-w-4xl">
-            Carrying India's Farming Legacy Forward
-          </h1>
+
+      <section className="w-full py-16 px-4 md:px-8 bg-[var(--white)]">
+        <div className="w-full max-w-[1440px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Left Content */}
+            <div className="space-y-6">
+              <span className="text-sm md:text-base font-medium text-[var(--black)] block">
+                • Our Story
+              </span>
+              <h1 className="text-2xl md:text-[40px] font-semibold text-[var(--black)] leading-tight">
+                Rooted in Soil, Growing Globally with Heritage
+              </h1>
+            </div>
+
+            {/* Right Content */}
+            <div className="space-y-6 text-base md:text-lg text-[var(--gray-text)] leading-relaxed">
+              <p>
+                The story of Vexlure International begins in the fields. Our
+                founders, Jash Sarodiya and Vaidik Kakadiya, come from families
+                where farming wasn't just an occupation — it was a way of life.
+                Their parents, grandparents, and generations before them
+                cultivated the soil with dedication, producing crops that fed
+                communities and sustained livelihoods.
+              </p>
+              <p>
+                Inspired by this legacy, Jash and Vaidik saw a larger vision.
+                They realized that the authenticity and richness of Indian
+                agriculture shouldn't remain bound to local markets. With deep
+                roots in farming and a clear ambition to scale globally, they
+                established Vexlure International — not only to trade products,
+                but to carry forward the story of Indian farmers onto the world
+                stage.
+              </p>
+              <p>
+                Today, Vexlure represents the perfect blend of heritage and
+                ambition: a business built on ancestral knowledge, enhanced by
+                modern trade expertise, logistics networks, and global
+                compliance standards.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -127,13 +177,19 @@ export default function AboutUsPage() {
                 • Our Vision
               </span>
               <h2 className="text-2xl md:text-[40px] font-semibold text-[var(--black)] leading-tight">
-                Representing India's Heritage, Quality, and Taste on the Global Stage
+                Representing India's Heritage, Quality, and Taste on the Global
+                Stage
               </h2>
               <p className="text-base md:text-lg text-[var(--gray-text)] leading-relaxed">
-                We dream big. Our vision is not limited to exporting commodities it's about representing the real Indian taste to the world. From Surat to Munich, and soon to the USA, Australia, and beyond, we are on a mission to ensure Indian products are recognized for their authenticity, quality, and global standards.
+                We dream big. Our vision is not limited to exporting commodities
+                it's about representing the real Indian taste to the world. From
+                Surat to Munich, and soon to the USA, Australia, and beyond, we
+                are on a mission to ensure Indian products are recognized for
+                their authenticity, quality, and global standards.
               </p>
               <blockquote className="text-lg md:text-xl font-medium text-[var(--black)] leading-relaxed">
-                "To make Indian agriculture and spices a trusted choice in every global market."
+                "To make Indian agriculture and spices a trusted choice in every
+                global market."
               </blockquote>
             </div>
 
@@ -146,6 +202,88 @@ export default function AboutUsPage() {
                 height={760}
                 className="rounded-2xl w-full h-[400px] md:h-[760px] object-cover shadow-lg"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Team Section */}
+      <section className="w-full py-16 px-4 md:px-8 bg-[var(--white)]">
+        <div className="w-full max-w-[1440px] mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span className="text-sm md:text-base font-medium text-[var(--black)] mb-4 block">
+              • Our Team
+            </span>
+            <h2 className="text-2xl md:text-[40px] font-semibold text-[var(--black)] leading-tight mb-6">
+              Our team is built on a rare combination
+            </h2>
+            <p className="text-base md:text-lg text-[var(--gray-text)] leading-relaxed max-w-3xl mx-auto">
+              Together, they build a system where every shipment carries both
+              farming wisdom and trade expertise delivering reliability,
+              consistency, and transparency to every client.
+            </p>
+          </div>
+
+          {/* Team Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Agricultural Specialists */}
+            <div className="bg-[var(--secondary-bg)] rounded-2xl p-8">
+              <div className="w-16 h-16 rounded-full flex mb-6">
+                <Image
+                  src="/about-us/Authenticity-ora.svg"
+                  alt="Authenticity"
+                  width={64}
+                  height={64}
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-[var(--black)] mb-4">
+                Agricultural Specialists
+              </h3>
+              <p className="text-base text-[var(--gray-text)] leading-relaxed">
+                Expert farmers and agri-engineers ensure quality from farm to
+                export through precise crop selection, soil management, and
+                harvest optimization.
+              </p>
+            </div>
+
+            {/* Export Operations */}
+            <div className="bg-[var(--secondary-bg)] rounded-2xl p-8">
+              <div className="w-16 h-16 rounded-full flex mb-6">
+                <Image
+                  src="/about-us/Authenticity-ora.svg"
+                  alt="Authenticity"
+                  width={64}
+                  height={64}
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-[var(--black)] mb-4">
+                Export Operations
+              </h3>
+              <p className="text-base text-[var(--gray-text)] leading-relaxed">
+                Logistics coordinators ensure seamless international shipping
+                through efficient supply chain management, customs clearance,
+                and delivery optimization.
+              </p>
+            </div>
+
+            {/* Quality Assurance */}
+            <div className="bg-[var(--secondary-bg)] rounded-2xl p-8">
+              <div className="w-16 h-16 rounded-full flex mb-6">
+                <Image
+                  src="/about-us/Authenticity-ora.svg"
+                  alt="Authenticity"
+                  width={64}
+                  height={64}
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-[var(--black)] mb-4">
+                Quality Assurance
+              </h3>
+              <p className="text-base text-[var(--gray-text)] leading-relaxed">
+                Certification experts ensure compliance with global standards
+                through rigorous documentation, audits, and quality assurance.
+              </p>
             </div>
           </div>
         </div>
@@ -169,71 +307,119 @@ export default function AboutUsPage() {
             {/* Authenticity */}
             <div className="flex flex-col items-start space-y-4 rounded-2xl">
               <div className="w-16 h-16 rounded-full mb-4 flex items-center justify-center">
-                <Image src="/about-us/Authenticity.svg" alt="Authenticity" width={64} height={64} />
+                <Image
+                  src="/about-us/Authenticity.svg"
+                  alt="Authenticity"
+                  width={64}
+                  height={64}
+                />
               </div>
-              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">Authenticity</h3>
+              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
+                Authenticity
+              </h3>
               <p className="text-lg leading-7 text-[var(--gray-text)]">
-                Staying true to our farming roots and India's agricultural heritage.
+                Staying true to our farming roots and India's agricultural
+                heritage.
               </p>
             </div>
 
             {/* Excellence */}
             <div className="flex flex-col items-start space-y-4 rounded-2xl">
               <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image src="/about-us/Excellence.svg" alt="Excellence" width={64} height={64} />
+                <Image
+                  src="/about-us/Excellence.svg"
+                  alt="Excellence"
+                  width={64}
+                  height={64}
+                />
               </div>
-              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">Excellence</h3>
+              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
+                Excellence
+              </h3>
               <p className="text-lg leading-7 text-[var(--gray-text)]">
-                Staying true to our farming roots and India's agricultural heritage.
+                Staying true to our farming roots and India's agricultural
+                heritage.
               </p>
             </div>
 
             {/* Sustainability */}
             <div className="flex flex-col items-start space-y-4 rounded-2xl">
               <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image src="/about-us/Sustainability.svg" alt="Sustainability" width={64} height={64} />
+                <Image
+                  src="/about-us/Sustainability.svg"
+                  alt="Sustainability"
+                  width={64}
+                  height={64}
+                />
               </div>
-              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">Sustainability</h3>
+              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
+                Sustainability
+              </h3>
               <p className="text-lg leading-7 text-[var(--gray-text)]">
-              Supporting farmers, promoting eco-friendly practices, and investing in ethical supply chains.              </p>
+                Supporting farmers, promoting eco-friendly practices, and
+                investing in ethical supply chains.{" "}
+              </p>
             </div>
 
             {/* Trust */}
             <div className="flex flex-col items-start space-y-4 rounded-2xl">
               <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image src="/about-us/Trust.svg" alt="Trust" width={64} height={64} />
+                <Image
+                  src="/about-us/Trust.svg"
+                  alt="Trust"
+                  width={64}
+                  height={64}
+                />
               </div>
-              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">Trust</h3>
+              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
+                Trust
+              </h3>
               <p className="text-lg leading-7 text-[var(--gray-text)]">
-                Building long-term partnerships through transparency and reliability.
+                Building long-term partnerships through transparency and
+                reliability.
               </p>
             </div>
 
             {/* Innovation */}
             <div className="flex flex-col items-start space-y-4 rounded-2xl">
               <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image src="/about-us/Innovation.svg" alt="Innovation" width={64} height={64} />
+                <Image
+                  src="/about-us/Innovation.svg"
+                  alt="Innovation"
+                  width={64}
+                  height={64}
+                />
               </div>
-              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">Innovation</h3>
+              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
+                Innovation
+              </h3>
               <p className="text-lg leading-7 text-[var(--gray-text)]">
-                Transforming traditional products into modern global solutions like superfoods and nutraceuticals.
+                Transforming traditional products into modern global solutions
+                like superfoods and nutraceuticals.
               </p>
             </div>
 
             {/* Tailored Business Solutions */}
             <div className="flex flex-col items-start space-y-4 rounded-2xl">
               <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image src="/about-us/Solutions.svg" alt="Tailored Business Solutions" width={64} height={64} />
+                <Image
+                  src="/about-us/Solutions.svg"
+                  alt="Tailored Business Solutions"
+                  width={64}
+                  height={64}
+                />
               </div>
-              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">Tailored Business Solutions</h3>
+              <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
+                Tailored Business Solutions
+              </h3>
               <p className="text-lg leading-7 text-[var(--gray-text)]">
-                From packaging styles to shipment sizes, we adapt to your exact needs — ensuring cost efficiency without compromising quality.
+                From packaging styles to shipment sizes, we adapt to your exact
+                needs — ensuring cost efficiency without compromising quality.
               </p>
             </div>
           </div>
         </div>
       </section>
-      
     </>
   );
 }

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiBars2 } from "react-icons/hi2";
 import { RiCloseLargeFill } from "react-icons/ri";
+import { BsArrowUpRight, BsArrowRight } from "react-icons/bs";
+import Image from "next/image";
 
 const NavigationBar: React.FC = () => {
   const pathname = usePathname();
@@ -12,6 +14,9 @@ const NavigationBar: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
+  const [isProductDropdownOpen, setIsProductDropdownOpen] =
+    useState<boolean>(false);
+  const [isMobileProductOpen, setIsMobileProductOpen] = useState<boolean>(false);
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
@@ -21,7 +26,7 @@ const NavigationBar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Set scrolled state
       if (currentScrollY > 40) {
         setScrolled(true);
@@ -48,13 +53,39 @@ const NavigationBar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // Prevent body scroll when modal is open
+  // Prevent body scroll when modal or dropdown is open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
-  }, [isOpen]);
+    document.body.style.overflow = isOpen || isProductDropdownOpen ? "hidden" : "auto";
+  }, [isOpen, isProductDropdownOpen]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest(".relative")) {
+        setIsProductDropdownOpen(false);
+      }
+    };
+
+    if (isProductDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isProductDropdownOpen]);
 
   return (
     <>
+      {/* Background Blur Overlay */}
+      {isProductDropdownOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-20"
+          onClick={() => setIsProductDropdownOpen(false)}
+        />
+      )}
+
       {/* NAVIGATION BAR */}
       <nav
         className={`fixed top-0 w-full z-30 transition-all duration-700 ease-out ${
@@ -62,7 +93,13 @@ const NavigationBar: React.FC = () => {
         } ${visible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div
-          className={`${scrolled ? "w-[95%] max-w-[992px] h-[48px] md:h-[44px]" :"max-w-[1440px]"}  mx-auto px-7 transition-all duration-700 ease-out ${visible ? "my-4" : "my-6"}`}
+          className={`${
+            scrolled
+              ? "w-[95%] max-w-[992px] h-[48px] md:h-[44px]"
+              : "max-w-[1440px]"
+          }  mx-auto px-7 transition-all duration-700 ease-out ${
+            visible ? "my-4" : "my-6"
+          }`}
         >
           <div
             className={`flex justify-between items-center transition-all duration-700 ease-out ${
@@ -84,7 +121,7 @@ const NavigationBar: React.FC = () => {
               <Link
                 href="/"
                 className={`${
-                  pathname === "/"
+                  pathname === "/" && !isProductDropdownOpen
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
                 } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0`}
@@ -94,27 +131,234 @@ const NavigationBar: React.FC = () => {
               <Link
                 href="/about-us"
                 className={`${
-                  pathname === "/about-us"
+                  pathname === "/about-us" && !isProductDropdownOpen
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
                 } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0`}
               >
                 About Us
               </Link>
-              <Link
-                href="/product"
-                className={`${
-                  pathname.startsWith("/product")
-                    ? "text-[var(--orange)] font-bold"
-                    : "text-[var(--black)]"
-                } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0`}
-              >
-                Product
-              </Link>
+              <div className="relative">
+                <button
+                  onClick={() =>
+                    setIsProductDropdownOpen(!isProductDropdownOpen)
+                  }
+                  className={`${
+                    pathname.startsWith("/product") || isProductDropdownOpen
+                      ? "text-[var(--orange)] font-bold"
+                      : "text-[var(--black)]"
+                  } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0 flex items-center gap-1`}
+                >
+                  Product
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      isProductDropdownOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {/* Product Dropdown Menu */}
+                {isProductDropdownOpen && (
+                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 w-[980px] bg-white rounded-2xl shadow-xl border border-gray-100 p-5 z-50">
+                    <div className="grid grid-cols-4 gap-6">
+                      {/* First Column */}
+                      <div className="space-y-4 col-span-3 grid grid-cols-2 gap-3">
+                        <div>
+                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                            <Link
+                              href="/product/agriculture-spices"
+                              className="flex items-start justify-between  transition-colors"
+                              onClick={() => setIsProductDropdownOpen(false)}
+                            >
+                              <div>
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                  Fresh Vegetables
+                                </h3>
+                                <p className="text-sm text-[var(--gray-text)]">
+                                  Quality Green, Frozen Globally
+                                </p>
+                              </div>
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                            </Link>
+                          </div>
+
+                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                            <Link
+                              href="/product/oilseeds-nuts"
+                              className="flex items-start justify-between  transition-colors"
+                              onClick={() => setIsProductDropdownOpen(false)}
+                            >
+                              <div>
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                  Oilseeds & Nuts
+                                </h3>
+                                <p className="text-sm text-[var(--gray-text)]">
+                                  Premium Oilseeds, Global Impact
+                                </p>
+                              </div>
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                            </Link>
+                          </div>
+
+                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                            <Link
+                              href="/product/pulses-legumes"
+                              className="flex items-start justify-between  transition-colors"
+                              onClick={() => setIsProductDropdownOpen(false)}
+                            >
+                              <div>
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                  Pulses & Legumes
+                                </h3>
+                                <p className="text-sm text-[var(--gray-text)]">
+                                  Gram, Greens, Trusted Legumes
+                                </p>
+                              </div>
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                            </Link>
+                          </div>
+
+                          {/* Second Column */}
+                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                            <Link
+                              href="/product/grains-cereals"
+                              className="flex items-start justify-between  transition-colors"
+                              onClick={() => setIsProductDropdownOpen(false)}
+                            >
+                              <div>
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                  Grains & Cereals
+                                </h3>
+                                <p className="text-sm text-[var(--gray-text)]">
+                                  Rice and Grains, Trusted Worldwide
+                                </p>
+                              </div>
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                            </Link>
+                          </div>
+
+                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                            <Link
+                              href="/product/whole-ground-spices"
+                              className="flex items-start justify-between transition-colors"
+                              onClick={() => setIsProductDropdownOpen(false)}
+                            >
+                              <div>
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                  Whole & Ground Spices
+                                </h3>
+                                <p className="text-sm text-[var(--gray-text)]">
+                                  Heritage Spices, Modern Supply
+                                </p>
+                              </div>
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                            </Link>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                            <Link
+                              href="/product/natural-health-plant-products"
+                              className="flex items-start justify-between transition-colors"
+                              onClick={() => setIsProductDropdownOpen(false)}
+                            >
+                              <div>
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px]">
+                                  Natural Health & Plant Products
+                                </h3>
+                                <p className="text-sm text-[var(--gray-text)]">
+                                  Natural Wellness, Trusted Worldwide
+                                </p>
+                              </div>
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                            </Link>
+                          </div>
+
+                          {/* Third Column - View All Products */}
+                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                            <Link
+                              href="/product/agro-derivatives-additives"
+                              className="flex items-start justify-between  transition-colors"
+                              onClick={() => setIsProductDropdownOpen(false)}
+                            >
+                              <div>
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px]">
+                                  Agro Derivatives & Additives
+                                </h3>
+                                <p className="text-sm text-[var(--gray-text)]">
+                                  Consistent Quality, Processed Products
+                                </p>
+                              </div>
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                            </Link>
+                          </div>
+
+                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                            <Link
+                              href="/product/superfood-nutraceutical-powders"
+                              className="flex items-start justify-between transition-colors"
+                              onClick={() => setIsProductDropdownOpen(false)}
+                            >
+                              <div>
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                  Superfood & Nutraceutical Powders
+                                </h3>
+                                <p className="text-sm text-[var(--gray-text)]">
+                                  Superfoods from India's Fields
+                                </p>
+                              </div>
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity mt-1" />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                      {/* View All Products Button */}
+                      <div className="p-4 bg-[var(--secondary-bg)] rounded-2xl group">
+                          <Link
+                            href="/product"
+                            onClick={() => setIsProductDropdownOpen(false)}
+                          >
+                        <div className="hover:text-[var(--black)] ">
+                          <div className="flex justify-between font-semibold text-[var(--black)]">
+                            View all Products
+                          <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                          </div>
+                          <p className="text-xs text-[var(--gray-text)] mt-1">
+                            Discover authentic products from our collection.
+                          </p>
+                        </div>
+
+                        {/* Product Image */}
+                        <div className="mt-4">
+                          <Image
+                            src="/agriculture/spices.png"
+                            alt="Product showcase"
+                            width={220}
+                            height={204}
+                            className="w-full h-[204px] object-cover rounded-lg"
+                            />
+                        </div>
+                      </Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
               <Link
                 href="/blog"
                 className={`${
-                  pathname === "/blog"
+                  pathname === "/blog" && !isProductDropdownOpen
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
                 } hover:text-[var(--orange)] px-3 py-[7px] transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-0`}
@@ -178,7 +422,7 @@ const NavigationBar: React.FC = () => {
               <Link
                 href="/"
                 className={`focus:outline-none focus:ring-0 ${
-                  pathname === "/"
+                  pathname === "/" && !isProductDropdownOpen && !isMobileProductOpen
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
                 }`}
@@ -189,7 +433,7 @@ const NavigationBar: React.FC = () => {
               <Link
                 href="/about-us"
                 className={`focus:outline-none focus:ring-0 ${
-                  pathname === "/about-us"
+                  pathname === "/about-us" && !isMobileProductOpen
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
                 }`}
@@ -197,21 +441,134 @@ const NavigationBar: React.FC = () => {
               >
                 About Us
               </Link>
-              <Link
-                href="/product"
-                className={`focus:outline-none focus:ring-0 ${
-                  pathname === "/product"
-                    ? "text-[var(--orange)] font-bold"
-                    : "text-[var(--black)]"
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                Product
-              </Link>
+              <div>
+                <button
+                  onClick={() => setIsMobileProductOpen(!isMobileProductOpen)}
+                  className={`flex items-center justify-between w-full focus:outline-none focus:ring-0 ${
+                    pathname.startsWith("/product") || isMobileProductOpen
+                      ? "text-[var(--orange)] font-bold"
+                      : "text-[var(--black)]"
+                  }`}
+                >
+                  Product
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      isMobileProductOpen ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                
+                {/* Mobile Product Dropdown */}
+                {isMobileProductOpen && (
+                  <div className="mt-3 ml-4 space-y-3">
+                    <Link
+                              href="/product/agriculture-spices"
+                              className="block text-sm text-[var(--gray-text)] hover:text-[var(--orange)] transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      Fresh Vegetables
+                    </Link>
+                    <Link
+                      href="/product/oilseeds-nuts"
+                      className="block text-sm text-[var(--gray-text)] hover:text-[var(--orange)] transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      Oilseeds & Nuts
+                    </Link>
+                    <Link
+                      href="/product/pulses-legumes"
+                      className="block text-sm text-[var(--gray-text)] hover:text-[var(--orange)] transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      Pulses & Legumes
+                    </Link>
+                    <Link
+                      href="/product/grains-cereals"
+                      className="block text-sm text-[var(--gray-text)] hover:text-[var(--orange)] transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      Grains & Cereals
+                    </Link>
+                    <Link
+                      href="/product/whole-ground-spices"
+                      className="block text-sm text-[var(--gray-text)] hover:text-[var(--orange)] transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      Whole & Ground Spices
+                    </Link>
+                    <Link
+                      href="/product/natural-health-plant-products"
+                      className="block text-sm text-[var(--gray-text)] hover:text-[var(--orange)] transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      Natural Health & Plant Products
+                    </Link>
+                    <Link
+                      href="/product/agro-derivatives-additives"
+                      className="block text-sm text-[var(--gray-text)] hover:text-[var(--orange)] transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      Agro Derivatives & Additives
+                    </Link>
+                    <Link
+                      href="/product/superfood-nutraceutical-powders"
+                      className="block text-sm text-[var(--gray-text)] hover:text-[var(--orange)] transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      Superfood & Nutraceutical Powders
+                    </Link>
+                    <Link
+                      href="/product"
+                      className="flex items-center gap-2 text-sm text-[var(--orange)] font-medium hover:underline mt-4"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileProductOpen(false);
+                      }}
+                    >
+                      View all Products
+                      <BsArrowRight className="w-5 h-5" />
+                    </Link>
+                  </div>
+                )}
+              </div>
               <Link
                 href="/blog"
                 className={`focus:outline-none focus:ring-0 ${
-                  pathname === "/blog"
+                  pathname === "/blog" && !isProductDropdownOpen && !isMobileProductOpen
                     ? "text-[var(--orange)] font-bold"
                     : "text-[var(--black)]"
                 }`}
