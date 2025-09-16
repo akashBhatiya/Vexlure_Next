@@ -51,17 +51,18 @@ const ProductsSection: React.FC = () => {
       className="w-full py-12 md:py-16 px-5 md:px-8 flex flex-col items-center bg-[var(--white)]"
     >
       
-        {/* Header */}
-        <AnimatedSection className="text-center mb-10 max-w-[335px] md:max-w-z-2xl  lg:max-w-[740px] mx-auto">
-          <span className="block text-sm md:text-base leading-[22px] md:leading-[24px] text-[var(--black)] mb-2 md:mb-3 font-medium tracking-wide text-center">
-            • Our Products
+        {/* Header */}      
+        <AnimatedSection className="text-center mb-10 max-w-[335px] md:max-w-2xl lg:max-w-[740px] mx-auto" delay={0.2} staggerDelay={0.3}>
+          <span className="block text-sm md:text-base font-medium leading-[22px] md:leading-[24px] text-[var(--black)] mb-2 md:mb-3">
+          • Our Products
           </span>
           <SplitText 
             text="Supplying Industries with Reliable Global Products"
-            className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] text-center mx-auto"
+            className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-12 text-center mx-auto"
+            delay={0.1}
+            duration={0.06}
           />
         </AnimatedSection>
-      
 
       {/* Product Grid */}
       <div className="flex flex-wrap gap-5 justify-center max-w-[1440px] mx-auto">

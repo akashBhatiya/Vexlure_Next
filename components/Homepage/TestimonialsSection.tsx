@@ -164,7 +164,7 @@ const TestimonialsSection: React.FC = () => {
         ${i % 2 ? "mt-0 mb-20" : "mt-20 mb-0"} hover:bg-[var(--black)] hover:text-white group`}
             >
               <p
-                className={`text-2xl font-medium leading-[36px]  ${
+                className={`text-xl font-medium leading-8  ${
                   t.cardStyle.includes("text-[var(--white)]")
                     ? "text-[var(--white)]"
                     : "text-[var(--black)]"
@@ -212,7 +212,7 @@ const TestimonialsSection: React.FC = () => {
         ${t.cardStyle} min-w-[335px] w-[335px] h-[412px] flex-shrink-0 hover:bg-[var(--black)] hover:text-white hover:-translate-y-2 hover:shadow-xl group`}
             >
               <p
-                className={`text-lg leading-[28px] font-medium  ${
+                className={`text-base leading-6 font-medium  ${
                   t.cardStyle.includes("text-[var(--white)]")
                     ? "text-[var(--white)]"
                     : "text-[var(--black)]"
