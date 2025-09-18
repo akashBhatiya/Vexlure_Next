@@ -1,91 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-// Mock blog data - in real app, this would come from CMS or API
-const blogPosts = {
-  "customer-feedback-reflects-commitment-excellence": {
-    category: "Agricultural Science",
-    title: "Customer Feedback That Reflects Our Commitment to Excellence",
-    author: "Ishan Sharma",
-    authorImage:"/avatars/jonathan.png", 
-    date: "Sept 12, 2025",
-    readTime: "4 min read",
-    heroImage: "/agriculture/spices.png",
-    content: [
-      {
-        type: "text",
-        content: "Become a vital part of EcoHarvest, where we seek an enthusiastic individual to strengthen our agricultural export sector. In this position, you will play a crucial role in promoting sustainable practices and maintaining the excellence of our products as we broaden our global footprint."
-      },
-      {
-        type: "text",
-        content: "This senior position offers you the chance to collaborate with two seasoned professionals, each boasting over three decades of expertise in agricultural exports. You will have the creative freedom to devise and execute strategies that propel our mission forward while managing key operations that benefit our farmers."
-      },
-      {
-        type: "text",
-        content: "We are excited to welcome someone who is dedicated to a long-term journey with us, beginning with a flexible part-time opportunity. This role is fully remote, featuring weekly team meetings every Tuesday for an hour to review progress and exchange ideas."
-      },
-      {
-        type: "image",
-        src: "/products/Natural-Health.png",
-        alt: "Natural health products"
-      },
-      {
-        type: "heading",
-        content: "Essential Qualifications"
-      },
-      {
-        type: "list",
-        items: [
-          "At least 10 years of experience in agricultural export or related sectors.",
-          "At least 10 years of experience in agricultural export or related sectors.",
-          "At least 10 years of experience in agricultural export or related sectors.",
-          "At least 10 years of experience in agricultural export or related sectors."
-        ]
-      },
-      {
-        type: "heading",
-        content: "Essential Qualifications"
-      },
-      {
-        type: "text",
-        content: "Opportunity: We are in search of a committed individual interested in a long-term role with us, starting with a part-time commitment. This position is entirely remote, with a weekly team meeting every Tuesday for an hour."
-      },
-      {
-        type: "text",
-        content: "This senior role allows you to work alongside two industry experts, each with over 30 years of experience in agricultural exports. You will enjoy considerable autonomy, as we seek someone who can advance projects independently while overseeing essential aspects of our export operations."
-      },
-      {
-        type: "text",
-        content: "We are excited to welcome someone who is dedicated to a long-term journey with us, beginning with a flexible part-time opportunity. This role is fully remote, featuring weekly team meetings every Tuesday for an hour to review progress and exchange ideas."
-      },
-      {
-        type: "heading",
-        content: "Preferred but not required"
-      },
-      {
-        type: "text",
-        content: "Opportunity: We are in search of a committed individual interested in a long-term role with us, starting with a part-time commitment. This position is entirely remote, with a weekly team meeting every Tuesday for an hour."
-      },
-      {
-        type: "text",
-        content: "This senior role allows you to work alongside two industry experts, each with over 30 years of experience in agricultural exports. You will enjoy considerable autonomy, as we seek someone who can advance projects independently while overseeing essential aspects of our export operations."
-      },
-      {
-        type: "heading",
-        content: "Concluding Remarks"
-      },
-      {
-        type: "text",
-        content: "This senior role allows you to work alongside two industry experts, each with over 30 years of experience in agricultural exports. You will enjoy considerable autonomy, as we seek someone who can advance projects independently while overseeing essential aspects of our export operations."
-      }
-    ],
-    tags: ["Agricultural Science", "Soil Health", "Crop Management", "Sustainable Practices", "Water Supply", "Organic Farming", "Animal Care"]
-  }
-};
+interface BlogPost {
+  _id: string;
+  title: string;
+  description: string;
+  content: string;
+  category: string;
+  image: string;
+  subImage?: string;
+  metaTitle: string;
+  metaDescription: string;
+  metaKeywords: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  published: boolean;
+}
 
 const relatedPosts = [
   {
@@ -117,22 +52,78 @@ const relatedPosts = [
 export default function BlogPost() {
   const params = useParams();
   const slug = params.slug as string;
-  const post = blogPosts[slug as keyof typeof blogPosts];
+  const [blog, setBlog] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [relatedBlogs, setRelatedBlogs] = useState<BlogPost[]>([]);
 
-  if (!post) {
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        console.log('Fetching blog with slug:', slug);
+        const response = await fetch(`/api/blogs/${slug}`);
+        const result = await response.json();
+        console.log('Blog API response:', result);
+        
+        if (result.success) {
+          setBlog(result.data);
+          
+          // Fetch related blogs
+          const relatedResponse = await fetch('/api/blogs?published=true');
+          const relatedResult = await relatedResponse.json();
+          console.log('Related blogs response:', relatedResult);
+          
+          if (relatedResult.success) {
+            // Filter out current blog and take first 3
+            const related = relatedResult.data
+              .filter((b: BlogPost) => b.slug !== slug)
+              .slice(0, 3);
+            setRelatedBlogs(related);
+          }
+        } else {
+          console.error('Blog not found:', result.error);
+        }
+      } catch (error) {
+        console.error('Error fetching blog:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (slug) {
+      fetchBlog();
+    }
+  }, [slug]);
+
+  if (loading) {
     return (
-      <>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-[var(--black)] mb-4">Blog Post Not Found</h1>
-            <Link href="/blog" className="text-[var(--orange)] hover:underline">
-              Back to Blog
-            </Link>
-          </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-xl text-gray-600">Loading blog...</div>
         </div>
-      </>
+      </div>
     );
   }
+
+  if (!blog) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[var(--black)] mb-4">Blog Post Not Found</h1>
+          <Link href="/blog" className="text-[var(--orange)] hover:underline">
+            Back to Blog
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
 
   return (
     <>
@@ -145,35 +136,29 @@ export default function BlogPost() {
           {/* Blog Header */}
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-sm font-medium text-[var(--black)]">• {post.category}</span>
+              <span className="text-sm font-medium text-[var(--black)]">• {blog.category}</span>
             </div>
             
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--black)] leading-tight mb-6">
-              {post.title}
+              {blog.title}
             </h1>
             
             <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
                   <span className="text-sm font-medium text-[var(--black)]">
-                    <Image
-                    src={post.authorImage}
-                    alt={post.author}
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                    />
+                    VS
                   </span>
                 </div>
                 <div>
-                  <p className="font-medium text-[var(--black)]">{post.author}</p>
+                  <p className="font-medium text-[var(--black)]">Vexlure Staff</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-[var(--gray-text)]">•</span>
-                <span className="text-[var(--gray-text)]">{post.date}</span>
+                <span className="text-[var(--gray-text)]">{formatDate(blog.createdAt)}</span>
                 <span className="text-[var(--gray-text)]">•</span>
-                <span className="text-[var(--gray-text)]">{post.readTime}</span>
+                <span className="text-[var(--gray-text)]">5 min read</span>
               </div>
               
               {/* Social Share Icons - Mobile and Desktop */}
@@ -205,69 +190,53 @@ export default function BlogPost() {
           {/* Hero Image */}
           <div className="mb-8">
             <Image
-              src={post.heroImage}
-              alt={post.title}
+              src={blog.image}
+              alt={blog.title}
               width={800}
               height={400}
               className="w-full h-[300px] md:h-[400px] object-cover rounded-2xl"
+              onError={(e) => {
+                e.currentTarget.src = '/image/industry-agriculture.png';
+              }}
             />
           </div>
 
           {/* Blog Content */}
           <article className="prose prose-lg max-w-none">
-            {post.content.map((section, index) => {
-              switch (section.type) {
-                case 'text':
-                  return (
-                    <p key={index} className="text-base md:text-lg text-[var(--gray-text)] leading-relaxed mb-6">
-                      {section.content}
-                    </p>
-                  );
-                case 'heading':
-                  return (
-                    <h2 key={index} className="text-2xl md:text-3xl font-bold text-[var(--black)] mt-12 mb-6">
-                      {section.content}
-                    </h2>
-                  );
-                case 'list':
-                  return (
-                    <ul key={index} className="space-y-3 mb-8">
-                      {section.items?.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start gap-3">
-                          <span className="w-2 h-2 bg-[var(--orange)] rounded-full mt-3 flex-shrink-0"></span>
-                          <span className="text-base md:text-lg text-[var(--gray-text)] leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  );
-                case 'image':
-                  return (
-                    <div key={index} className="my-8">
-                      <Image
-                        src={section.src!}
-                        alt={section.alt!}
-                        width={800}
-                        height={400}
-                        className="w-full h-[300px] md:h-[400px] object-cover rounded-2xl"
-                      />
-                    </div>
-                  );
-                default:
-                  return null;
-              }
-            })}
+            <div className="text-base md:text-lg text-[var(--gray-text)] leading-relaxed mb-6">
+              {blog.description}
+            </div>
+            <div className="text-base md:text-lg text-[var(--gray-text)] leading-relaxed mb-6 whitespace-pre-wrap">
+              {blog.content}
+            </div>
+            
+            {/* Sub Image if available */}
+            {blog.subImage && (
+              <div className="my-8">
+                <Image
+                  src={blog.subImage}
+                  alt="Additional content image"
+                  width={800}
+                  height={400}
+                  className="w-full h-[300px] md:h-[400px] object-cover rounded-2xl"
+                  onError={(e) => {
+                    e.currentTarget.src = '/image/industry-agriculture.png';
+                  }}
+                />
+              </div>
+            )}
           </article>
 
           {/* Tags Section */}
           <div className="mt-12 mb-12">
             <h3 className="text-lg font-semibold text-[var(--black)] mb-4">Tags</h3>
             <div className="flex flex-wrap gap-3">
-              {post.tags.map((tag, index) => (
+              {blog.metaKeywords && blog.metaKeywords.split(',').map((tag, index) => (
                 <span
                   key={index}
                   className="px-4 py-2 bg-[var(--secondary-bg)] text-[var(--black)] rounded-full text-sm hover:bg-[var(--orange)]/10 transition-colors cursor-pointer"
                 >
-                  {tag}
+                  {tag.trim()}
                 </span>
               ))}
             </div>
@@ -281,29 +250,32 @@ export default function BlogPost() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {relatedPosts.map((relatedPost) => (
+              {relatedBlogs.map((relatedBlog) => (
                 <Link
-                  key={relatedPost.id}
-                  href={`/blog/${relatedPost.id}`}
+                  key={relatedBlog._id}
+                  href={`/blog/${relatedBlog.slug}`}
                   className="group block"
                 >
                   <div className="relative mb-4">
                     <Image
-                      src={relatedPost.image}
-                      alt={relatedPost.title}
+                      src={relatedBlog.image}
+                      alt={relatedBlog.title}
                       width={400}
                       height={250}
                       className="w-full h-[200px] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        e.currentTarget.src = '/image/industry-agriculture.png';
+                      }}
                     />
                     <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs">
-                      {relatedPost.date}
+                      {formatDate(relatedBlog.createdAt)}
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <span className="text-sm text-[var(--orange)] font-medium">{relatedPost.category}</span>
-                    <span className="text-sm text-[var(--gray-text)]"> • {relatedPost.readTime}</span>
+                    <span className="text-sm text-[var(--orange)] font-medium">{relatedBlog.category}</span>
+                    <span className="text-sm text-[var(--gray-text)]"> • 5 min read</span>
                     <h3 className="font-bold text-[var(--black)] group-hover:text-[var(--orange)] transition-colors line-clamp-2">
-                      {relatedPost.title}
+                      {relatedBlog.title}
                     </h3>
                   </div>
                 </Link>

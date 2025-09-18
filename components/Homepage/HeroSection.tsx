@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
         {/* Background Image */}
         <Image
           src="/image/home.jpg"
-          alt=""
+          alt="home"
           aria-hidden="true"
           fill
           style={{ objectFit: "cover" }}
@@ -36,7 +36,11 @@ const HeroSection: React.FC = () => {
           className="relative h-full flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 py-12 md:py-45"
           style={{ zIndex: 2 }}
         >
-          <AnimatedSection className="max-w-[930px] text-center sm:text-left mx-auto md:mx-0" delay={0.2} staggerDelay={0.3}>
+          <AnimatedSection
+            className="max-w-[930px] text-center sm:text-left mx-auto md:mx-0"
+            delay={0.2}
+            staggerDelay={0.3}
+          >
             <h1 className="md:font-bold text-[var(--white)] mb-5 md:mb-7 tracking-normal leading-[44px] md:leading-[72px] text-[32px] font-semibold md:text-[56px]">
               Welcome to <br className="hidden sm:block" />
               Vexlure International
@@ -56,7 +60,7 @@ const HeroSection: React.FC = () => {
                 className="inline-flex items-center justify-center min-w-[140px] h-11 rounded-full px-7 py-2 text-sm md:text-base gap-2 leading-[22px] md:leading-[24px] font-medium tracking-tight bg-[var(--orange)] text-[var(--white)] hover:bg-orange-600 focus:outline-none focus:ring-0 "
               >
                 About Us
-                <HiArrowUpRight className="text-sm md:text-base font-medium"/>
+                <HiArrowUpRight className="text-sm md:text-base font-medium" />
               </Link>
             </div>
           </AnimatedSection>
@@ -64,9 +68,9 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Logo Marquee */}
-<div className="flex justify-center w-full mt-9 md:mt-12">
-  <div
-    className="
+      <div className="flex justify-center w-full mt-9 md:mt-12">
+        <div
+          className="
       relative 
       bg-white 
       rounded-[16px] md:rounded-[24px] 
@@ -78,11 +82,10 @@ const HeroSection: React.FC = () => {
       max-w-[90%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-[1200px]
       min-h-[92px] md:min-h-[120px] lg:max-h-[186px]
     "
-  >
-    <CertificateLogos />
-  </div>
-</div>
-
+        >
+          <CertificateLogos />
+        </div>
+      </div>
     </section>
   );
 };

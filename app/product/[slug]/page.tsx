@@ -19,8 +19,8 @@ export default async function ProductDetailsPage({ params }) {
     
     return (
       <>
-        <span className="text-[var(--black)] ">{beforeColon}</span>
-        <span className="text-[var(--gray-text)] font-medium">{afterColon}</span>
+        <span className="text-[var(--black)] text-lg font-semibold leading-7 ">{beforeColon}</span>
+        <span className="text-[var(--gray-text)] text-base leading-6 font-medium">{afterColon}</span>
       </>
     );
   };
@@ -28,22 +28,22 @@ export default async function ProductDetailsPage({ params }) {
   // Only for agriculture-spices: show Figma-style detail
 
     return (
-      <section className="w-full py-20 px-5 md:px-8 flex flex-col items-center bg-[var(--white)]">
+      <section className="w-full py-25 px-5 md:px-8 flex flex-col items-center bg-[var(--white)]">
         {/* Hero Image & Title */}
         <section className="w-full max-w-[1440px] relative flex flex-col items-center m-4">
-          <img src={product.image} alt={product.title} className="rounded-2xl w-full h-[420px] md:max-h-[580px] object-cover shadow" />
+          <img src={product.image} alt={product.title} className="rounded-2xl w-full h-[420px] md:h-[580px] object-cover shadow" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
             <div className="w-full h-full absolute inset-0 rounded-2xl bg-[#18181880]" />
-            <div className="relative z-10 flex flex-col items-center justify-center w-full">
-              <span className="text-xs md:text-base font-medium text-white/80 tracking-widest mb-3 drop-shadow-lg">• {product.title}</span>
-              <h1 className="text-3xl md:text-5xl font-semibold text-white mb-4 drop-shadow-lg leading-tight">{product.subtitle}</h1>
-              <p className="max-w-2xl text-center text-white text-base md:text-xl leading-6 md:leading-8 drop-shadow mb-0 font-normal">{product.subdescription}</p>
+            <div className="relative max-w-[920px] z-10 flex flex-col items-center justify-center">
+              <span className="text-sm md:text-base leading-[22px] md:leading-6 font-medium text-white mb-3 ">• {product.title}</span>
+              <h1 className="text-[32px] md:text-5xl font-semibold text-white mb-4 leading-[44px] md:leading-[64px]">{product.subtitle}</h1>
+              <p className="text-white text-base md:text-xl leading-6 md:leading-8  mb-0 font-normal">{product.subdescription}</p>
             </div>
           </div>
         </section>
 
         {/* Agriculture Products Grid */}
-        <section className="w-full max-w-[1440px] flex flex-col gap-8 mt-8">
+        <section className="w-full max-w-[1440px] flex flex-col gap-8 mt-14 md:mt-25">
           {product.products?.map((item, idx) => (
             <div
               key={idx}
@@ -60,12 +60,12 @@ export default async function ProductDetailsPage({ params }) {
               </div>
               {/* Info Box - gray bg */}
               <div className="w-full md:w-1/2 bg-[var(--secondary-bg)] rounded-2xl shadow p-4 md:p-8 flex flex-col justify-center">
-                <h3 className="text-xl md:text-3xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-xs md:text-base text-gray-700 mb-4 font-normal">{item.description}</p>
+                <h3 className="text-xl md:text-[28px] md:leading-[40px] font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-xs md:text-base md:leading-6 text-gray-700 mb-4 font-normal">{item.description}</p>
                 <ul className="space-y-2">
                   {item.features.map((f, i) => (
-                    <li key={i} className="flex items-center bg-[var(--white)] text-base py-2.5 px-2 rounded">
-                      <GiCheckMark className="text-orange-500 mr-2 flex-shrink-0" /> 
+                    <li key={i} className="flex items-center bg-[var(--white)] py-2.5 px-2 rounded">
+                      {/* <GiCheckMark className="text-orange-500 mr-2 flex-shrink-0" />  */}
                       <span>{formatFeatureText(f)}</span>
                     </li>
                   ))}

@@ -47,7 +47,7 @@ const AnimatedCardMobile: React.FC<AnimatedCardMobileProps> = ({
       initial="hidden"
       animate={hasInitiallyAnimated ? "visible" : "hidden"}
       whileInView="visible"
-      viewport={{ once: false, margin: "0px", amount: 0.1 }}
+      viewport={{ once: true, margin: "0px", amount: 0.1 }}
     >
       {children}
     </motion.div>

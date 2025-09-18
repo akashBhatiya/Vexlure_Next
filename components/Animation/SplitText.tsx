@@ -71,7 +71,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       initial="hidden"
       animate={hasInitiallyAnimated ? "visible" : "hidden"}
       whileInView="visible"
-      viewport={{ once: false, margin: "-30px", amount: 0.05 }}
+      viewport={{ once: true, margin: "-30px", amount: 0.05 }}
     >
       {words.map((word, index) => (
         <motion.span

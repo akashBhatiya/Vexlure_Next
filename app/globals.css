@@ -46,3 +46,21 @@ body {
   color: var(--foreground);
   font-family: 'Open Sans', sans-serif;
 }
+
+/* Smooth Auto-Scroll Animation */
+@keyframes smoothScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.auto-scroll {
+  animation: smoothScroll 30s linear infinite;
+}
+
+.auto-scroll:hover {
+  animation-play-state: paused;
+}

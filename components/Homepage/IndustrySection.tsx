@@ -7,6 +7,7 @@ import AnimatedSection from "../Animation/AnimatedSection";
 import { CATEGORIES_DATA } from "../categoriesData";
 
 const IndustrySection: React.FC = () => {
+
   return (
     <section
       id="industry"
@@ -18,19 +19,18 @@ const IndustrySection: React.FC = () => {
           • Our Product Range
           </span>
           <SplitText 
-            text="Customer Feedback That Reflects Our Commitment to Excellence"
+            text="From Indian Fields to Global Markets"
             className="text-2xl md:text-[40px] font-semibold leading-9 md:leading-[52px] text-[var(--black)] mb-4 text-center mx-auto"
             delay={0.1}
             duration={0.06}
           />
         </AnimatedSection>
-        <div className="px-2 md:px-6">
-          <div className="flex gap-6 overflow-x-auto scroll-hidden py-4 snap-x snap-mandatory w-full scroll-smooth ">
-            {/* Simple cards without flip animation for debugging */}
-            {CATEGORIES_DATA && CATEGORIES_DATA.length > 0 ? (
-              CATEGORIES_DATA.map((cat, idx) => (
+        <div className="px-2 md:px-6 overflow-hidden">
+          <div className="flex gap-6 py-4 auto-scroll">
+            {/* Duplicate cards for seamless infinite scroll */}
+            {[...CATEGORIES_DATA, ...CATEGORIES_DATA].map((cat, idx) => (
                 <div
-                  key={cat.slug}
+                  key={`${cat.slug}-${idx}`}
                   className="w-[290px] md:w-[360px] h-[360px] md:h-[464px] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-all duration-300"
                 >
                   <Image
@@ -108,11 +108,11 @@ const IndustrySection: React.FC = () => {
                   </div>
                 </div>
               ))
-            ) : (
+ } : (
               <div className="text-center w-full text-red-500 font-bold text-lg p-8 bg-red-50 rounded-lg border border-red-200">
                 No categories found. CATEGORIES_DATA: {JSON.stringify(CATEGORIES_DATA?.length || 'undefined')}
               </div>
-            )}
+            )
           </div>
         </div>
       </div>

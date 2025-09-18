@@ -52,7 +52,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, margin: "-50px", amount: 0.01 }}
+      viewport={{ once: true, margin: "-50px", amount: 0.01 }}
     >
       {React.Children.map(children, (child, index) => (
         <motion.div key={index} variants={item}>

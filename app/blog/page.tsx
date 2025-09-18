@@ -1,118 +1,122 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+
+interface BlogPost {
+  _id: string;
+  title: string;
+  description: string;
+  content: string;
+  category: string;
+  image: string;
+  subImage?: string;
+  metaTitle: string;
+  metaDescription: string;
+  metaKeywords: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  published: boolean;
+}
 
 // Article Card Component
 const ArticleCard = ({
-  id,
-  date,
-  category,
-  readTime,
-  title,
-  imageSrc,
+  blog,
 }: {
-  id: number;
-  date: string;
-  category: string;
-  readTime: string;
-  title: string;
-  imageSrc: string;
-}) => (
-  <Link href={`/blog/customer-feedback-reflects-commitment-excellence`} className="block group">
-    <article className="bg-transparent">
-      <div className="relative mb-4">
-        <Image
-          src={imageSrc}
-          alt={title}
-          width={400}
-          height={300}
-          className="w-full h-[272px] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300"
-        />
-        <div className="absolute top-4 right-4 bg-[#99999980] text-[var(--white)] px-3 py-2 rounded-full text-xs leading-5 font-medium border">
-          {date}
+  blog: BlogPost;
+}) => {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric'
+    });
+  };
+
+  return (
+    <Link href={`/blog/${blog.slug}`} className="block group">
+      <article className="bg-transparent">
+        <div className="relative mb-4">
+          <Image
+            src={blog.image}
+            alt={blog.title}
+            width={400}
+            height={300}
+            className="w-full h-[272px] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300"
+            onError={(e) => {
+              e.currentTarget.src = '/image/industry-agriculture.png';
+            }}
+          />
+          <div className="absolute top-4 right-4 bg-[#99999980] text-[var(--white)] px-3 py-2 rounded-full text-xs leading-5 font-medium border">
+            {formatDate(blog.createdAt)}
+          </div>
         </div>
-      </div>
-      <div className="space-y-3 px-1">
-        <div className="flex items-center gap-2">
-          <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">{category}</span>
-          <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">•</span>
-          <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">{readTime}</span>
+        <div className="space-y-3 px-1">
+          <div className="flex items-center gap-2">
+            <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">{blog.category}</span>
+            <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">•</span>
+            <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">5 min read</span>
+          </div>
+          <h3 className="text-xl md:text-2xl leading-[20px] md:leading-9 font-semibold text-[var(--black)] group-hover:text-[var(--orange)] transition-colors">
+            {blog.title}
+          </h3>
         </div>
-        <h3 className="text-xl md:text-2xl leading-[20px] md:leading-9 font-semibold text-[var(--black)] group-hover:text-[var(--orange)] transition-colors">
-          {title}
-        </h3>
-      </div>
-    </article>
-  </Link>
-);
+      </article>
+    </Link>
+  );
+};
+
+const BLOG_CATEGORIES = [
+  'All Categories',
+  'Export Insights',
+  'Market Analysis',
+  'Spice Knowledge', 
+  'Health Benefits',
+  'Certifications Quality'
+];
 
 export default function BlogPage() {
-  // Articles data
-  const articles = [
-    {
-      id: 1,
-      date: "12-09-2025",
-      category: "Soil Health",
-      readTime: "4 min read",
-      title: "Customer Feedback That Reflects Our Commitment to Excellence",
-      imageSrc: "/agriculture/spices.png",
-    },
-    {
-      id: 2,
-      date: "11-09-2025",
-      category: "Crop Management",
-      readTime: "5 min read",
-      title: "Sustainable Farming Practices for Modern Agriculture",
-      imageSrc: "/agriculture/Beans.jpg",
-    },
-    {
-      id: 3,
-      date: "10-09-2025",
-      category: "Water Supply",
-      readTime: "3 min read",
-      title: "Innovative Irrigation Techniques for Better Yields",
-      imageSrc: "/agriculture/Carrot.jpg",
-    },
-    {
-      id: 4,
-      date: "09-09-2025",
-      category: "Organic Farming",
-      readTime: "6 min read",
-      title: "Organic Certification Process and Benefits",
-      imageSrc: "/agriculture/Brinjal.jpg",
-    },
-    {
-      id: 5,
-      date: "08-09-2025",
-      category: "Soil Health",
-      readTime: "4 min read",
-      title: "Understanding Soil pH and Nutrient Management",
-      imageSrc: "/agriculture/spices.png",
-    },
-    {
-      id: 6,
-      date: "07-09-2025",
-      category: "Agricultural Science",
-      readTime: "7 min read",
-      title: "Climate Change Impact on Agricultural Productivity",
-      imageSrc: "/agriculture/Beans.jpg",
-    },
-    {
-      id: 7,
-      date: "06-09-2025",
-      category: "Sustainable Practices",
-      readTime: "5 min read",
-      title: "Reducing Carbon Footprint in Agriculture",
-      imageSrc: "/agriculture/Carrot.jpg",
-    },
-    {
-      id: 8,
-      date: "05-09-2025",
-      category: "Greenhouse",
-      readTime: "4 min read",
-      title: "Advanced Greenhouse Technologies for Year-Round Production",
-      imageSrc: "/agriculture/Brinjal.jpg",
-    },
-  ];
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [featuredBlog, setFeaturedBlog] = useState<BlogPost | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('All Categories');
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch('/api/blogs?published=true');
+        const result = await response.json();
+        if (result.success) {
+          setBlogs(result.data);
+          setFilteredBlogs(result.data);
+          // Set first blog as featured
+          if (result.data.length > 0) {
+            setFeaturedBlog(result.data[0]);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  // Filter blogs by category
+  useEffect(() => {
+    if (selectedCategory === 'All Categories') {
+      setFilteredBlogs(blogs);
+    } else {
+      setFilteredBlogs(blogs.filter(blog => blog.category === selectedCategory));
+    }
+  }, [selectedCategory, blogs]);
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <>
@@ -139,41 +143,59 @@ export default function BlogPage() {
           <div className="flex flex-col md:flex-row gap-6 lg:gap-8 items-start">
             {/* Featured Article Image */}
             <div className="relative flex justify-between rounded-3xl w-full md:w-[65%] xl:w-[972px] h-[400px] xl:h-[432px] order-2 md:order-1">
-              <Image
-                src="/image/industry-agriculture.png"
-                alt="Customer Feedback That Reflects Our Commitment to Excellence"
-                width={972}
-                height={432}
-                className="absolute inset-0 w-full h-full object-cover rounded-3xl"
-              />
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-black/30 rounded-3xl"></div>
+              {featuredBlog ? (
+                <>
+                  <Image
+                    src={featuredBlog.image}
+                    alt={featuredBlog.title}
+                    width={972}
+                    height={432}
+                    className="absolute inset-0 w-full h-full object-cover rounded-3xl"
+                    onError={(e) => {
+                      e.currentTarget.src = '/image/industry-agriculture.png';
+                    }}
+                  />
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-black/30 rounded-3xl"></div>
 
-              {/* Content positioned at top-left */}
-              <div className="relative z-10 flex flex-col justify-between h-full w-full p-4 md:p-6 lg:p-8">
-                {/* Top content */}
-                <div className="max-w-full lg:max-w-[448px]">
-                  <div className="flex items-center gap-3 text-white text-sm md:text-base leading-6 mb-3 md:mb-4 font-medium">
-                    <span>Vegetables</span>
-                    <span>•</span>
-                    <span>4 min read</span>
-                  </div>
-                  <h3
-                    className="text-lg md:text-xl lg:text-[32px] leading-tight md:leading-[44px] font-semibold text-white"
-                    style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
-                  >
-                    Customer Feedback That Reflects Our Commitment to Excellence
-                  </h3>
-                </div>
+                  {/* Content positioned at top-left */}
+                  <div className="relative z-10 flex flex-col justify-between h-full w-full p-4 md:p-6 lg:p-8">
+                    {/* Top content */}
+                    <div className="max-w-full lg:max-w-[448px]">
+                      <div className="flex items-center gap-3 text-white text-sm md:text-base leading-6 mb-3 md:mb-4 font-medium">
+                        <span>{featuredBlog.category}</span>
+                        <span>•</span>
+                        <span>5 min read</span>
+                      </div>
+                      <Link href={`/blog/${featuredBlog.slug}`}>
+                        <h3
+                          className="text-lg md:text-xl lg:text-[32px] leading-tight md:leading-[44px] font-semibold text-white hover:text-orange-200 transition-colors cursor-pointer"
+                          style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
+                        >
+                          {featuredBlog.title}
+                        </h3>
+                      </Link>
+                    </div>
 
-                {/* Bottom content */}
-                <div className="flex flex-col gap-1 md:gap-2">
-                  <div className="text-white text-xs md:text-sm font-medium">
-                    Published
+                    {/* Bottom content */}
+                    <div className="flex flex-col gap-1 md:gap-2">
+                      <div className="text-white text-xs md:text-sm font-medium">
+                        Published
+                      </div>
+                      <div className="text-white text-xs">
+                        {new Date(featuredBlog.createdAt).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-white text-xs">Sept 11</div>
+                </>
+              ) : (
+                <div className="absolute inset-0 bg-gray-200 rounded-3xl flex items-center justify-center">
+                  <div className="text-gray-500">No featured blog available</div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Newsletter Section */}
@@ -219,50 +241,53 @@ export default function BlogPage() {
                 />
               </div>
               <div className="flex flex-wrap gap-3">
-                <button className="px-5 py-[10px] rounded-full bg-black text-white text-sm md:text-base md:leading-6 font-medium">
-                  All Categories
-                </button>
-                <div className="flex flex-wrap gap-3">
-                  <button className="px-5 py-[10px] rounded-full bg-white  text-gray-800 text-sm md:text-base md:leading-6 font-medium">
-                    Agricultural Science
+                {BLOG_CATEGORIES.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => handleCategoryChange(category)}
+                    className={`px-5 py-[10px] rounded-full text-sm md:text-base md:leading-6 font-medium transition-colors ${
+                      selectedCategory === category
+                        ? 'bg-black text-white'
+                        : 'bg-white text-gray-800 hover:bg-gray-100'
+                    }`}
+                  >
+                    {category}
                   </button>
-                  <button className="px-5 py-[10px] rounded-full bg-white  text-gray-800 text-sm md:text-base md:leading-6 font-medium">
-                    Soil Health
-                  </button>
-                  <button className="px-5 py-[10px] rounded-full bg-white  text-gray-800 text-sm md:text-base md:leading-6 font-medium">
-                    Crop Management
-                  </button>
-                  <button className="px-5 py-[10px] rounded-full bg-white  text-gray-800 text-sm md:text-base md:leading-6 font-medium">
-                    Sustainable Practices
-                  </button>
-                  <button className="px-5 py-[10px] rounded-full bg-white  text-gray-800 text-sm md:text-base md:leading-6 font-medium">
-                    Water Supply
-                  </button>
-                  <button className="px-5 py-[10px] rounded-full bg-white  text-gray-800 text-sm md:text-base md:leading-6 font-medium">
-                    Organic Farming
-                  </button>
-                  <button className="px-5 py-[10px] rounded-full bg-white  text-gray-800 text-sm md:text-base md:leading-6 font-medium">
-                    Animal Care
-                  </button>
-                </div>
+                ))}
               </div>
             </div>
 
             {/* Articles Grid */}
             <div className="flex-1">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {articles.map((article) => (
-                  <ArticleCard
-                    key={article.id}
-                    id={article.id}
-                    date={article.date}
-                    category={article.category}
-                    readTime={article.readTime}
-                    title={article.title}
-                    imageSrc={article.imageSrc}
-                  />
-                ))}
-              </div>
+              {loading ? (
+                <div className="text-center py-12">
+                  <div className="text-xl text-gray-600">Loading blogs...</div>
+                </div>
+              ) : filteredBlogs.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="text-xl text-gray-600 mb-4">
+                    {selectedCategory === 'All Categories' 
+                      ? 'No blogs published yet.' 
+                      : `No blogs found in "${selectedCategory}" category.`
+                    }
+                  </div>
+                  <p className="text-gray-500">
+                    {selectedCategory === 'All Categories' 
+                      ? 'Check back soon for new content!' 
+                      : 'Try selecting a different category.'
+                    }
+                  </p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {filteredBlogs.slice(selectedCategory === 'All Categories' ? 1 : 0).map((blog) => (
+                    <ArticleCard
+                      key={blog._id}
+                      blog={blog}
+                    />
+                  ))}
+                </div>
+              )}
 
               {/* Pagination */}
               <div className="flex justify-center items-center mt-12 gap-3">
