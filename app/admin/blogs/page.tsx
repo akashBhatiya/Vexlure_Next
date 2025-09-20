@@ -281,7 +281,25 @@ const BlogAdminPage: React.FC = () => {
   if (authLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-xl">Checking authentication...</div>
+        <div className="text-center">
+          {/* Animated Loader */}
+          <div className="relative mb-6">
+            <div className="w-16 h-16 mx-auto">
+              <div className="w-16 h-16 border-4 border-yellow-200 border-t-yellow-500 rounded-full animate-spin"></div>
+            </div>
+            <div className="absolute inset-0 w-16 h-16 mx-auto">
+              <div className="w-12 h-12 mt-2 ml-2 border-4 border-transparent border-t-yellow-400 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '0.8s'}}></div>
+            </div>
+          </div>
+          
+          {/* Loading Text with Animation */}
+          <div className="text-xl font-medium text-gray-800 mb-2 animate-pulse">
+            Checking Authentication...
+          </div>
+          <div className="text-sm text-gray-600">
+            Please wait while we verify your access
+          </div>
+        </div>
       </div>
     );
   }
@@ -290,7 +308,25 @@ const BlogAdminPage: React.FC = () => {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-xl">Access denied. Redirecting...</div>
+        <div className="text-center">
+          {/* Animated Loader */}
+          <div className="relative mb-6">
+            <div className="w-16 h-16 mx-auto">
+              <div className="w-16 h-16 border-4 border-red-200 border-t-red-500 rounded-full animate-spin"></div>
+            </div>
+            <div className="absolute inset-0 w-16 h-16 mx-auto">
+              <div className="w-12 h-12 mt-2 ml-2 border-4 border-transparent border-t-red-400 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '0.8s'}}></div>
+            </div>
+          </div>
+          
+          {/* Loading Text with Animation */}
+          <div className="text-xl font-medium text-gray-800 mb-2 animate-pulse">
+            Access denied. Redirecting...
+          </div>
+          <div className="text-sm text-gray-600">
+            Please wait while we redirect you
+          </div>
+        </div>
       </div>
     );
   }
@@ -298,7 +334,25 @@ const BlogAdminPage: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-xl">Loading blogs...</div>
+        <div className="text-center">
+          {/* Animated Loader */}
+          <div className="relative mb-6">
+            <div className="w-16 h-16 mx-auto">
+              <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin"></div>
+            </div>
+            <div className="absolute inset-0 w-16 h-16 mx-auto">
+              <div className="w-12 h-12 mt-2 ml-2 border-4 border-transparent border-t-blue-400 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '0.8s'}}></div>
+            </div>
+          </div>
+          
+          {/* Loading Text with Animation */}
+          <div className="text-xl font-medium text-gray-800 mb-2 animate-pulse">
+            Loading Blogs...
+          </div>
+          <div className="text-sm text-gray-600">
+            Please wait while we fetch your blog posts
+          </div>
+        </div>
       </div>
     );
   }

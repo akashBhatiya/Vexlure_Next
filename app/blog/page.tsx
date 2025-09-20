@@ -335,7 +335,23 @@ export default function BlogPage() {
             <div className="flex-1" id="blog-articles">
               {loading ? (
                 <div className="text-center py-12">
-                  <div className="text-xl text-gray-600">Loading blogs...</div>
+                  {/* Animated Loader */}
+                  <div className="relative mb-6">
+                    <div className="w-16 h-16 mx-auto">
+                      <div className="w-16 h-16 border-4 border-[var(--orange)]/20 border-t-[var(--orange)] rounded-full animate-spin"></div>
+                    </div>
+                    <div className="absolute inset-0 w-16 h-16 mx-auto">
+                      <div className="w-12 h-12 mt-2 ml-2 border-4 border-transparent border-t-[var(--orange)]/60 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '0.8s'}}></div>
+                    </div>
+                  </div>
+                  
+                  {/* Loading Text with Animation */}
+                  <div className="text-xl font-medium text-[var(--black)] mb-2 animate-pulse">
+                    Loading Blogs...
+                  </div>
+                  <div className="text-sm text-[var(--gray-text)]">
+                    Please wait while we fetch the latest articles
+                  </div>
                 </div>
               ) : currentBlogs.length === 0 ? (
                 <div className="text-center py-12">
