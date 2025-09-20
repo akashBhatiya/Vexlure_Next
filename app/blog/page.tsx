@@ -8,12 +8,12 @@ interface BlogPost {
   title: string;
   description: string;
   content: string;
+  author?: string;
+  readTime?: string;
   category: string;
   image: string;
   subImage?: string;
-  metaTitle: string;
-  metaDescription: string;
-  metaKeywords: string;
+  tags: string[];
   slug: string;
   createdAt: string;
   updatedAt: string;
@@ -27,10 +27,11 @@ const ArticleCard = ({
   blog: BlogPost;
 }) => {
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric'
-    });
+    const d = new Date(dateString);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
   };
 
   return (
@@ -47,7 +48,7 @@ const ArticleCard = ({
               e.currentTarget.src = '/image/industry-agriculture.png';
             }}
           />
-          <div className="absolute top-4 right-4 bg-[#99999980] text-[var(--white)] px-3 py-2 rounded-full text-xs leading-5 font-medium border">
+          <div className="absolute top-4 right-4 bg-[#99999980] text-[var(--white)] px-3 py-2 rounded-full text-xs leading-5 font-medium border border-[var(--border)]">
             {formatDate(blog.createdAt)}
           </div>
         </div>
@@ -55,7 +56,7 @@ const ArticleCard = ({
           <div className="flex items-center gap-2">
             <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">{blog.category}</span>
             <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">•</span>
-            <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">5 min read</span>
+            <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">{blog.readTime || '5 min read'}</span>
           </div>
           <h3 className="text-xl md:text-2xl leading-[20px] md:leading-9 font-semibold text-[var(--black)] group-hover:text-[var(--orange)] transition-colors">
             {blog.title}
@@ -81,6 +82,9 @@ export default function BlogPage() {
   const [loading, setLoading] = useState(true);
   const [featuredBlog, setFeaturedBlog] = useState<BlogPost | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 8;
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -105,18 +109,56 @@ export default function BlogPage() {
     fetchBlogs();
   }, []);
 
-  // Filter blogs by category
-  useEffect(() => {
-    if (selectedCategory === 'All Categories') {
-      setFilteredBlogs(blogs);
-    } else {
-      setFilteredBlogs(blogs.filter(blog => blog.category === selectedCategory));
-    }
-  }, [selectedCategory, blogs]);
-
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+    setCurrentPage(1); // Reset to first page on category change
+    if (category === 'All Categories') {
+      setFilteredBlogs(blogs);
+    } else {
+      const filtered = blogs.filter(blog => blog.category === category);
+      setFilteredBlogs(filtered);
+    }
+    // Close modal on mobile after selection (keep open on desktop)
+    if (window.innerWidth < 1024) {
+      setIsCategoriesOpen(false);
+    }
   };
+
+  // Pagination logic
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    // Scroll to top of blog section
+    const blogSection = document.querySelector('#blog-articles');
+    if (blogSection) {
+      blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const toggleCategories = () => {
+    setIsCategoriesOpen(!isCategoriesOpen);
+  };
+
+  // Initialize categories as open on desktop, closed on mobile
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) { // lg breakpoint - desktop
+        setIsCategoriesOpen(true); // Default open on desktop
+      } else {
+        setIsCategoriesOpen(false); // Default closed on mobile
+      }
+    };
+
+    // Set initial state
+    handleResize();
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
@@ -145,51 +187,50 @@ export default function BlogPage() {
             <div className="relative flex justify-between rounded-3xl w-full md:w-[65%] xl:w-[972px] h-[400px] xl:h-[432px] order-2 md:order-1">
               {featuredBlog ? (
                 <>
-                  <Image
-                    src={featuredBlog.image}
-                    alt={featuredBlog.title}
-                    width={972}
-                    height={432}
+                  <Link href={`/blog/${featuredBlog.slug}`} className="absolute inset-0 block group cursor-pointer">
+                    <Image
+                      src={featuredBlog.image}
+                      alt={featuredBlog.title}
+                      width={972}
+                      height={432}
                     className="absolute inset-0 w-full h-full object-cover rounded-3xl"
-                    onError={(e) => {
-                      e.currentTarget.src = '/image/industry-agriculture.png';
-                    }}
-                  />
-                  {/* Dark overlay */}
-                  <div className="absolute inset-0 bg-black/30 rounded-3xl"></div>
+                      onError={(e) => {
+                        e.currentTarget.src = '/image/industry-agriculture.png';
+                      }}
+                    />
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/30 rounded-3xl group-hover:bg-black/40 transition-colors duration-300"></div>
 
-                  {/* Content positioned at top-left */}
-                  <div className="relative z-10 flex flex-col justify-between h-full w-full p-4 md:p-6 lg:p-8">
-                    {/* Top content */}
-                    <div className="max-w-full lg:max-w-[448px]">
-                      <div className="flex items-center gap-3 text-white text-sm md:text-base leading-6 mb-3 md:mb-4 font-medium">
-                        <span>{featuredBlog.category}</span>
-                        <span>•</span>
-                        <span>5 min read</span>
-                      </div>
-                      <Link href={`/blog/${featuredBlog.slug}`}>
+                    {/* Content positioned at top-left */}
+                    <div className="relative z-10 flex flex-col justify-between h-full w-full p-4 md:p-6 lg:p-8 pointer-events-none">
+                      {/* Top content */}
+                      <div className="max-w-full lg:max-w-[448px]">
+                        <div className="flex items-center gap-3 text-white text-sm md:text-base leading-6 mb-3 md:mb-4 font-medium">
+                          <span>{featuredBlog.category}</span>
+                          <span>•</span>
+                          <span>{featuredBlog.readTime || '5 min read'}</span>
+                        </div>
                         <h3
-                          className="text-lg md:text-xl lg:text-[32px] leading-tight md:leading-[44px] font-semibold text-white hover:text-orange-200 transition-colors cursor-pointer"
-                          style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
+                          className="text-lg md:text-xl lg:text-[32px] leading-tight md:leading-[44px] font-semibold text-white cursor-pointer"
                         >
                           {featuredBlog.title}
                         </h3>
-                      </Link>
-                    </div>
+                      </div>
 
-                    {/* Bottom content */}
-                    <div className="flex flex-col gap-1 md:gap-2">
-                      <div className="text-white text-xs md:text-sm font-medium">
-                        Published
-                      </div>
-                      <div className="text-white text-xs">
-                        {new Date(featuredBlog.createdAt).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric'
-                        })}
+                      {/* Bottom content */}
+                      <div className="flex flex-col gap-1 md:gap-2">
+                        <div className="text-white text-xs md:text-sm font-medium">
+                          Published
+                        </div>
+                        <div className="text-white text-xs">
+                          {new Date(featuredBlog.createdAt).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric'
+                          })}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </>
               ) : (
                 <div className="absolute inset-0 bg-gray-200 rounded-3xl flex items-center justify-center">
@@ -211,7 +252,7 @@ export default function BlogPage() {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--orange)] text-sm md:text-base"
+                  className="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-[var(--border)] focus:outline-none focus:ring-2 focus:ring-[var(--orange)] text-sm md:text-base"
                 />
                 <button className="w-full bg-[var(--orange)] text-white py-2 md:py-3 rounded-3xl font-medium hover:bg-opacity-90 transition-colors text-sm md:text-base">
                   Subscribe now
@@ -227,43 +268,76 @@ export default function BlogPage() {
         <div className="w-full max-w-[1440px] mx-auto">
           <div className="flex flex-col lg:flex-row gap-18">
             {/* Categories Sidebar */}
-            <div className="w-full lg:w-[454px] md:h-[380px] bg-[var(--secondary-bg)] rounded-2xl border border-[var(--border)] px-5 md:px-8 py-[22px] md:py-7">
-              <div className="flex items-center justify-between mb-6">
+            <div
+  className={`w-full lg:w-[454px] bg-[var(--secondary-bg)] rounded-2xl border border-[var(--border)] px-5 md:px-8 py-[22px] md:py-7 transition-all duration-300 overflow-hidden
+    ${isCategoriesOpen ? 'max-h-[330px]' : 'max-h-[90px]'}
+  `}
+>
+              <div className="flex flex-col gap-6">
+              <div className="flex items-center justify-between">
                 <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
                   Categories
                 </h3>
-                <Image
-                  src="/Dropdown-Icon.svg"
-                  alt="Dropdown Icon"
-                  width={20}
-                  height={20}
-                  className="w-5 h-5"
-                />
+                <button
+                  onClick={toggleCategories}
+                  className="p-1 hover:bg-gray-200 rounded transition-colors cursor-pointer"
+                >
+                  <Image
+                    src="/Dropdown-Icon.svg"
+                    alt="Dropdown Icon"
+                    width={20}
+                    height={20}
+                    className={`w-5 h-5 transition-transform duration-200 ${
+                      isCategoriesOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
               </div>
-              <div className="flex flex-wrap gap-3">
-                {BLOG_CATEGORIES.map((category) => (
+              {/* Categories Content - Collapsible on all devices */}
+              <div className={`${
+                isCategoriesOpen ? 'block' : 'hidden'
+              } transition-all duration-300`}>
+                {/* All Categories Button - Separate */}
+                <div className="mb-3">
                   <button
-                    key={category}
-                    onClick={() => handleCategoryChange(category)}
+                    onClick={() => handleCategoryChange('All Categories')}
                     className={`px-5 py-[10px] rounded-full text-sm md:text-base md:leading-6 font-medium transition-colors ${
-                      selectedCategory === category
+                      selectedCategory === 'All Categories'
                         ? 'bg-black text-white'
                         : 'bg-white text-gray-800 hover:bg-gray-100'
                     }`}
                   >
-                    {category}
+                    All Categories
                   </button>
-                ))}
+                </div>
+                
+                {/* Other Categories */}
+                <div className="flex flex-wrap gap-3">
+                  {BLOG_CATEGORIES.filter(category => category !== 'All Categories').map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => handleCategoryChange(category)}
+                      className={`px-5 py-[10px] rounded-full text-sm md:text-base md:leading-6 font-medium transition-colors ${
+                        selectedCategory === category
+                          ? 'bg-black text-white'
+                          : 'bg-white text-gray-800 hover:bg-gray-100'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </div>
               </div>
             </div>
 
             {/* Articles Grid */}
-            <div className="flex-1">
+            <div className="flex-1" id="blog-articles">
               {loading ? (
                 <div className="text-center py-12">
                   <div className="text-xl text-gray-600">Loading blogs...</div>
                 </div>
-              ) : filteredBlogs.length === 0 ? (
+              ) : currentBlogs.length === 0 ? (
                 <div className="text-center py-12">
                   <div className="text-xl text-gray-600 mb-4">
                     {selectedCategory === 'All Categories' 
@@ -279,38 +353,76 @@ export default function BlogPage() {
                   </p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {filteredBlogs.slice(selectedCategory === 'All Categories' ? 1 : 0).map((blog) => (
-                    <ArticleCard
-                      key={blog._id}
-                      blog={blog}
-                    />
-                  ))}
-                </div>
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {currentBlogs.map((blog) => (
+                      <ArticleCard
+                        key={blog._id}
+                        blog={blog}
+                      />
+                    ))}
+                  </div>
+                  
+                  {/* Pagination */}
+                  {totalPages > 1 && (
+                    <div className="mt-12 flex justify-center items-center gap-2">
+                      {/* Previous Button */}
+                      <button
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className="px-3 py-2 rounded-lg text-[var(--gray-text)] hover:bg-gray-100 transition-colors disabled:opacity-50 cursor-pointer"
+                      >
+                        <h1>Prev</h1>
+                      </button>
+                      
+                      {/* Page Numbers */}
+                      <div className="flex gap-1">
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                          // Show first page, last page, current page, and adjacent pages
+                          if (
+                            page === 1 ||
+                            page === totalPages ||
+                            (page >= currentPage - 1 && page <= currentPage + 1)
+                          ) {
+                            return (
+                              <button
+                                key={page}
+                                onClick={() => handlePageChange(page)}
+                                className={`px-4 py-2 rounded-lg transition-colors cursor-pointer ${
+                                  currentPage === page
+                                    ? 'bg-[var(--orange)] text-white'
+                                    : 'border border-[var(--border)] text-[var(--black)]'
+                                }`}
+                              >
+                                {page}
+                              </button>
+                            );
+                          } else if (
+                            page === currentPage - 2 ||
+                            page === currentPage + 2
+                          ) {
+                            return (
+                              <span key={page} className="px-2 py-2 text-gray-400">
+                                ...
+                              </span>
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                      
+                      {/* Next Button */}
+                      <button
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                        className="px-3 py-2 rounded-lg  text-[var(--gray-text)] hover:bg-gray-100 transition-colors disabled:opacity-50 cursor-pointer"
+                      >
+                        <h1>Next</h1>
+                      </button>
+                    </div>
+                  )}
+                </>                
               )}
-
-              {/* Pagination */}
-              <div className="flex justify-center items-center mt-12 gap-3">
-                <button className="px-1 py-[10px] text-[var(--gray-text)] text-sm leading-[22px] font-medium hover:text-[var(--black)] transition-colors">
-                  Prev
-                </button>
-                <button className="w-10 h-10 rounded-lg bg-[var(--orange)] text-white flex items-center justify-center text-sm font-medium">
-                  1
-                </button>
-                <button className="w-10 h-10 rounded-lg border border-gray-300 bg-white text-[var(--gray-text)] flex items-center justify-center text-sm font-medium hover:bg-gray-50 transition-colors">
-                  2
-                </button>
-                <button className="w-10 h-10 rounded-lg border border-gray-300 bg-white text-[var(--gray-text)] flex items-center justify-center text-sm font-medium hover:bg-gray-50 transition-colors">
-                  3
-                </button>
-                <span className="text-[var(--gray-text)] mx-1">...</span>
-                <button className="w-10 h-10 rounded-lg border border-gray-300 bg-white text-[var(--gray-text)] flex items-center justify-center text-sm font-medium hover:bg-gray-50 transition-colors">
-                  10
-                </button>
-                <button className="px-1 py-[10px] text-[var(--gray-text)] text-sm font-medium hover:text-[var(--black)] transition-colors">
-                  Next
-                </button>
-              </div>
             </div>
           </div>
         </div>

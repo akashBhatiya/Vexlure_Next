@@ -10,12 +10,12 @@ const HeroSection: React.FC = () => {
       id="home"
       role="banner"
       aria-label="Vexlure International Hero Section"
-      className="w-full flex flex-col items-center justify-center mt-0 md:mt-0 bg-[var(--white)] px-6 pt-20 pb-10 md:pt-20 md:pb-16"
+      className="w-full  flex flex-col items-center justify-center mt-0 md:mt-0 bg-[var(--white)] px-6 pt-20 pb-10 md:pt-20 md:pb-16"
     >
       {/* Main Hero Container */}
       <div
-        className="relative w-full max-w-[1440px] rounded-3xl overflow-hidden shadow-2xl mx-2 md:mx-6 bg-[var(--white)]"
-        style={{ minHeight: "clamp(637px, 76vh, 820px)" }}
+        className="relative w-full  max-w-[1440px] rounded-3xl overflow-hidden shadow-2xl mx-2 md:mx-6 bg-[var(--white)]"
+        style={{ minHeight: "clamp(590px, 76vh, 820px)" }}
       >
         {/* Background Image */}
         <Image
@@ -73,9 +73,10 @@ const HeroSection: React.FC = () => {
           className="
       relative 
       bg-white 
-      rounded-[16px] md:rounded-[24px] 
+          rounded-2xl md:rounded-3xl 
+          shadow-xl
       flex items-center justify-center 
-      -mt-20 md:-mt-28 lg:-mt-34 
+      -mt-20 md:-mt-28  
       z-10 
       overflow-hidden 
       w-full 

@@ -4,6 +4,25 @@ import connectDB from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import mongoose from "mongoose";
 
+// Extended blog interface for API responses
+interface BlogWithTags {
+  _id: string;
+  title: string;
+  description: string;
+  content: string;
+  category: string;
+  image: string;
+  subImage?: string;
+  metaTitle: string;
+  metaDescription: string;
+  metaKeywords: string;
+  tags?: string[];
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  published: boolean;
+}
+
 // GET - Fetch single blog by ID or slug
 export async function GET(
   request: NextRequest,
@@ -11,7 +30,6 @@ export async function GET(
 ) {
   try {
     const {id} = await context.params;
-    console.log("Fetching blog with ID/slug:", id);
 
     await connectDB();
     let blog;
@@ -27,7 +45,6 @@ export async function GET(
       blog = await Blog.findOne({ slug: id }).lean();
     }
 
-    console.log("Blog found:", blog ? "Yes" : "No");
 
     if (!blog) {
       return NextResponse.json(
@@ -36,9 +53,16 @@ export async function GET(
       );
     }
 
+    // Ensure blog has tags field
+    const blogData = blog as any;
+    const blogWithTags = {
+      ...blogData,
+      tags: blogData.tags || []
+    };
+
     return NextResponse.json({
       success: true,
-      data: blog,
+      data: blogWithTags,
     });
   } catch (error) {
     console.error("Error fetching blog:", error);

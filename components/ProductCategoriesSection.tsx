@@ -54,7 +54,7 @@ const ProductCategoriesSection: React.FC = () => {
                       {cat.subcategories?.map((sub, i) => (
                         <span
                           key={i}
-                          className="bg-[#999999]/50 text-xs leading-[20px] text-[var(--white)] font-medium rounded-full shadow-sm backdrop-blur border border-[var(--boarder)] flex items-center justify-center min-w-[120px] h-[34px] px-4 focus:outline-none focus:ring-0"
+                          className="bg-[#999999]/50 text-xs leading-[20px] text-[var(--white)] font-medium rounded-full shadow-sm backdrop-blur border border-[var(--border)] flex items-center justify-center min-w-[120px] h-[34px] px-4 focus:outline-none focus:ring-0"
                         >
                           {sub}
                         </span>
@@ -92,7 +92,7 @@ const ProductCategoriesSection: React.FC = () => {
                       {cat.subcategories?.map((sub, i) => (
                         <span
                           key={i}
-                          className="bg-[#999999]/50 text-xs leading-[20px] text-[var(--white)] font-medium rounded-full shadow-sm backdrop-blur border border-[var(--boarder)] flex items-center justify-center min-w-[120px] h-[34px] px-4 focus:outline-none focus:ring-0"
+                          className="bg-[#999999]/50 text-xs leading-[20px] text-[var(--white)] font-medium rounded-full shadow-sm backdrop-blur border border-[var(--border)] flex items-center justify-center min-w-[120px] h-[34px] px-4 focus:outline-none focus:ring-0"
                         >
                           {sub}
                         </span>

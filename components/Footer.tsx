@@ -181,7 +181,7 @@ const Footer = () => {
                 aria-label={label}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border flex items-center justify-center text-[var(--gray-text)] hover:text-white hover:bg-[var(--orange)] group transition focus:outline-none focus:ring-0"
+                className="w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center text-[var(--gray-text)] hover:text-white hover:bg-[var(--orange)] group transition focus:outline-none focus:ring-0"
               >
                 <Image src={icon} alt={label} width={24} height={24} className="group-hover:brightness-0 group-hover:invert" />
               </a>

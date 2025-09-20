@@ -8,12 +8,12 @@ export interface BlogPost {
   title: string;
   description: string;
   content: string;
+  author?: string;
+  readTime?: string;
   category: string;
   image: string;
   subImage?: string;
-  metaTitle: string;
-  metaDescription: string;
-  metaKeywords: string;
+  tags: string[];
   slug: string;
   createdAt: string;
   updatedAt: string;
@@ -38,17 +38,24 @@ export async function GET(request: NextRequest) {
       query = { published: false };
     }
     
-    console.log('Fetching blogs with query:', query);
     const blogs = await Blog.find(query)
       .sort({ createdAt: -1 })
       .lean();
     
-    console.log('Found blogs:', blogs.length);
+    // Ensure all blogs have tags field
+    const blogsWithTags = blogs.map(blog => {
+      const blogData = blog as any;
+      return {
+        ...blogData,
+        tags: blogData.tags || []
+      };
+    });
+    
 
     return NextResponse.json({
       success: true,
-      data: blogs,
-      count: blogs.length
+      data: blogsWithTags,
+      count: blogsWithTags.length
     });
   } catch (error) {
     console.error('Error fetching blogs:', error);
@@ -69,7 +76,8 @@ export async function POST(request: NextRequest) {
     await connectDB();
     
     const body = await request.json();
-    const { title, description, content, category, image, subImage, metaTitle, metaDescription, metaKeywords, published = false } = body;
+    const { title, description, content, author, readTime, category, image, subImage, tags = [], published = false } = body;
+    
 
     // Validation
     if (!title || !description || !content || !image || !category) {
@@ -99,12 +107,12 @@ export async function POST(request: NextRequest) {
       title,
       description,
       content,
+      author: author || 'Vexlure Staff',
+      readTime: readTime || '5 min read',
       category,
       image,
       subImage,
-      metaTitle: metaTitle || title,
-      metaDescription: metaDescription || description,
-      metaKeywords: metaKeywords || '',
+      tags: Array.isArray(tags) ? tags : [],
       slug,
       published: Boolean(published)
     });
@@ -131,7 +139,7 @@ export async function PUT(request: NextRequest) {
     await connectDB();
     
     const body = await request.json();
-    const { id, title, description, content, category, image, subImage, metaTitle, metaDescription, metaKeywords, published } = body;
+    const { id, title, description, content, author, readTime, category, image, subImage, tags, published } = body;
 
     if (!id) {
       return NextResponse.json(
@@ -159,12 +167,12 @@ export async function PUT(request: NextRequest) {
     }
     if (description) blog.description = description;
     if (content) blog.content = content;
+    if (author !== undefined) blog.author = author;
+    if (readTime !== undefined) blog.readTime = readTime;
     if (category) blog.category = category;
     if (image) blog.image = image;
     if (subImage !== undefined) blog.subImage = subImage;
-    if (metaTitle) blog.metaTitle = metaTitle;
-    if (metaDescription) blog.metaDescription = metaDescription;
-    if (metaKeywords !== undefined) blog.metaKeywords = metaKeywords;
+    if (tags !== undefined) blog.tags = Array.isArray(tags) ? tags : [];
     if (published !== undefined) blog.published = Boolean(published);
 
     const updatedBlog = await blog.save();

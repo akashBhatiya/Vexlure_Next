@@ -4,12 +4,12 @@ export interface IBlog extends Document {
   title: string;
   description: string;
   content: string;
+  author?: string;
+  readTime?: string;
   category: string;
   image: string;
   subImage?: string;
-  metaTitle: string;
-  metaDescription: string;
-  metaKeywords: string;
+  tags: string[];
   slug: string;
   published: boolean;
   createdAt: Date;
@@ -20,18 +20,26 @@ const BlogSchema: Schema = new Schema({
   title: {
     type: String,
     required: [true, 'Title is required'],
-    trim: true,
-    maxlength: [200, 'Title cannot be more than 200 characters']
+    trim: true
   },
   description: {
     type: String,
     required: [true, 'Description is required'],
-    trim: true,
-    maxlength: [500, 'Description cannot be more than 500 characters']
+    trim: true
   },
   content: {
     type: String,
     required: [true, 'Content is required'],
+    trim: true
+  },
+  author: {
+    type: String,
+    default: 'Vexlure Staff',
+    trim: true
+  },
+  readTime: {
+    type: String,
+    default: '5 min read',
     trim: true
   },
   category: {
@@ -54,20 +62,15 @@ const BlogSchema: Schema = new Schema({
     type: String,
     default: null
   },
-  metaTitle: {
-    type: String,
-    trim: true,
-    maxlength: [60, 'Meta title cannot be more than 60 characters']
-  },
-  metaDescription: {
-    type: String,
-    trim: true,
-    maxlength: [160, 'Meta description cannot be more than 160 characters']
-  },
-  metaKeywords: {
-    type: String,
-    trim: true,
-    default: ''
+  tags: {
+    type: [String],
+    default: [],
+    validate: {
+      validator: function(tags: string[]) {
+        return tags.length <= 10; // Maximum 10 tags
+      },
+      message: 'Cannot have more than 10 tags'
+    }
   },
   slug: {
     type: String,
@@ -98,14 +101,6 @@ BlogSchema.pre<IBlog>('save', function(next) {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
-  }
-  
-  // Set meta title and description if not provided
-  if (!this.metaTitle) {
-    this.metaTitle = this.title;
-  }
-  if (!this.metaDescription) {
-    this.metaDescription = this.description;
   }
   
   next();

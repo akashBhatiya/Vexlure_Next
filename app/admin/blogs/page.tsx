@@ -1,21 +1,21 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { HiPlus, HiPencil, HiTrash, HiEye, HiArrowUpTray } from 'react-icons/hi2';
-import { HiUpload } from 'react-icons/hi';
+import { HiPlus, HiTrash } from 'react-icons/hi2';
+import BlogForm from '@/components/admin/BlogForm';
+import BlogTable from '@/components/admin/BlogTable';
 
 interface BlogPost {
   _id: string;
   title: string;
   description: string;
   content: string;
+  author?: string;
+  readTime?: string;
   category: string;
   image: string;
   subImage?: string;
-  metaTitle: string;
-  metaDescription: string;
-  metaKeywords: string;
+  tags: string[];
   slug: string;
   createdAt: string;
   updatedAt: string;
@@ -26,22 +26,17 @@ interface BlogFormData {
   title: string;
   description: string;
   content: string;
+  author: string;
+  readTime: string;
   category: string;
   image: string;
   subImage: string;
-  metaTitle: string;
-  metaDescription: string;
-  metaKeywords: string;
+  tags: string[];
   published: boolean;
 }
 
-const BLOG_CATEGORIES = [
-  'Export Insights',
-  'Market Analysis',
-  'Spice Knowledge', 
-  'Health Benefits',
-  'Certifications Quality'
-];
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "vexlure@2024"; // Change this password as needed
+
 
 const BlogAdminPage: React.FC = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
@@ -49,16 +44,22 @@ const BlogAdminPage: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingBlog, setEditingBlog] = useState<BlogPost | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [blogToDelete, setBlogToDelete] = useState<{ id: string; title: string } | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
   const [formData, setFormData] = useState<BlogFormData>({
     title: '',
     description: '',
     content: '',
+    author: 'Vexlure Staff',
+    readTime: '5 min read',
     category: 'Export Insights',
     image: '',
     subImage: '',
-    metaTitle: '',
-    metaDescription: '',
-    metaKeywords: '',
+    tags: [],
     published: false
   });
 
@@ -77,8 +78,38 @@ const BlogAdminPage: React.FC = () => {
     }
   };
 
+  // Check authentication on page load
   useEffect(() => {
-    fetchBlogs();
+    const checkAuth = () => {
+      let attempts = 0;
+      const maxAttempts = 3;
+      
+      const askPassword = () => {
+        attempts++;
+        const password = prompt(`Enter admin password to access Blog Management:\n(Attempt ${attempts}/${maxAttempts})`);
+        
+        if (password === ADMIN_PASSWORD) {
+          setIsAuthenticated(true);
+          fetchBlogs();
+          setAuthLoading(false);
+        } else if (password !== null) {
+          if (attempts < maxAttempts) {
+            alert(`Incorrect password! ${maxAttempts - attempts} attempts remaining.`);
+            askPassword();
+          } else {
+            alert('Maximum attempts exceeded. Access denied.');
+            window.location.href = '/admin';
+          }
+        } else {
+          // User cancelled
+          window.location.href = '/admin';
+        }
+      };
+      
+      askPassword();
+    };
+    
+    checkAuth();
   }, []);
 
   // Handle file upload
@@ -122,51 +153,95 @@ const BlogAdminPage: React.FC = () => {
         ? { ...formData, id: editingBlog._id }
         : formData;
 
+
       const response = await fetch(url, {
         method,
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
+      console.log('API response:', result);
+      
       if (result.success) {
-        alert(result.message);
+        setNotification({ type: 'success', message: result.message || 'Blog saved successfully!' });
         setShowForm(false);
         setEditingBlog(null);
         resetForm();
         fetchBlogs();
       } else {
-        alert(result.error || 'Operation failed');
+        setNotification({ type: 'error', message: result.error || 'Operation failed' });
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('Operation failed');
+      console.error('Error submitting form:', error);
+      setNotification({ type: 'error', message: 'An error occurred while saving the blog' });
     }
   };
 
-  // Handle delete
-  const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this blog?')) return;
+  // Handle delete - show confirmation modal
+  const handleDeleteClick = (blog: BlogPost) => {
+    setBlogToDelete({ id: blog._id, title: blog.title });
+    setShowDeleteModal(true);
+  };
 
+  // Confirm delete
+  const confirmDelete = async () => {
+    if (!blogToDelete || deleting) return;
+
+    setDeleting(true);
     try {
-      const response = await fetch(`/api/blogs?id=${id}`, {
+      const response = await fetch(`/api/blogs?id=${blogToDelete.id}`, {
         method: 'DELETE'
       });
 
       const result = await response.json();
       if (result.success) {
-        alert(result.message);
+        setNotification({ type: 'success', message: result.message || 'Blog deleted successfully!' });
         fetchBlogs();
       } else {
-        alert(result.error || 'Delete failed');
+        setNotification({ type: 'error', message: result.error || 'Delete failed' });
       }
     } catch (error) {
       console.error('Delete error:', error);
-      alert('Delete failed');
+      setNotification({ type: 'error', message: 'Delete failed' });
+    } finally {
+      setDeleting(false);
+      setShowDeleteModal(false);
+      setBlogToDelete(null);
     }
   };
+
+  // Cancel delete
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
+    setBlogToDelete(null);
+  };
+
+  // Handle ESC key and outside click
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showDeleteModal) {
+        cancelDelete();
+      }
+    };
+
+    if (showDeleteModal) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [showDeleteModal]);
+
+  // Auto-hide notification after 5 seconds
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => {
+        setNotification(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification]);
 
   // Reset form
   const resetForm = () => {
@@ -174,12 +249,12 @@ const BlogAdminPage: React.FC = () => {
       title: '',
       description: '',
       content: '',
+      author: 'Vexlure Staff',
+      readTime: '5 min read',
       category: 'Export Insights',
       image: '',
       subImage: '',
-      metaTitle: '',
-      metaDescription: '',
-      metaKeywords: '',
+      tags: [],
       published: false
     });
   };
@@ -191,391 +266,200 @@ const BlogAdminPage: React.FC = () => {
       title: blog.title,
       description: blog.description,
       content: blog.content,
+      author: blog.author || 'Vexlure Staff',
+      readTime: blog.readTime || '5 min read',
       category: blog.category,
       image: blog.image,
       subImage: blog.subImage || '',
-      metaTitle: blog.metaTitle,
-      metaDescription: blog.metaDescription,
-      metaKeywords: blog.metaKeywords,
+      tags: blog.tags || [],
       published: blog.published
     });
     setShowForm(true);
   };
 
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-xl">Checking authentication...</div>
+      </div>
+    );
+  }
+
+  // Show loading while fetching blogs (after authentication)
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-xl">Access denied. Redirecting...</div>
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
+        <div className="text-xl">Loading blogs...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto pt-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50">
+      {/* Notification Toast */}
+      {notification && (
+        <div className="fixed top-4 left-4 right-4 sm:top-4 sm:right-4 sm:left-auto z-50 animate-in slide-in-from-top-2 duration-300">
+          <div className={`rounded-lg p-3 sm:p-4 shadow-lg max-w-sm mx-auto sm:mx-0 ${
+            notification.type === 'success' 
+              ? 'bg-green-50 border border-green-200' 
+              : 'bg-red-50 border border-red-200'
+          }`}>
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                {notification.type === 'success' ? (
+                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                )}
+              </div>
+              <div className="ml-3 flex-1">
+                <p className={`text-xs sm:text-sm font-medium ${
+                  notification.type === 'success' ? 'text-green-800' : 'text-red-800'
+                }`}>
+                  {notification.message}
+                </p>
+              </div>
+              <div className="ml-4 flex-shrink-0">
+                <button
+                  onClick={() => setNotification(null)}
+                  className={`inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                    notification.type === 'success'
+                      ? 'text-green-500 hover:bg-green-100 focus:ring-green-600'
+                      : 'text-red-500 hover:bg-red-100 focus:ring-red-600'
+                  }`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      <div className="max-w-7xl mx-auto pt-20 px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Blog Management</h1>
+        <div className="flex flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
+          <div className="flex-1">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Blog Management</h1>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">Authenticated Admin Access</p>
+          </div>
           <button
             onClick={() => {
               setShowForm(true);
               setEditingBlog(null);
               resetForm();
             }}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-4 py-2 sm:py-2 rounded-lg flex items-center justify-center gap-2 w-12 h-12 sm:w-auto sm:h-auto"
+            title="Add New Blog"
           >
             <HiPlus className="w-5 h-5" />
-            Add New Blog
+            <span className="hidden sm:inline">Add New Blog</span>
           </button>
         </div>
 
-        {/* Blog Form Modal */}
-        {showForm && (
-          <div className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-6">
-                  {editingBlog ? 'Edit Blog' : 'Add New Blog'}
-                </h2>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Title */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Title *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.title}
-                      onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+        {/* Blog Form Component */}
+        <BlogForm
+          showForm={showForm}
+          editingBlog={editingBlog}
+          formData={formData}
+          uploading={uploading}
+          onClose={() => {
+            setShowForm(false);
+            setEditingBlog(null);
+            resetForm();
+          }}
+          onSubmit={handleSubmit}
+          onFormDataChange={(data) => setFormData(prev => ({ ...prev, ...data }))}
+          onFileUpload={handleFileUpload}
+        />
+
+        {/* Delete Confirmation Modal */}
+        {showDeleteModal && blogToDelete && (
+          <div 
+            className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50 p-4"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                cancelDelete();
+              }
+            }}
+          >
+            <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl animate-in fade-in-0 zoom-in-95 duration-200">
+              <div className="flex items-start mb-4">
+                <div className="flex-shrink-0">
+                  <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
                   </div>
-
-                  {/* Description */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Description *
-                    </label>
-                    <textarea
-                      required
-                      rows={3}
-                      value={formData.description}
-                      onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  {/* Category */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Category *
-                    </label>
-                    <select
-                      required
-                      value={formData.category}
-                      onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      {BLOG_CATEGORIES.map((category) => (
-                        <option key={category} value={category}>
-                          {category}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Content */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Content *
-                    </label>
-                    <textarea
-                      required
-                      rows={8}
-                      value={formData.content}
-                      onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Write your blog content here..."
-                    />
-                  </div>
-
-                  {/* Images */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Main Image */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Main Image *
-                      </label>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
-                        {formData.image ? (
-                          <div className="relative">
-                            <Image
-                              src={formData.image}
-                              alt="Main image"
-                              width={300}
-                              height={200}
-                              className="w-full h-40 object-cover rounded"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setFormData(prev => ({ ...prev, image: '' }))}
-                              className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
-                            >
-                              <HiTrash className="w-4 h-4" />
-                            </button>
-                          </div>
-                        ) : (
-                          <div className="text-center">
-                            <HiUpload className="mx-auto h-12 w-12 text-gray-400" />
-                            <div className="mt-2">
-                              <label className="cursor-pointer">
-                                <span className="text-blue-600 hover:text-blue-500">Upload main image</span>
-                                <input
-                                  type="file"
-                                  className="hidden"
-                                  accept="image/*"
-                                  onChange={(e) => {
-                                    const file = e.target.files?.[0];
-                                    if (file) handleFileUpload(file, 'image');
-                                  }}
-                                />
-                              </label>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Sub Image */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Sub Image (Optional)
-                      </label>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
-                        {formData.subImage ? (
-                          <div className="relative">
-                            <Image
-                              src={formData.subImage}
-                              alt="Sub image"
-                              width={300}
-                              height={200}
-                              className="w-full h-40 object-cover rounded"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setFormData(prev => ({ ...prev, subImage: '' }))}
-                              className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
-                            >
-                              <HiTrash className="w-4 h-4" />
-                            </button>
-                          </div>
-                        ) : (
-                          <div className="text-center">
-                            <HiUpload className="mx-auto h-12 w-12 text-gray-400" />
-                            <div className="mt-2">
-                              <label className="cursor-pointer">
-                                <span className="text-blue-600 hover:text-blue-500">Upload sub image</span>
-                                <input
-                                  type="file"
-                                  className="hidden"
-                                  accept="image/*"
-                                  onChange={(e) => {
-                                    const file = e.target.files?.[0];
-                                    if (file) handleFileUpload(file, 'subImage');
-                                  }}
-                                />
-                              </label>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Meta Tags */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-medium text-gray-900">SEO Meta Tags</h3>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Meta Title
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.metaTitle}
-                        onChange={(e) => setFormData(prev => ({ ...prev, metaTitle: e.target.value }))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Leave empty to use blog title"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Meta Description
-                      </label>
-                      <textarea
-                        rows={2}
-                        value={formData.metaDescription}
-                        onChange={(e) => setFormData(prev => ({ ...prev, metaDescription: e.target.value }))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Leave empty to use blog description"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Meta Keywords
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.metaKeywords}
-                        onChange={(e) => setFormData(prev => ({ ...prev, metaKeywords: e.target.value }))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Comma separated keywords"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Published Status */}
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="published"
-                      checked={formData.published}
-                      onChange={(e) => setFormData(prev => ({ ...prev, published: e.target.checked }))}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label htmlFor="published" className="ml-2 block text-sm text-gray-900">
-                      Publish immediately
-                    </label>
-                  </div>
-
-                  {/* Form Actions */}
-                  <div className="flex justify-end space-x-4 pt-6 border-t">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setShowForm(false);
-                        setEditingBlog(null);
-                        resetForm();
-                      }}
-                      className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={uploading}
-                      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-                    >
-                      {uploading ? 'Uploading...' : editingBlog ? 'Update Blog' : 'Create Blog'}
-                    </button>
-                  </div>
-                </form>
+                </div>
+                <div className="ml-4 flex-1">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    Delete Blog Post
+                  </h3>
+                  <p className="text-gray-600 mb-2">
+                    Are you sure you want to delete the blog post{' '}
+                    <span className="font-medium text-gray-900">"{blogToDelete.title}"</span>?
+                  </p>
+                  <p className="text-sm text-red-600">
+                    This action cannot be undone. All data associated with this blog will be permanently removed.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={cancelDelete}
+                  className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 text-sm sm:text-base"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmDelete}
+                  disabled={deleting}
+                  className="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                >
+                  {deleting ? (
+                    <>
+                      <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Deleting...
+                    </>
+                  ) : (
+                    <>
+                      <HiTrash className="w-4 h-4" />
+                      Delete Blog
+                    </>
+                  )}
+                </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* Blogs List */}
-        <div className="bg-white shadow rounded-lg">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-medium text-gray-900">All Blogs ({blogs.length})</h2>
-          </div>
-          
-          {blogs.length === 0 ? (
-            <div className="p-6 text-center text-gray-500">
-              No blogs found. Create your first blog!
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Blog
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Created
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {blogs.map((blog) => (
-                    <tr key={blog._id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 h-16 w-16">
-                            <Image
-                              src={blog.image}
-                              alt={blog.title}
-                              width={64}
-                              height={64}
-                              className="h-16 w-16 rounded-lg object-cover"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">
-                              {blog.title}
-                            </div>
-                            <div className="text-xs text-blue-600 font-medium mb-1">
-                              {blog.category}
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              {blog.description.substring(0, 100)}...
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          blog.published 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {blog.published ? 'Published' : 'Draft'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {new Date(blog.createdAt).toLocaleDateString()}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <div className="flex space-x-2">
-                          <button
-                            onClick={() => window.open(`/blog/${blog.slug}`, '_blank')}
-                            className="text-blue-600 hover:text-blue-900"
-                          >
-                            <HiEye className="w-5 h-5" />
-                          </button>
-                          <button
-                            onClick={() => handleEdit(blog)}
-                            className="text-indigo-600 hover:text-indigo-900"
-                          >
-                            <HiPencil className="w-5 h-5" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(blog._id)}
-                            className="text-red-600 hover:text-red-900"
-                          >
-                            <HiTrash className="w-5 h-5" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+        {/* Blog Table Component */}
+        <BlogTable
+          blogs={blogs}
+          onEdit={handleEdit}
+          onDelete={handleDeleteClick}
+          onView={(slug) => window.open(`/blog/${slug}`, '_blank')}
+        />
       </div>
     </div>
   );

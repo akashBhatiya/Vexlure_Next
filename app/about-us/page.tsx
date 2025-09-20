@@ -1,4 +1,9 @@
+"use client";
+import React from "react";
 import Image from "next/image";
+import { HiArrowUpRight } from "react-icons/hi2";
+import Link from "next/link";
+import AnimatedSection from "@/components/Animation/AnimatedSection";
 import CertificateLogos from "@/components/CertificateLogos";
 
 export default function AboutUsPage() {
@@ -42,8 +47,8 @@ export default function AboutUsPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="w-full py-16 px-5 md:px-8 bg-[var(--secondary-bg)]">
-        <div className="w-full max-w-[1440px] mx-auto text-center">
+      <section className="w-full py-12 md:py-16 px-5 md:px-8 bg-[var(--secondary-bg)]">
+        <AnimatedSection className="w-full max-w-[1440px] mx-auto text-center" delay={0.2} staggerDelay={0.2}>
           <h2 className="text-xl md:text-[28px] font-semibold text-[var(--black)] mb-8 max-w-5xl mx-auto leading-[30px] md:leading-10">
             Vexlure International is more than an exporter — we are the bridge
             between India's farms and the world's markets.
@@ -62,7 +67,7 @@ export default function AboutUsPage() {
             </div>
           </div>
           {/* Connecting India's Harvests Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mt-16">
+          <AnimatedSection className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mt-16" delay={0.3} staggerDelay={0.15}>
             {/* Left Content */}
             <div className="text-left">
               <h3 className="text-2xl md:text-[40px] font-semibold text-[var(--black)] mb-6 leading-9 md:leading-13">
@@ -120,12 +125,12 @@ export default function AboutUsPage() {
                 </span>
               </div>
             </div>
-          </div>
-        </div>
+          </AnimatedSection>
+        </AnimatedSection>
       </section>
 
-      <section className="w-full py-16 px-5 md:px-8 bg-[var(--white)]">
-        <div className="w-full max-w-[1440px] mx-auto">
+      <section className="w-full py-14 md:py-16 px-5 md:px-8 bg-[var(--white)]">
+        <AnimatedSection className="w-full max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-30 xl:gap-50">
             {/* Left Content */}
             <div className="space-y-2">
@@ -164,12 +169,12 @@ export default function AboutUsPage() {
               </p>
             </div>
           </div>
-        </div>
+        </AnimatedSection>
       </section>
 
       {/* Our Vision Section */}
-      <section className="w-full py-16 px-5 md:px-8 bg-[var(--secondary-bg)]">
-        <div className="w-full max-w-[1440px] mx-auto">
+      <section className="w-full py-12 md:py-16 px-5 md:px-8 bg-[var(--secondary-bg)]">
+        <AnimatedSection className="w-full max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Right Content - Shows first on mobile */}
             <div className="lg:order-2">
@@ -207,12 +212,12 @@ export default function AboutUsPage() {
               />
             </div>
           </div>
-        </div>
+        </AnimatedSection>
       </section>
 
       {/* Our Team Section */}
-      <section className="w-full py-16 px-5 md:px-8 bg-[var(--white)]">
-        <div className="w-full max-w-[1440px] mx-auto">
+      <section className="w-full py-14  md:py-16 px-5 md:px-8 bg-[var(--white)]">
+        <AnimatedSection className="w-full max-w-[1440px] mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
             <span className="text-sm md:text-base leading-[22px] md:leading-6 font-medium text-[var(--black)] mb-4 block">
@@ -229,7 +234,7 @@ export default function AboutUsPage() {
           </div>
 
           {/* Team Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <AnimatedSection className="grid grid-cols-1 md:grid-cols-3 gap-8" delay={0.3} staggerDelay={0.1}>
             {/* Agricultural Specialists */}
             <div className="bg-[var(--secondary-bg)] rounded-2xl p-8">
               <div className="w-full h-[190px] rounded-2xl flex mb-6">
@@ -291,13 +296,13 @@ export default function AboutUsPage() {
                 through rigorous documentation, audits, and quality assurance.
               </p>
             </div>
-          </div>
-        </div>
+          </AnimatedSection>
+        </AnimatedSection>
       </section>
 
       {/* Our Values Section */}
       <section className="w-full py-16 px-5 md:px-8 bg-[var(--white)]">
-        <div className="w-full max-w-[1440px] mx-auto">
+        <AnimatedSection className="w-full max-w-[1440px] mx-auto">
           {/* Section Header */}
           <div className=" mb-12">
             <span className="text-sm md:text-base leading-[22px] md:leading-6 font-medium text-[var(--black)] mb-4 block">
@@ -309,7 +314,7 @@ export default function AboutUsPage() {
           </div>
 
           {/* Values Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-14 gap-x-[120px]">
+          <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-14 gap-x-[120px]" delay={0.3} staggerDelay={0.15}>
             {/* Authenticity */}
             <div className="flex flex-col items-start space-y-4 rounded-2xl">
               <div className="w-16 h-16 rounded-full mb-4 flex items-center justify-center">
@@ -423,8 +428,8 @@ export default function AboutUsPage() {
                 needs — ensuring cost efficiency without compromising quality.
               </p>
             </div>
-          </div>
-        </div>
+          </AnimatedSection>
+        </AnimatedSection>
       </section>
     </>
   );

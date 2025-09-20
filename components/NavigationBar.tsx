@@ -81,7 +81,7 @@ const NavigationBar: React.FC = () => {
       {/* Background Blur Overlay */}
       {isProductDropdownOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-20"
+          className="fixed inset-0 bg-white/40 backdrop-blur-sm z-20"
           onClick={() => setIsProductDropdownOpen(false)}
         />
       )}
@@ -169,12 +169,12 @@ const NavigationBar: React.FC = () => {
 
                 {/* Product Dropdown Menu */}
                 {isProductDropdownOpen && (
-                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 w-[980px] bg-white rounded-2xl shadow-xl border border-gray-100 p-5 z-50">
+                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 w-[980px] bg-white/80 rounded-2xl shadow-xl border border-gray-100 p-5 z-50">
                     <div className="grid grid-cols-4 gap-6">
                       {/* First Column */}
                       <div className="space-y-4 col-span-3 grid grid-cols-2 gap-3">
                         <div>
-                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/agriculture-spices"
                               className="flex items-start justify-between  transition-colors"
@@ -192,7 +192,7 @@ const NavigationBar: React.FC = () => {
                             </Link>
                           </div>
 
-                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/oilseeds-nuts"
                               className="flex items-start justify-between  transition-colors"
@@ -210,7 +210,7 @@ const NavigationBar: React.FC = () => {
                             </Link>
                           </div>
 
-                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/pulses-legumes"
                               className="flex items-start justify-between  transition-colors"
@@ -229,7 +229,7 @@ const NavigationBar: React.FC = () => {
                           </div>
 
                           {/* Second Column */}
-                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/grains-cereals"
                               className="flex items-start justify-between  transition-colors"
@@ -247,7 +247,7 @@ const NavigationBar: React.FC = () => {
                             </Link>
                           </div>
 
-                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/whole-ground-spices"
                               className="flex items-start justify-between transition-colors"
@@ -267,7 +267,7 @@ const NavigationBar: React.FC = () => {
                         </div>
 
                         <div>
-                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/natural-health-plant-products"
                               className="flex items-start justify-between transition-colors"
@@ -286,7 +286,7 @@ const NavigationBar: React.FC = () => {
                           </div>
 
                           {/* Third Column - View All Products */}
-                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/agro-derivatives-additives"
                               className="flex items-start justify-between  transition-colors"
@@ -304,7 +304,7 @@ const NavigationBar: React.FC = () => {
                             </Link>
                           </div>
 
-                          <div className="px-3 py-2 hover:bg-[var(--secondary-bg)] rounded-xl group relative">
+                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/superfood-nutraceutical-powders"
                               className="flex items-start justify-between transition-colors"
@@ -324,7 +324,7 @@ const NavigationBar: React.FC = () => {
                         </div>
                       </div>
                       {/* View All Products Button */}
-                      <div className="p-4 bg-[var(--secondary-bg)] rounded-2xl group">
+                      <div className="p-4 bg-[var(--lite-bg)] rounded-2xl group">
                           <Link
                             href="/product"
                             onClick={() => setIsProductDropdownOpen(false)}
@@ -342,7 +342,7 @@ const NavigationBar: React.FC = () => {
                         {/* Product Image */}
                         <div className="mt-4">
                           <Image
-                            src="/agriculture/spices.png"
+                            src="/agriculture/agro.png"
                             alt="Product showcase"
                             width={220}
                             height={204}

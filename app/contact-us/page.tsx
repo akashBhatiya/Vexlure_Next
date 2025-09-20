@@ -137,7 +137,7 @@ export default function ContactUsPage() {
                   name="name"
                   type="text"
                   placeholder="Your Name"
-                  className="w-full text-sm leading-[22px] md:text-lg md:leading-7 border border-[#c8c8c8] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                  className="w-full text-sm leading-[22px] md:text-lg md:leading-7 border border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
                 />
               </div>
               <div>
@@ -152,7 +152,7 @@ export default function ContactUsPage() {
                   name="company"
                   type="text"
                   placeholder="Company Name"
-                  className="w-full border text-sm leading-[22px] md:text-lg md:leading-7 border-[#c8c8c8] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                  className="w-full border text-sm leading-[22px] md:text-lg md:leading-7 border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
                 />
               </div>
               <div className="md:flex gap-4 ">
@@ -168,7 +168,7 @@ export default function ContactUsPage() {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    className="w-full border text-sm leading-[22px] md:text-lg md:leading-7 border-[#c8c8c8] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                    className="w-full border text-sm leading-[22px] md:text-lg md:leading-7 border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
                   />
                 </div>
                 <div className="flex-1">
@@ -183,7 +183,7 @@ export default function ContactUsPage() {
                     name="mobile"
                     type="tel"
                     placeholder="Mobile No."
-                    className="w-full border text-sm leading-[22px] md:text-lg md:leading-7 border-[#c8c8c8] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                    className="w-full border text-sm leading-[22px] md:text-lg md:leading-7 border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
                   />
                 </div>
               </div>
@@ -199,7 +199,7 @@ export default function ContactUsPage() {
                   name="message"
                   placeholder="What would you like to know about"
                   rows={3}
-                  className="w-full border text-sm leading-[22px] md:text-lg md:leading-7 border-[#c8c8c8] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                  className="w-full border text-sm leading-[22px] md:text-lg md:leading-7 border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
                 />
               </div>
               <div className="text-sm leading-[22px] md:text-base md:leading-6 text-gray-500 mb-2">
