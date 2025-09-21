@@ -11,24 +11,24 @@ const IndustrySection: React.FC = () => {
   return (
     <section
       id="industry"
-      className="w-full bg-[var(--secondary-bg)] py-12 md:py-16"
+      className="w-full bg-[var(--secondary-bg)] py-12 "
     >
       <div className="max-w-[1728px] mx-auto">
         <AnimatedSection className="text-center mb-10 max-w-[335px] md:max-w-2xl lg:max-w-[740px] mx-auto" delay={0.2} staggerDelay={0.3}>
-          <span className="block text-sm md:text-base font-medium leading-[22px] md:leading-6 text-[var(--black)] mb-2 md:mb-3">
+          <span className="block text-product-label font-medium text-[var(--black)] mb-2 md:mb-3">
           • Our Product Range
           </span>
           <SplitText 
             text="From Indian Fields to Global Markets"
-            className="text-2xl md:text-[40px] font-semibold leading-9 md:leading-[52px] text-[var(--black)] mb-4 text-center mx-auto"
+            className="text-product-title font-semibold text-[var(--black)] mb-4 text-center mx-auto"
             delay={0.1}
             duration={0.06}
           />
         </AnimatedSection>
-        <div className="px-2 md:px-6 overflow-hidden">
-          <div className="flex gap-6 py-4 auto-scroll">
-            {/* Duplicate cards for seamless infinite scroll */}
-            {[...CATEGORIES_DATA, ...CATEGORIES_DATA].map((cat, idx) => (
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex gap-6 py-4 px-6" style={{ width: 'max-content' }}>
+              {/* All category cards for manual scrolling */}
+              {CATEGORIES_DATA.map((cat, idx) => (
                 <div
                   key={`${cat.slug}-${idx}`}
                   className="w-[290px] md:w-[360px] h-[360px] md:h-[464px] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-all duration-300"
@@ -52,7 +52,7 @@ const IndustrySection: React.FC = () => {
                   
                   {/* Default title (top) */}
                   <div className="absolute top-0 left-0 right-0 p-6 text-white group-hover:opacity-0 transition-opacity duration-300">
-                    <h3 className="text-[22px] md:text-[28px] leading-8 md:leading-9 font-semibold mb-2 drop-shadow-lg">
+                    <h3 className="text-industry-card-title font-semibold mb-2 drop-shadow-lg">
                       {cat.title.split(' & ').map((part, index, array) => (
                         <span key={index}>
                           {part}
@@ -71,7 +71,7 @@ const IndustrySection: React.FC = () => {
                   <div className="absolute inset-0 flex flex-col justify-between p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {/* Subtitle at top */}
                     <div className="flex-shrink-0">
-                      <h3 className="text-[22px] md:text-[28px] mb-3 font-semibold leading-8 md:leading-9">
+                      <h3 className="text-industry-card-title mb-3 font-semibold">
                         {cat.title.split(' & ').map((part, index, array) => (
                           <span key={index}>
                             {part}
@@ -85,7 +85,7 @@ const IndustrySection: React.FC = () => {
                         ))}
                       </h3>
                       <div className="flex-grow flex items-center">
-                      <p className="text-base md:text-lg text-white/90 leading-6 md:leading-7">
+                      <p className="text-industry-card-description text-white/90">
                         {cat.subdescription}
                       </p>
                     </div>
@@ -108,13 +108,9 @@ const IndustrySection: React.FC = () => {
                   </div>
                 </div>
               ))
- } : (
-              <div className="text-center w-full text-red-500 font-bold text-lg p-8 bg-red-50 rounded-lg border border-red-200">
-                No categories found. CATEGORIES_DATA: {JSON.stringify(CATEGORIES_DATA?.length || 'undefined')}
-              </div>
-            )
+            }
+            </div>
           </div>
-        </div>
       </div>
     </section>
   );

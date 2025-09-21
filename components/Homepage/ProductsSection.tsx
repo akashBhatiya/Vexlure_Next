@@ -48,24 +48,24 @@ const ProductsSection: React.FC = () => {
   return (
     <section
       id="products"
-      className="w-full py-12 md:py-16 px-5 md:px-8 flex flex-col items-center bg-[var(--white)]"
+      className="w-full py-12  px-5 md:px-8 flex flex-col items-center bg-[var(--white)]"
     >
       
         {/* Header */}      
-        <AnimatedSection className="text-center mb-10 max-w-[335px] md:max-w-2xl lg:max-w-[740px] mx-auto" delay={0.2} staggerDelay={0.3}>
-          <span className="block text-sm md:text-base font-medium leading-[22px] md:leading-[24px] text-[var(--black)] mb-2 md:mb-3">
+        <AnimatedSection className="text-center  max-w-[clamp(335px,90vw,740px)] mx-auto" delay={0.2} staggerDelay={0.3}>
+          <span className="block text-product-label font-medium text-[var(--black)] mb-[clamp(0.5rem,1vw,0.75rem)]">
           • Our Products
           </span>
           <SplitText 
             text="Supplying Industries with Reliable Global Products"
-            className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-12 text-center mx-auto"
+            className="text-product-title font-semibold text-[var(--black)] mb-[clamp(2rem,4vw,3rem)] text-center mx-auto"
             delay={0.1}
             duration={0.06}
           />
         </AnimatedSection>
 
       {/* Product Grid */}
-      <div className="flex flex-wrap gap-5 justify-center max-w-[1440px] mx-auto">
+      <div className="flex flex-wrap gap-[clamp(1rem,2vw,1.25rem)] justify-center max-w-[1440px] mx-auto">
         {products.map((p, i) => {
           const isLarge = i % 4 === 0 || i % 4 === 3;
 
@@ -82,33 +82,33 @@ const ProductsSection: React.FC = () => {
                     }`}
               >
               {/* Image */}
-              <div className="flex-shrink-0 p-5 overflow-hidden">
+              <div className="flex-shrink-0 p-[clamp(1rem,2vw,1.25rem)] overflow-hidden">
                 <Image
                   src={p.image}
                   alt={p.title}
                   width={400}
                   height={320}
-                  className="object-cover w-full rounded-2xl h-[190px] md:h-full md:w-[240px] transition-transform duration-300 group-hover:scale-110"
+                  className="object-cover w-full rounded-2xl h-[clamp(11.875rem,25vh,12.5rem)] md:h-full md:w-[clamp(14rem,20vw,15rem)] transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
 
               {/* Content */}
-              <div className="flex-1 flex flex-col justify-between p-5">
+              <div className="flex-1 flex flex-col justify-between p-[clamp(1rem,2vw,1.25rem)]">
                 <div>
-                  <h3 className="text-xl md:text-2xl leading-[30px] md:leading-[36px] font-semibold text-[var(--black)] mb-3 line-clamp-1">
+                  <h3 className="text-product-card-title font-semibold text-[var(--black)] mb-[clamp(0.5rem,1vw,0.75rem)]">
                     {p.title}
                   </h3>
-                  <p className="text-sm md:text-lg leading-[22px] md:leading-[28px] font-normal text-[var(--gray-text)] mb-3 line-clamp-5">
+                  <p className="text-product-description text-[var(--gray-text)] mb-[clamp(1rem,2vw,1.5rem)] line-clamp-7">
                     {p.description}
                   </p>
                 </div>
-                <a
+                <Link
                   href={p.link}
-                  className="inline-flex items-center text-[var(--orange)] font-semibold text-sm md:text-lg hover:underline focus:outline-none focus:ring-0"
+                  className="inline-flex items-center clamp(0.875rem,1.3vw,1.125rem) font-semibold text-[var(--orange)] hover:text-orange-600 transition-colors duration-200 group/link"
                 >
-                  View Product{" "}
-                  <LuMoveRight className="ml-2 align-middle text-xl  text-[var(--black)]" />
-                </a>
+                  View Product
+                  <LuMoveRight className="ml-2 w-[clamp(1rem,1.5vw,1.25rem)] h-[clamp(1rem,1.5vw,1.25rem)] transition-transform duration-200 group-hover/link:translate-x-1" />
+                </Link>
               </div>
               </div>
             </AnimatedCardMobile>
@@ -117,12 +117,12 @@ const ProductsSection: React.FC = () => {
       </div>
 
       {/* CTA Button */}
-      <div className="flex w-full justify-center mt-10">
+      <div className="flex w-full justify-center mt-[clamp(2rem,4vw,2.5rem)]">
         <Link
           href="/product"
-          className="bg-[var(--orange)] font-medium hover:bg-[var(--orange)]/90 text-[var(--white)] px-7 py-2.5 rounded-full flex items-center gap-2 text-sm md:text-base leading-[22px] md:leading-[24px] transition-all justify-center focus:outline-none focus:ring-0"
+          className="bg-[var(--orange)] font-medium hover:bg-[var(--orange)]/90 text-[var(--white)] px-[clamp(1.5rem,3vw,1.75rem)] py-[clamp(0.625rem,1.5vw,0.75rem)] rounded-full flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] text-fluid-sm transition-all justify-center focus:outline-none focus:ring-0"
         >
-          View the Product <HiArrowUpRight />
+          View the Product <HiArrowUpRight className="w-[clamp(1rem,1.5vw,1.25rem)] h-[clamp(1rem,1.5vw,1.25rem)]" />
         </Link>
       </div>
     </section>

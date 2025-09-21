@@ -54,11 +54,11 @@ const ArticleCard = ({
         </div>
         <div className="space-y-3 px-1">
           <div className="flex items-center gap-2">
-            <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">{blog.category}</span>
-            <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">•</span>
-            <span className="text-sm md:text-base leading-[22px] md:leading-6 text-[var(--gray-text)]">{blog.readTime || '5 min read'}</span>
+            <span className="text-blog-card-meta text-[var(--gray-text)]">{blog.category}</span>
+            <span className="text-blog-card-meta text-[var(--gray-text)]">•</span>
+            <span className="text-blog-card-meta text-[var(--gray-text)]">{blog.readTime || '5 min read'}</span>
           </div>
-          <h3 className="text-xl md:text-2xl leading-[20px] md:leading-9 font-semibold text-[var(--black)] group-hover:text-[var(--orange)] transition-colors">
+          <h3 className="text-blog-card-title font-semibold text-[var(--black)] group-hover:text-[var(--orange)] transition-colors">
             {blog.title}
           </h3>
         </div>
@@ -163,15 +163,15 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="w-full pt-20 pb-16 px-5 md:px-8 flex flex-col items-center bg-[var(--white)]">
+      <section className="w-full pt-20 pb-8 px-5 md:px-16 flex flex-col items-center bg-[var(--white)]">
         <div className="w-full max-w-[1440px] flex flex-col items-center text-center">
-          <span className="text-sm md:text-base font-medium text-[var(--black)] mb-4 block">
+          <span className="text-product-label font-medium text-[var(--black)] mb-4 block">
             • Our Blog
           </span>
-          <h1 className="text-[32px] md:text-5xl font-semibold text-[var(--black)] leading-[44px] max-w-4xl mb-4 md:mb-6">
+          <h1 className="text-blog-hero-title font-semibold text-[var(--black)] max-w-4xl mb-4 md:mb-6">
             Fresh From the Fields
           </h1>
-          <p className="text-base md:text-xl text-[var(--gray-text)] leading-[24px] md:leading-8 max-w-3xl">
+          <p className="text-blog-hero-description text-[var(--gray-text)] max-w-3xl">
             Explore stories, insights, and updates straight from the heart of
             agriculture bringing you the latest trends, trade strategies, and
             the authentic journey of Indian produce to global markets.
@@ -180,7 +180,7 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Article Section */}
-      <section className="w-full py-8 md:py-16 px-5 md:px-8 bg-[var(--white)]">
+      <section className="w-full py-8 px-5 md:px-16 bg-[var(--white)]">
         <div className="w-full max-w-[1440px] mx-auto">
           <div className="flex flex-col md:flex-row gap-6 lg:gap-8 items-start">
             {/* Featured Article Image */}
@@ -211,7 +211,7 @@ export default function BlogPage() {
                           <span>{featuredBlog.readTime || '5 min read'}</span>
                         </div>
                         <h3
-                          className="text-lg md:text-xl lg:text-[32px] leading-tight md:leading-[44px] font-semibold text-white cursor-pointer"
+                          className="text-blog-featured-title text-white font-semibold cursor-pointer"
                         >
                           {featuredBlog.title}
                         </h3>
@@ -264,7 +264,7 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Articles Grid Section */}
-      <section className="w-full py-16 px-5 md:px-8 bg-[var(--white)]">
+      <section className="w-full py-6 px-5 md:px-16 bg-[var(--white)]">
         <div className="w-full max-w-[1440px] mx-auto">
           <div className="flex flex-col lg:flex-row gap-18">
             {/* Categories Sidebar */}
@@ -301,7 +301,7 @@ export default function BlogPage() {
                 <div className="mb-3">
                   <button
                     onClick={() => handleCategoryChange('All Categories')}
-                    className={`px-5 py-[10px] rounded-full text-sm md:text-base md:leading-6 font-medium transition-colors ${
+                    className={`px-5 py-[10px] rounded-full text-blog-category-button font-medium transition-colors ${
                       selectedCategory === 'All Categories'
                         ? 'bg-black text-white'
                         : 'bg-white text-gray-800 hover:bg-gray-100'
@@ -317,7 +317,7 @@ export default function BlogPage() {
                     <button
                       key={category}
                       onClick={() => handleCategoryChange(category)}
-                      className={`px-5 py-[10px] rounded-full text-sm md:text-base md:leading-6 font-medium transition-colors ${
+                      className={`px-5 py-[10px] rounded-full text-blog-category-button font-medium transition-colors ${
                         selectedCategory === category
                           ? 'bg-black text-white'
                           : 'bg-white text-gray-800 hover:bg-gray-100'

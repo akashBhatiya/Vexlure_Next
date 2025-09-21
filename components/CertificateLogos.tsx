@@ -86,19 +86,25 @@ const CertificateLogos: React.FC = () => {
           <div className="inline-flex gap-6 items-center">
             {marqueeLogos.map((logo, i) => (
               <div
-                key={i}
-                className="flex-shrink-0 flex items-center justify-center h-15 md:h-[90px] px-2 md:px-6"
-                style={{ width: "auto" }}
-              >
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={120}
-                  height={90}
-                  className="h-15 md:h-[90px] w-auto object-contain opacity-90 group-hover:opacity-100 transition"
-                  draggable={false}
-                />
-              </div>
+              key={i}
+              className="flex-shrink-0 flex items-center justify-center 
+                         h-[40px] sm:h-[60px] md:h-[90px] lg:h-[100px] 
+                         px-2 sm:px-4 md:px-6"
+            >
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={120}
+                height={90}
+                className="
+                  h-[40px] sm:h-[60px] md:h-[90px] lg:h-[100px] 
+                  w-auto object-contain 
+                  opacity-90 group-hover:opacity-100 transition
+                "
+                draggable={false}
+              />
+            </div>
+            
             ))}
           </div>
         </div>

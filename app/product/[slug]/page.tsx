@@ -19,8 +19,8 @@ export default async function ProductDetailsPage({ params }) {
     
     return (
       <>
-        <span className="text-[var(--black)] text-lg font-semibold leading-7 ">{beforeColon}</span>
-        <span className="text-[var(--gray-text)] text-base leading-6 font-medium">{afterColon}</span>
+        <span className="text-[var(--black)] text-product-detail-feature-label font-semibold">{beforeColon}</span>
+        <span className="text-[var(--gray-text)] text-product-detail-feature-text font-medium">{afterColon}</span>
       </>
     );
   };
@@ -35,9 +35,9 @@ export default async function ProductDetailsPage({ params }) {
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
             <div className="w-full h-full absolute inset-0 rounded-2xl bg-[#18181880]" />
             <div className="relative max-w-[920px] z-10 flex flex-col items-center justify-center">
-              <span className="text-sm md:text-base leading-[22px] md:leading-6 font-medium text-white mb-3 ">• {product.title}</span>
-              <h1 className="text-[32px] md:text-5xl font-semibold text-white mb-4 leading-[44px] md:leading-[64px]">{product.subtitle}</h1>
-              <p className="text-white text-base md:text-xl leading-6 md:leading-8  mb-0 font-normal">{product.subdescription}</p>
+              <span className="text-product-label font-medium text-white mb-3">• {product.title}</span>
+              <h1 className="text-product-detail-hero-title font-semibold text-white mb-4">{product.subtitle}</h1>
+              <p className="text-white text-product-detail-hero-description mb-0 font-normal">{product.subdescription}</p>
             </div>
           </div>
         </section>
@@ -60,8 +60,8 @@ export default async function ProductDetailsPage({ params }) {
               </div>
               {/* Info Box - gray bg */}
               <div className="w-full md:w-1/2 bg-[var(--secondary-bg)] rounded-2xl shadow p-4 md:p-8 flex flex-col justify-center">
-                <h3 className="text-xl md:text-[28px] md:leading-[40px] font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-xs md:text-base md:leading-6 text-gray-700 mb-4 font-normal">{item.description}</p>
+                <h3 className="text-product-detail-card-title font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-product-detail-card-description text-gray-700 mb-4 font-normal">{item.description}</p>
                 <ul className="space-y-2">
                   {item.features.map((f, i) => (
                     <li key={i} className="flex items-center bg-[var(--white)] py-2.5 px-2 rounded">
@@ -76,14 +76,4 @@ export default async function ProductDetailsPage({ params }) {
         </section>
       </section>
     );
-  
-
-  // Fallback for other products
-  // return (
-  //   <main className="flex flex-col mt-6 min-h-[60vh] items-center justify-center max-w-[1440px]">
-  //     <img src={product.image} alt={product.title} className="rounded-xl w-full max-w-2xl mb-6" />
-  //     <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
-  //     <p className="max-w-2xl text-center text-lg">{product.subdescription}</p>
-  //   </main>
-  // );
 }

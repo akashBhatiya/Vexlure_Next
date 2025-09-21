@@ -136,17 +136,17 @@ const TestimonialsSection: React.FC = () => {
   return (
     <section
       id="testimonials"
-      className="w-full bg-[var(--secondary-bg)] py-12 md:py-16"
+      className="w-full bg-[var(--secondary-bg)] py-12 "
     >
       <div className="max-w-[1728px] mx-auto">
         {/* Header */}
         <AnimatedSection className="text-center mb-10 max-w-[335px] md:max-w-2xl lg:max-w-[740px] mx-auto" delay={0.2} staggerDelay={0.3}>
-          <span className="block text-sm md:text-base font-medium leading-[22px] md:leading-[24px] text-[var(--black)] mb-2 md:mb-3">
+          <span className="block text-product-label  font-medium text-[var(--black)] mb-2 md:mb-3">
             • Testimonials
           </span>
           <SplitText 
             text="Customer Feedback That Reflects Our Commitment to Excellence"
-            className="text-2xl md:text-[40px] font-semibold leading-[36px] md:leading-[52px] text-[var(--black)] mb-12 text-center mx-auto"
+            className="text-product-title font-semibold text-[var(--black)] mb-12 text-center mx-auto"
             delay={0.1}
             duration={0.06}
           />
@@ -155,16 +155,17 @@ const TestimonialsSection: React.FC = () => {
         {/* Desktop staggered grid */}
         <div className="hidden xl:flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory w-full h-[580px]">
           {testimonials.map((t, i) => (
-            <AnimatedCard
+            // <AnimatedCard
+            <div
               key={i}
-              index={i}
-              delay={0.3}
+              // index={i}
+              // delay={0.3}
               className={`flex flex-col justify-between p-8 shadow-md rounded-2xl transition-colors duration-200 cursor-pointer
         ${t.cardStyle} w-[420px] sm:w-[340px] lg:w-full h-[480px]
         ${i % 2 ? "mt-0 mb-20" : "mt-20 mb-0"} hover:bg-[var(--black)] hover:text-white group`}
             >
               <p
-                className={`text-xl font-medium leading-8  ${
+                className={`text-fluid-xl font-medium leading-loose  ${
                   t.cardStyle.includes("text-[var(--white)]")
                     ? "text-[var(--white)]"
                     : "text-[var(--black)]"
@@ -186,14 +187,15 @@ const TestimonialsSection: React.FC = () => {
                   />
                 </div> */}
                 <div>
-                  <div className={`font-semibold text-xl leading-[30px] mb-2 text-[var(--black)] group-hover:text-white`}>
+                  <div className={`font-semibold text-fluid-xl leading-relaxed mb-2 text-[var(--black)] group-hover:text-white`}>
                     {t.name}
                   </div>
-                  <div className={`text-sm font-normal leading-[22px] text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
+                  <div className={`text-fluid-sm font-normal leading-normal text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
                 </div>
               </div>
-            </AnimatedCard>
+              </div>
           ))}
+          {/* </AnimatedCard> */}
         </div>
 
         {/* Mobile & Tablet scroll slider */}
@@ -212,7 +214,7 @@ const TestimonialsSection: React.FC = () => {
         ${t.cardStyle} min-w-[335px] w-[335px] h-[412px] flex-shrink-0 hover:bg-[var(--black)] hover:text-white hover:-translate-y-2 hover:shadow-xl group`}
             >
               <p
-                className={`text-base leading-6 font-medium  ${
+                className={`text-fluid-base leading-normal font-medium  ${
                   t.cardStyle.includes("text-[var(--white)]")
                     ? "text-[var(--white)]"
                     : "text-[var(--black)]"
@@ -222,10 +224,10 @@ const TestimonialsSection: React.FC = () => {
               </p>
               <div className="flex items-center gap-3 mt-auto h-13">
                 <div>
-                  <div className={`font-semibold text-lg leading-[28px] text-[var(--black)] group-hover:text-white`}>
+                  <div className={`font-semibold text-fluid-lg leading-relaxed text-[var(--black)] group-hover:text-white`}>
                     {t.name}
                   </div>
-                  <div className={`text-xs leading-[20px] font-normal text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
+                  <div className={`text-fluid-xs leading-normal font-normal text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
                 </div>
               </div>
             </AnimatedCardMobile>
@@ -240,7 +242,7 @@ const TestimonialsSection: React.FC = () => {
         ${t.cardStyle} min-w-[335px] w-[335px] h-[412px] flex-shrink-0 hover:bg-[var(--black)] hover:text-white hover:-translate-y-2 hover:shadow-xl group`}
             >
               <p
-                className={`text-lg leading-[28px] font-medium  ${
+                className={`text-fluid-base leading-normal font-medium  ${
                   t.cardStyle.includes("text-[var(--white)]")
                     ? "text-[var(--white)]"
                     : "text-[var(--black)]"
@@ -250,10 +252,10 @@ const TestimonialsSection: React.FC = () => {
               </p>
               <div className="flex items-center gap-3 mt-auto h-13">
                 <div>
-                  <div className={`font-semibold text-lg leading-[28px] text-[var(--black)] group-hover:text-white`}>
+                  <div className={`font-semibold text-fluid-lg leading-relaxed text-[var(--black)] group-hover:text-white`}>
                     {t.name}
                   </div>
-                  <div className={`text-xs leading-[20px] font-normal text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
+                  <div className={`text-fluid-xs leading-normal font-normal text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
                 </div>
               </div>
             </AnimatedCardMobile>
