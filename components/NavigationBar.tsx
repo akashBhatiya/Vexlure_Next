@@ -169,7 +169,7 @@ const NavigationBar: React.FC = () => {
 
                 {/* Product Dropdown Menu */}
                 {isProductDropdownOpen && (
-                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 w-[980px] bg-white/80 rounded-2xl shadow-xl border border-gray-100 p-5 z-50">
+                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 max-w-[980px] bg-white/80 rounded-2xl shadow-xl border border-gray-100 p-5 z-50">
                     <div className="grid grid-cols-4 gap-6">
                       {/* First Column */}
                       <div className="space-y-4 col-span-3 grid grid-cols-2 gap-3">

@@ -34,7 +34,7 @@
   --leading-extra-loose: 1.75;  /* 28px for 16px text */
   
   /* Product Section Specific - Figma Exact Match */
-  --product-title: clamp(1.5rem, 3vw, 2.5rem);                    /* 24px -> 40px */
+  --product-title: clamp(1.5rem, 3.25vw, 2.5rem);                    /* 24px -> 40px */
   --product-title-leading: clamp(2.25rem, 4vw, 3.25rem);          /* 36px -> 52px */
   --product-card-title: clamp(1.25rem, 2vw, 1.5rem);              /* 20px -> 24px */
   --product-card-title-leading: clamp(1.875rem, 2.5vw, 2.25rem);  /* 30px -> 36px */
@@ -44,10 +44,10 @@
   --product-label-leading: clamp(1.375rem, 1.5vw, 1.5rem);        /* 22px -> 24px */
   
   /* Hero Section Specific - Exact Current Design Match */
-  --hero-title: clamp(2rem, 4vw, 3.5rem);                         /* 32px -> 56px */
-  --hero-title-leading: clamp(2.75rem, 5vw, 4.5rem);              /* 44px -> 72px */
-  --hero-description: clamp(1rem, 2vw, 1.25rem);                  /* 16px -> 20px */
-  --hero-description-leading: clamp(1.5rem, 2.5vw, 2rem);         /* 24px -> 32px */
+  --hero-title: clamp(1.5rem, 2vw + 1rem, 3.5rem);                         /* 24px -> 44px */
+  --hero-title-leading:clamp(2.1rem, 2.8vw + 1.4rem, 4.9rem);              /* 44px -> 60px */
+  --hero-description: clamp(1rem, 2vw, 1.125rem);                  /* 16px -> 20px */
+  --hero-description-leading: clamp(1.4rem, 2.8vw, 1.575rem);     /* 24px -> 32px */
   --hero-button: clamp(0.875rem, 1vw, 1rem);                      /* 14px -> 16px */
   --hero-button-leading: clamp(1.375rem, 1.5vw, 1.5rem);          /* 22px -> 24px */
   

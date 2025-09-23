@@ -51,14 +51,14 @@ const WhyChooseUsSection: React.FC = () => {
       className="w-full bg-[var(--white)] pt-5 md:pt-14 pb-14 px-5 md:px-16"
     >
       <div className="max-w-[1440px] mx-auto">
-        <AnimatedSection className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4" delay={0.2} staggerDelay={0.3}>
-          <div>
-            <span className="block text-product-label font-medium text-[var(--black)] mb-1">
+        <AnimatedSection className="flex flex-col lg:flex-row lg:items-center lg:justify-between  gap-2 mb-5" delay={0.2} staggerDelay={0.3}>
+          <div className="flex flex-col">
+            <span className="block text-product-label font-medium text-[var(--black)]">
               • Why Choose Us
             </span>
             <SplitText 
               text="Why Global Clients Trust Vexlure International"
-              className="text-product-title font-semibold text-[var(--black)] mb-2 tracking-tight max-w-2xl"
+              className="text-product-title font-semibold text-[var(--black)]  tracking-tight max-w-2xl"
               delay={0.1}
               duration={0.06}
             />
@@ -70,7 +70,7 @@ const WhyChooseUsSection: React.FC = () => {
             Contact Us <HiArrowUpRight />
           </Link>
         </AnimatedSection>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8 md:gap-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {features.map((f, i) => (
             <AnimatedCard key={i} index={i} delay={0.4} className="">
               <h3 className="text-product-card-title font-semibold text-[var(--black)] mb-3">

@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
   delay={0.2}
   staggerDelay={0.3}
 >
-  <div className="flex flex-col gap-8 max-w-[930px] text-center sm:text-left mx-auto md:mx-0">
+  <div className="flex flex-col gap-6 max-w-[930px] text-center sm:text-left mx-auto md:mx-0">
     <div className="flex flex-col gap-3">
       <h1 className="text-hero-title font-semibold md:font-bold text-[var(--white)] tracking-normal">
         Welcome to <br className="hidden sm:block" />

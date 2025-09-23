@@ -13,14 +13,14 @@ const IndustrySection: React.FC = () => {
       id="industry"
       className="w-full bg-[var(--secondary-bg)] py-12 "
     >
-      <div className="max-w-[1728px] mx-auto">
-        <AnimatedSection className="text-center mb-10 max-w-[335px] md:max-w-2xl lg:max-w-[740px] mx-auto" delay={0.2} staggerDelay={0.3}>
+      <div className="max-w-[1728px] flex flex-col gap-10 mx-auto">
+        <AnimatedSection className="text-center max-w-[335px] md:max-w-[740px] mx-auto" delay={0.2} staggerDelay={0.3}>
           <span className="block text-product-label font-medium text-[var(--black)] mb-2 md:mb-3">
           • Our Product Range
           </span>
           <SplitText 
             text="From Indian Fields to Global Markets"
-            className="text-product-title font-semibold text-[var(--black)] mb-4 text-center mx-auto"
+            className="text-product-title font-semibold text-[var(--black)] text-center mx-auto"
             delay={0.1}
             duration={0.06}
           />
@@ -31,7 +31,7 @@ const IndustrySection: React.FC = () => {
               {CATEGORIES_DATA.map((cat, idx) => (
                 <div
                   key={`${cat.slug}-${idx}`}
-                  className="w-[290px] md:w-[360px] h-[360px] md:h-[464px] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-all duration-300"
+                  className="w-[290px] md:w-[340px] h-[360px] md:h-[420px] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-all duration-300"
                 >
                   <Image
                     src={cat.image}

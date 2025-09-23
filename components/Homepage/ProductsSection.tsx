@@ -64,56 +64,143 @@ const ProductsSection: React.FC = () => {
           />
         </AnimatedSection>
 
-      {/* Product Grid */}
-      <div className="flex flex-wrap gap-[clamp(1rem,2vw,1.25rem)] justify-center max-w-[1440px] mx-auto">
-        {products.map((p, i) => {
-          const isLarge = i % 4 === 0 || i % 4 === 3;
-
-          return (
+      {/* Product Grid - Responsive Layout */}
+      <div className="w-full max-w-[1440px] mx-auto">
+        {/* Mobile: Single column */}
+        <div className="grid grid-cols-1 md:hidden gap-6">
+          {products.map((p, i) => (
             <AnimatedCardMobile key={i} index={i} delay={0.2}>
-              <div
-                className={`w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group
-                    flex flex-col md:flex-row-reverse items-stretch h-full md:h-[328px]
-                    transition-transform duration-300 hover:scale-105 cursor-pointer
-                    ${
-                      isLarge
-                        ? "xl:max-w-[630px] 2xl:max-w-[820px]"
-                        : "xl:max-w-[550px] 2xl:max-w-[590px]"
-                    }`}
-              >
-              {/* Image */}
-              <div className="flex-shrink-0 p-[clamp(1rem,2vw,1.25rem)] overflow-hidden">
-                <Image
-                  src={p.image}
-                  alt={p.title}
-                  width={400}
-                  height={320}
-                  className="object-cover w-full rounded-2xl h-[clamp(11.875rem,25vh,12.5rem)] md:h-full md:w-[clamp(14rem,20vw,15rem)] transition-transform duration-300 group-hover:scale-110"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="flex-1 flex flex-col justify-between p-[clamp(1rem,2vw,1.25rem)]">
-                <div>
-                  <h3 className="text-product-card-title font-semibold text-[var(--black)] mb-[clamp(0.5rem,1vw,0.75rem)]">
-                    {p.title}
-                  </h3>
-                  <p className="text-product-description text-[var(--gray-text)] mb-[clamp(1rem,2vw,1.5rem)] line-clamp-7">
-                    {p.description}
-                  </p>
+              <div className="w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group flex flex-col items-stretch h-full transition-transform duration-300 hover:scale-105 cursor-pointer">
+                {/* Mobile Content - Single Container */}
+                <div className="flex-1 flex flex-col p-5 gap-3">
+                  {/* Mobile Image */}
+                  <div className="flex-shrink-0 overflow-hidden">
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      width={400}
+                      height={200}
+                      className="object-cover w-full rounded-2xl h-48 transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                  
+                  {/* Mobile Text Content */}
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-product-card-title font-semibold text-[var(--black)]">
+                      {p.title}
+                    </h3>
+                    <p className="text-product-description text-[var(--gray-text)] line-clamp-4">
+                      {p.description}
+                    </p>
+                  </div>
+                  
+                  {/* Mobile Link */}
+                  <Link
+                    href={p.link}
+                    className="inline-flex items-center text-sm font-semibold text-[var(--orange)] hover:text-orange-600 transition-colors duration-200 group/link mt-auto"
+                  >
+                    View Product
+                    <LuMoveRight className="ml-2 w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  </Link>
                 </div>
-                <Link
-                  href={p.link}
-                  className="inline-flex items-center clamp(0.875rem,1.3vw,1.125rem) font-semibold text-[var(--orange)] hover:text-orange-600 transition-colors duration-200 group/link"
-                >
-                  View Product
-                  <LuMoveRight className="ml-2 w-[clamp(1rem,1.5vw,1.25rem)] h-[clamp(1rem,1.5vw,1.25rem)] transition-transform duration-200 group-hover/link:translate-x-1" />
-                </Link>
-              </div>
               </div>
             </AnimatedCardMobile>
-          );
-        })}
+          ))}
+        </div>
+
+        {/* Tablet: Two columns */}
+        <div className="hidden md:grid xl:hidden grid-cols-2 gap-6">
+          {products.map((p, i) => (
+            <AnimatedCardMobile key={i} index={i} delay={0.2}>
+              <div className="w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group flex flex-col items-stretch h-full transition-transform duration-300 hover:scale-105 cursor-pointer">
+                {/* Tablet Content - Single Container */}
+                <div className="flex-1 flex flex-col p-5 gap-3">
+                  {/* Tablet Image */}
+                  <div className="flex-shrink-0 overflow-hidden">
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      width={400}
+                      height={220}
+                      className="object-cover w-full rounded-2xl h-52 transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                  
+                  {/* Tablet Text Content */}
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-product-card-title font-semibold text-[var(--black)]">
+                      {p.title}
+                    </h3>
+                    <p className="text-product-description text-[var(--gray-text)] line-clamp-3">
+                      {p.description}
+                    </p>
+                  </div>
+                  
+                  {/* Tablet Link */}
+                  <Link
+                    href={p.link}
+                    className="inline-flex items-center text-sm font-semibold text-[var(--orange)] hover:text-orange-600 transition-colors duration-200 group/link mt-auto"
+                  >
+                    View Product
+                    <LuMoveRight className="ml-2 w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            </AnimatedCardMobile>
+          ))}
+        </div>
+
+        {/* Large Screen: Flex layout with different sizes */}
+        <div className="hidden xl:flex flex-wrap gap-5 justify-center">
+          {products.map((p, i) => {
+            const isLarge = i % 4 === 0 || i % 4 === 3;
+
+            return (
+              <AnimatedCardMobile key={i} index={i} delay={0.2}>
+                <div
+                  className={`bg-[#F4F4F6] rounded-2xl overflow-hidden group
+                      flex flex-row-reverse items-stretch h-[328px]
+                      transition-transform duration-300 hover:scale-105 cursor-pointer
+                      ${
+                        isLarge
+                          ? "w-full max-w-[630px] 2xl:max-w-[820px]"
+                          : "w-full max-w-[550px]  2xl:max-w-[590px]"
+                      }`}
+                >
+                {/* Large Screen Image */}
+                <div className="flex-shrink-0 p-5 overflow-hidden">
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    width={400}
+                    height={320}
+                    className="object-cover w-full rounded-2xl h-full max-w-[240px] transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
+
+                {/* Large Screen Content */}
+                <div className="flex-1 flex flex-col justify-between p-5">
+                  <div>
+                    <h3 className="text-product-card-title font-semibold text-[var(--black)] mb-3">
+                      {p.title}
+                    </h3>
+                    <p className="text-product-description text-[var(--gray-text)] mb-6 line-clamp-5">
+                      {p.description}
+                    </p>
+                  </div>
+                  <Link
+                    href={p.link}
+                    className="inline-flex items-center text-base font-semibold text-[var(--orange)] hover:text-orange-600 transition-colors duration-200 group/link"
+                  >
+                    View Product
+                    <LuMoveRight className="ml-2 w-5 h-5 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  </Link>
+                </div>
+                </div>
+              </AnimatedCardMobile>
+            );
+          })}
+        </div>
       </div>
 
       {/* CTA Button */}
