@@ -169,184 +169,184 @@ const NavigationBar: React.FC = () => {
 
                 {/* Product Dropdown Menu */}
                 {isProductDropdownOpen && (
-                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 max-w-[980px] bg-white/80 rounded-2xl shadow-xl border border-gray-100 p-5 z-50">
-                    <div className="grid grid-cols-4 gap-6">
+                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[980px] max-w-[980px] bg-white/80 rounded-2xl shadow-xl border border-gray-100 p-3 sm:p-4 md:p-5 z-50">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                       {/* First Column */}
-                      <div className="space-y-4 col-span-3 grid grid-cols-2 gap-3">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4 col-span-1 sm:col-span-2 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                         <div>
-                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
+                          <div className="px-2 sm:px-3 py-1.5 sm:py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/agriculture-spices"
-                              className="flex items-start justify-between  transition-colors"
+                              className="flex items-start justify-between transition-colors"
                               onClick={() => setIsProductDropdownOpen(false)}
                             >
                               <div>
-                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] text-sm sm:text-base">
                                   Fresh Vegetables
                                 </h3>
-                                <p className="text-sm text-[var(--gray-text)]">
+                                <p className="text-xs sm:text-sm text-[var(--gray-text)]">
                                   Quality Green, Frozen Globally
                                 </p>
                               </div>
-                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                             </Link>
                           </div>
 
-                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
+                          <div className="px-2 sm:px-3 py-1.5 sm:py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/oilseeds-nuts"
-                              className="flex items-start justify-between  transition-colors"
+                              className="flex items-start justify-between transition-colors"
                               onClick={() => setIsProductDropdownOpen(false)}
                             >
                               <div>
-                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] text-sm sm:text-base">
                                   Oilseeds & Nuts
                                 </h3>
-                                <p className="text-sm text-[var(--gray-text)]">
+                                <p className="text-xs sm:text-sm text-[var(--gray-text)]">
                                   Premium Oilseeds, Global Impact
                                 </p>
                               </div>
-                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                             </Link>
                           </div>
 
-                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
+                          <div className="px-2 sm:px-3 py-1.5 sm:py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/pulses-legumes"
-                              className="flex items-start justify-between  transition-colors"
+                              className="flex items-start justify-between transition-colors"
                               onClick={() => setIsProductDropdownOpen(false)}
                             >
                               <div>
-                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] text-sm sm:text-base">
                                   Pulses & Legumes
                                 </h3>
-                                <p className="text-sm text-[var(--gray-text)]">
+                                <p className="text-xs sm:text-sm text-[var(--gray-text)]">
                                   Gram, Greens, Trusted Legumes
                                 </p>
                               </div>
-                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                             </Link>
                           </div>
 
                           {/* Second Column */}
-                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
+                          <div className="px-2 sm:px-3 py-1.5 sm:py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/grains-cereals"
-                              className="flex items-start justify-between  transition-colors"
+                              className="flex items-start justify-between transition-colors"
                               onClick={() => setIsProductDropdownOpen(false)}
                             >
                               <div>
-                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] text-sm sm:text-base">
                                   Grains & Cereals
                                 </h3>
-                                <p className="text-sm text-[var(--gray-text)]">
+                                <p className="text-xs sm:text-sm text-[var(--gray-text)]">
                                   Rice and Grains, Trusted Worldwide
                                 </p>
                               </div>
-                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                             </Link>
                           </div>
 
-                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
+                          <div className="px-2 sm:px-3 py-1.5 sm:py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/whole-ground-spices"
                               className="flex items-start justify-between transition-colors"
                               onClick={() => setIsProductDropdownOpen(false)}
                             >
                               <div>
-                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] text-sm sm:text-base">
                                   Whole & Ground Spices
                                 </h3>
-                                <p className="text-sm text-[var(--gray-text)]">
+                                <p className="text-xs sm:text-sm text-[var(--gray-text)]">
                                   Heritage Spices, Modern Supply
                                 </p>
                               </div>
-                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                             </Link>
                           </div>
                         </div>
 
                         <div>
-                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
+                          <div className="px-2 sm:px-3 py-1.5 sm:py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/natural-health-plant-products"
                               className="flex items-start justify-between transition-colors"
                               onClick={() => setIsProductDropdownOpen(false)}
                             >
                               <div>
-                                <h3 className="font-semibold text-[var(--black)] mb-[2px]">
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] text-sm sm:text-base">
                                   Natural Health & Plant Products
                                 </h3>
-                                <p className="text-sm text-[var(--gray-text)]">
+                                <p className="text-xs sm:text-sm text-[var(--gray-text)]">
                                   Natural Wellness, Trusted Worldwide
                                 </p>
                               </div>
-                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                             </Link>
                           </div>
 
                           {/* Third Column - View All Products */}
-                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
+                          <div className="px-2 sm:px-3 py-1.5 sm:py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/agro-derivatives-additives"
-                              className="flex items-start justify-between  transition-colors"
+                              className="flex items-start justify-between transition-colors"
                               onClick={() => setIsProductDropdownOpen(false)}
                             >
                               <div>
-                                <h3 className="font-semibold text-[var(--black)] mb-[2px]">
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] text-sm sm:text-base">
                                   Agro Derivatives & Additives
                                 </h3>
-                                <p className="text-sm text-[var(--gray-text)]">
+                                <p className="text-xs sm:text-sm text-[var(--gray-text)]">
                                   Consistent Quality, Processed Products
                                 </p>
                               </div>
-                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                             </Link>
                           </div>
 
-                          <div className="px-3 py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
+                          <div className="px-2 sm:px-3 py-1.5 sm:py-2 hover:bg-[var(--lite-bg)] rounded-xl group relative">
                             <Link
                               href="/product/superfood-nutraceutical-powders"
                               className="flex items-start justify-between transition-colors"
                               onClick={() => setIsProductDropdownOpen(false)}
                             >
                               <div>
-                                <h3 className="font-semibold text-[var(--black)] mb-[2px] ">
+                                <h3 className="font-semibold text-[var(--black)] mb-[2px] text-sm sm:text-base">
                                   Superfood & Nutraceutical Powders
                                 </h3>
-                                <p className="text-sm text-[var(--gray-text)]">
+                                <p className="text-xs sm:text-sm text-[var(--gray-text)]">
                                   Superfoods from India's Fields
                                 </p>
                               </div>
-                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity mt-1" />
+                              <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                             </Link>
                           </div>
                         </div>
                       </div>
                       {/* View All Products Button */}
-                      <div className="p-4 bg-[var(--lite-bg)] rounded-2xl group">
+                      <div className="p-3 sm:p-4 bg-[var(--lite-bg)] rounded-2xl group col-span-1 sm:col-span-2 lg:col-span-1">
                           <Link
                             href="/product"
                             onClick={() => setIsProductDropdownOpen(false)}
                           >
-                        <div className="hover:text-[var(--black)] ">
-                          <div className="flex justify-between font-semibold text-[var(--black)]">
+                        <div className="hover:text-[var(--black)]">
+                          <div className="flex justify-between font-semibold text-[var(--black)] text-sm sm:text-base">
                             View all Products
-                          <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1" />
+                          <BsArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-[var(--black)] mt-1 w-3 h-3 sm:w-4 sm:h-4" />
                           </div>
-                          <p className="text-xs text-[var(--gray-text)] mt-1">
+                          <p className="text-xs sm:text-sm text-[var(--gray-text)] mt-1">
                             Discover authentic products from our collection.
                           </p>
                         </div>
 
                         {/* Product Image */}
-                        <div className="mt-4">
+                        <div className="mt-3 sm:mt-4">
                           <Image
                             src="/agriculture/agro.png"
                             alt="Product showcase"
                             width={220}
                             height={204}
-                            className="w-full h-[204px] object-cover rounded-lg"
+                            className="w-full h-[150px] sm:h-[180px] md:h-[204px] object-cover rounded-lg"
                             />
                         </div>
                       </Link>

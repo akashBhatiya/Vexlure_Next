@@ -38,7 +38,7 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "0px", amount: 0.1 }}
+      viewport={{ once: false, margin: "0px", amount: 0.1 }}
     >
       {children}
     </motion.div>

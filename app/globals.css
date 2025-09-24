@@ -36,12 +36,18 @@
   /* Product Section Specific - Figma Exact Match */
   --product-title: clamp(1.5rem, 3.25vw, 2.5rem);                    /* 24px -> 40px */
   --product-title-leading: clamp(2.25rem, 4vw, 3.25rem);          /* 36px -> 52px */
-  --product-card-title: clamp(1.25rem, 2vw, 1.5rem);              /* 20px -> 24px */
-  --product-card-title-leading: clamp(1.875rem, 2.5vw, 2.25rem);  /* 30px -> 36px */
+  --product-card-title:  clamp(1rem, 2vw, 1.25rem);   /* 16px -> 20px */
+  --product-card-title-leading: clamp(1.5rem, 3vw, 1.75rem); /* 24px -> 32px */
   --product-description: clamp(0.875rem, 1.2vw, 1.125rem);        /* 14px -> 18px */
   --product-description-leading: clamp(1.375rem, 1.8vw, 1.75rem); /* 22px -> 28px */
   --product-label: clamp(0.875rem, 1vw, 1rem);                    /* 14px -> 16px */
   --product-label-leading: clamp(1.375rem, 1.5vw, 1.5rem);        /* 22px -> 24px */
+
+ /* Why Choose Us Section Specific - Figma Exact Match */
+  --choose-title: clamp(1rem, 2vw, 1.25rem);   /* 16px -> 20px */
+  --choose-title-leading: clamp(1.5rem, 3vw, 1.75rem); /* 24px -> 32px */
+  --choose-description: clamp(0.875rem, 1.2vw, 1rem);        /* 14px -> 18px */
+  --choose-description-leading: clamp(1.375rem, 1.8vw, 1.5rem); /* 22px -> 28px */
   
   /* Hero Section Specific - Exact Current Design Match */
   --hero-title: clamp(1.5rem, 2vw + 1rem, 3.5rem);                         /* 24px -> 44px */
@@ -52,10 +58,10 @@
   --hero-button-leading: clamp(1.375rem, 1.5vw, 1.5rem);          /* 22px -> 24px */
   
   /* Industry Section Specific - Exact Current Design Match */
-  --industry-card-title: clamp(1.375rem, 2.5vw, 1.75rem);         /* 22px -> 28px */
+  --industry-card-title: clamp(1.375rem, 2.5vw, 1.62rem);         /* 22px -> 28px */
   --industry-card-title-leading: clamp(2rem, 3vw, 2.25rem);       /* 32px -> 36px */
-  --industry-card-description: clamp(1rem, 1.5vw, 1.125rem);      /* 16px -> 18px */
-  --industry-card-description-leading: clamp(1.5rem, 2vw, 1.75rem); /* 24px -> 28px */
+  --industry-card-description: clamp(0.875rem, 1.2vw, 1rem);        /* 14px -> 18px */
+  --industry-card-description-leading: clamp(1.375rem, 1.8vw, 1.5rem); /* 22px -> 28px */
   
   /* About Us Page Specific - Exact Current Design Match */
   --about-hero-title: clamp(2rem, 4vw, 3rem);                     /* 32px -> 48px */
@@ -252,6 +258,16 @@ body {
   .leading-relaxed { line-height: var(--leading-relaxed); }
   .leading-loose { line-height: var(--leading-loose); }
   .leading-extra-loose { line-height: var(--leading-extra-loose); }
+
+  /* Why Choose Us Section Specific Classes - Figma Exact */
+  .text-choose-title { 
+    font-size: var(--choose-title); 
+    line-height: var(--choose-title-leading); 
+  }
+  .text-choose-description { 
+    font-size: var(--choose-description); 
+    line-height: var(--choose-description-leading); 
+  }
   
   /* Product Section Specific Classes - Figma Exact */
   .text-product-title { 

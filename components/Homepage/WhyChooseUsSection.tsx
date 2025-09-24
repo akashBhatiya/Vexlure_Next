@@ -72,11 +72,11 @@ const WhyChooseUsSection: React.FC = () => {
         </AnimatedSection>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {features.map((f, i) => (
-            <AnimatedCard key={i} index={i} delay={0.4} className="">
-              <h3 className="text-product-card-title font-semibold text-[var(--black)] mb-3">
+            <AnimatedCard key={i} index={i} delay={0.4} className="flex flex-col gap-1.5">
+              <h3 className="text-choose-title font-semibold text-[var(--black)]">
                 {f.title}
               </h3>
-              <p className="text-product-description font-normal text-[var(--gray-text)]">
+              <p className="text-choose-description font-normal text-[var(--gray-text)]">
                 {f.desc}
               </p>
             </AnimatedCard>

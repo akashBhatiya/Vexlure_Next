@@ -153,7 +153,7 @@ const TestimonialsSection: React.FC = () => {
         </AnimatedSection>
 
         {/* Desktop staggered grid */}
-        <div className="hidden xl:flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory w-full h-[580px]">
+        <div className="hidden xl:flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory w-full">
           {testimonials.map((t, i) => (
             // <AnimatedCard
             <div
@@ -161,11 +161,11 @@ const TestimonialsSection: React.FC = () => {
               // index={i}
               // delay={0.3}
               className={`flex flex-col justify-between p-8 shadow-md rounded-2xl transition-colors duration-200 cursor-pointer
-        ${t.cardStyle} w-[420px] h-[400px]
+        ${t.cardStyle} w-[420px] h-[320px]
         ${i % 2 ? "mt-0 mb-20" : "mt-20 mb-0"} hover:bg-[var(--black)] hover:text-white group`}
             >
               <p
-                className={`text-fluid-lg font-medium leading-loose  ${
+                className={`text-fluid-base font-medium leading-loose  ${
                   t.cardStyle.includes("text-[var(--white)]")
                     ? "text-[var(--white)]"
                     : "text-[var(--black)]"
@@ -175,7 +175,7 @@ const TestimonialsSection: React.FC = () => {
               </p>
               <div className="flex items-center gap-3 mt-auto">
                 <div>
-                  <div className={`font-semibold text-fluid-lg leading-relaxed mb-2 text-[var(--black)] group-hover:text-white`}>
+                  <div className={`font-semibold text-fluid-base leading-relaxed mb-2 text-[var(--black)] group-hover:text-white`}>
                     {t.name}
                   </div>
                   <div className={`text-fluid-sm font-normal leading-normal text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
@@ -199,7 +199,7 @@ const TestimonialsSection: React.FC = () => {
               index={i}
               delay={0.4}
               className={`testimonial-card flex flex-col justify-between p-4 shadow-md rounded-2xl transition-all duration-300 cursor-pointer
-        ${t.cardStyle} w-[335px] h-[300px] flex-shrink-0 hover:bg-[var(--black)] hover:text-white hover:-translate-y-2 hover:shadow-xl group`}
+        ${t.cardStyle} w-[335px] h-[260px] flex-shrink-0 hover:bg-[var(--black)] hover:text-white hover:-translate-y-2 hover:shadow-xl group`}
             >
               <p
                 className={`text-fluid-base leading-normal font-medium  ${
@@ -227,7 +227,7 @@ const TestimonialsSection: React.FC = () => {
               index={i}
               delay={0.4}
               className={`testimonial-card flex flex-col justify-between p-4 shadow-md rounded-2xl transition-all duration-300 cursor-pointer
-        ${t.cardStyle} w-[335px] h-[300px] flex-shrink-0 hover:bg-[var(--black)] hover:text-white hover:-translate-y-2 hover:shadow-xl group`}
+        ${t.cardStyle} w-[335px] h-[260px] flex-shrink-0 hover:bg-[var(--black)] hover:text-white hover:-translate-y-2 hover:shadow-xl group`}
             >
               <p
                 className={`text-fluid-base leading-normal font-medium  ${
