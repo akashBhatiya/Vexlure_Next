@@ -4,19 +4,25 @@ import Link from "next/link";
 import { CATEGORIES_DATA } from "./categoriesData";
 import SplitText from "./Animation/SplitText";
 import AnimatedSection from "./Animation/AnimatedSection";
-import AnimatedCardMobile from "./Animation/AnimatedCardMobile";
+import AnimatedCardOnView from "./Animation/AnimatedCardOnView";
 
 const ProductCategoriesSection: React.FC = () => {
   return (
     <section className="w-full py-20 px-4 md:px-16 flex flex-col items-center bg-[var(--white)]">
       {/* Header */}
-      <AnimatedSection className="max-w-[900px] md:w-full mx-auto mb-10 ">
+      <AnimatedSection 
+        className="max-w-[900px] md:w-full mx-auto mb-10" 
+        delay={0.1}
+        staggerDelay={0.15}
+      >
         <span className="block text-product-label text-[var(--black)] mb-2 md:mb-3 font-medium tracking-wide text-center">
           • Our Products
         </span>
         <SplitText
           text="Global-Grade Offerings"
           className="text-product-cat-hero-title font-semibold text-[var(--black)] mb-2 md:mb-4 text-center"
+          delay={0.2}
+          duration={0.08}
         />
         <p className="text-center text-product-cat-hero-description text-[var(--gray-text)] font-normal max-w-[698px] mx-auto">
           Engineered for reliability and efficiency, our products drive
@@ -30,10 +36,11 @@ const ProductCategoriesSection: React.FC = () => {
           // 1st card full width, rest in 2x2 grid
           if (idx === 0 || idx === 5) {
             return (
-              <AnimatedCardMobile
+              <AnimatedCardOnView
                 key={cat.slug}
                 index={idx}
-                delay={0.2}
+                delay={0.1}
+                staggerDelay={0.15}
                 className="md:col-span-2"
               >
                 <Link
@@ -62,7 +69,7 @@ const ProductCategoriesSection: React.FC = () => {
                     </div>
                   </div>
                   <div className="px-1 flex-1 flex flex-col">
-                    <h3 className="text-product-cat-card-title font-medium text-[var(--black)] mb-1">
+                    <h3 className="text-product-cat-card-title font-semibold text-[var(--black)] mb-1">
                       {cat.title}
                     </h3>
                     <p className="text-product-cat-card-description text-[var(--gray-text)] mb-2">
@@ -70,11 +77,11 @@ const ProductCategoriesSection: React.FC = () => {
                     </p>
                   </div>
                 </Link>
-              </AnimatedCardMobile>
+              </AnimatedCardOnView>
             );
           } else {
             return (
-              <AnimatedCardMobile key={cat.slug} index={idx} delay={0.2}>
+              <AnimatedCardOnView key={cat.slug} index={idx} delay={0.1} staggerDelay={0.15}>
                 <Link
                   href={`/product/${cat.slug}`}
                   className="bg-white rounded-2xl overflow-hidden flex flex-col gap-1.5 h-full group/card"
@@ -100,7 +107,7 @@ const ProductCategoriesSection: React.FC = () => {
                     </div>
                   </div>
                   <div className="px-1 flex-1 flex flex-col">
-                    <h3 className="text-product-cat-card-title font-medium text-[var(--black)] mb-1">
+                    <h3 className="text-product-cat-card-title font-semibold text-[var(--black)] mb-1">
                       {cat.title}
                     </h3>
                     <p className="text-product-cat-card-description text-[var(--gray-text)] mb-2">
@@ -108,7 +115,7 @@ const ProductCategoriesSection: React.FC = () => {
                     </p>
                   </div>
                 </Link>
-              </AnimatedCardMobile>
+              </AnimatedCardOnView>
             );
           }
         })}

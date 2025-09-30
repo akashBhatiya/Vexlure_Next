@@ -58,35 +58,35 @@
   --hero-button-leading: clamp(1.375rem, 1.5vw, 1.5rem);          /* 22px -> 24px */
   
   /* Industry Section Specific - Exact Current Design Match */
-  --industry-card-title: clamp(1.375rem, 2.5vw, 1.62rem);         /* 22px -> 28px */
-  --industry-card-title-leading: clamp(2rem, 3vw, 2.25rem);       /* 32px -> 36px */
-  --industry-card-description: clamp(0.875rem, 1.2vw, 1rem);        /* 14px -> 18px */
-  --industry-card-description-leading: clamp(1.375rem, 1.8vw, 1.5rem); /* 22px -> 28px */
+  --industry-card-title: clamp(1.5rem, 3vw, 2rem);         /* 22px -> 28px */
+  --industry-card-title-leading: clamp(2rem, 3vw, 3.25rem);       /* 32px -> 36px */
+  --industry-card-description: clamp(1rem, 1.2vw, 1.5rem);        /* 14px -> 18px */
+  --industry-card-description-leading: clamp(1.5rem, 1.8vw, 2rem); /* 22px -> 28px */
   
   /* About Us Page Specific - Exact Current Design Match */
-  --about-hero-title: clamp(2rem, 4vw, 3rem);                     /* 32px -> 48px */
-  --about-hero-title-leading: clamp(2.75rem, 5vw, 4rem);          /* 44px -> 64px */
-  --about-hero-description: clamp(1rem, 2vw, 1.25rem);            /* 16px -> 20px */
-  --about-hero-description-leading: clamp(1.5rem, 2.5vw, 2rem);   /* 24px -> 32px */
+  --about-hero-title: clamp(2rem, 4vw, 2.5rem);                     /* 32px -> 40px */
+  --about-hero-title-leading: clamp(2rem, 5vw, 2.72rem);          /* 44px -> 64px */
+  --about-hero-description: clamp(0.875rem, 1.2vw, 1rem);        /* 14px -> 16px */
+  --about-hero-description-leading:  clamp(1.375rem, 1.8vw, 1.5rem); /* 22px -> 28px */
   --about-section-title: clamp(1.25rem, 3vw, 1.75rem);            /* 20px -> 28px */
   --about-section-title-leading: clamp(1.875rem, 4vw, 2.5rem);    /* 30px -> 40px */
-  --about-main-title: clamp(1.5rem, 3vw, 2.5rem);                 /* 24px -> 40px */
-  --about-main-title-leading: clamp(2.25rem, 4vw, 3.25rem);       /* 36px -> 52px */
+  --about-main-title: clamp(1.5rem, 3vw, 2.25rem);                 /* 24px -> 40px */
+  --about-main-title-leading: clamp(2.25rem, 4vw, 3rem);       /* 36px -> 48px */
   --about-body-text: clamp(1rem, 2vw, 1.25rem);                   /* 16px -> 20px */
-  --about-body-text-leading: clamp(1.5rem, 2.5vw, 2rem);          /* 24px -> 32px */
-  --about-quote: clamp(1.25rem, 2.5vw, 1.5rem);                   /* 20px -> 24px */
-  --about-quote-leading: clamp(2rem, 3vw, 2.25rem);               /* 32px -> 36px */
-  --about-small-text: clamp(0.875rem, 1.2vw, 1.125rem);           /* 14px -> 18px */
-  --about-small-text-leading: clamp(1.375rem, 1.8vw, 1.75rem);    /* 22px -> 28px */
+  --about-body-text-leading: clamp(1.75rem, 3vw, 2rem);          /* 24px -> 32px */
+  --about-quote: clamp(1.125rem, 2.5vw, 1.25rem);                   /* 20px -> 24px */
+  --about-quote-leading: clamp(1.75rem, 3vw, 2rem);               /* 32px -> 36px */
+  --about-small-text: clamp(0.875rem, 1.2vw, 1.125rem);           /* 14px -> 16px */
+  --about-small-text-leading: clamp(1.375rem, 1.8vw, 1.125rem);    /* 22px -> 28px */
   
   /* Product Categories Section Specific - Exact Current Design Match */
-  --product-cat-hero-title: clamp(2rem, 4vw, 3rem);               /* 32px -> 48px */
-  --product-cat-hero-title-leading: clamp(2.75rem, 5vw, 4rem);    /* 44px -> 64px */
-  --product-cat-hero-description: clamp(1rem, 2vw, 1.25rem);      /* 16px -> 20px */
-  --product-cat-hero-description-leading: clamp(1.5rem, 2.5vw, 2rem); /* 24px -> 32px */
-  --product-cat-card-title: clamp(1.25rem, 2.5vw, 1.75rem);       /* 20px -> 28px */
+  --product-cat-hero-title: clamp(2rem, 4vw, 2.5rem);               /* 32px -> 48px */
+  --product-cat-hero-title-leading: clamp(2rem, 5vw, 2.72rem);    /* 44px -> 64px */
+  --product-cat-hero-description: clamp(0.875rem, 1.2vw, 1rem);      /* 16px -> 20px */
+  --product-cat-hero-description-leading: clamp(1.375rem, 1.5vw, 1.5rem); /* 24px -> 32px */
+  --product-cat-card-title: clamp(1.25rem, 2.5vw, 1.625rem);       /* 20px -> 28px */
   --product-cat-card-title-leading: clamp(2rem, 3vw, 2.625rem);   /* 32px -> 42px */
-  --product-cat-card-description: clamp(0.875rem, 1.2vw, 1.125rem); /* 14px -> 18px */
+  --product-cat-card-description: clamp(1rem, 1.2vw, 1.125rem); /* 14px -> 18px */
   --product-cat-card-description-leading: clamp(1.375rem, 1.8vw, 1.75rem); /* 22px -> 28px */
   --product-cat-badge: clamp(0.75rem, 0.8vw, 0.75rem);            /* 12px fixed */
   --product-cat-badge-leading: clamp(1.25rem, 1.2vw, 1.25rem);    /* 20px fixed */
@@ -118,6 +118,15 @@
   --blog-card-meta-leading: clamp(1.375rem, 1.8vw, 1.5rem);       /* 22px -> 24px */
   --blog-category-button: clamp(0.875rem, 1vw, 1rem);             /* 14px -> 16px */
   --blog-category-button-leading: clamp(1.25rem, 1.5vw, 1.5rem);  /* 20px -> 24px */
+  
+  /* Blog Post Detail Page */
+  --blog-post-title: clamp(1.75rem, 3.5vw, 3rem);                 /* 28px -> 48px */
+  --blog-post-content: clamp(1rem, 1.3vw, 1.125rem);              /* 16px -> 18px */
+  --blog-post-content-leading: clamp(1.625rem, 2vw, 1.875rem);    /* 26px -> 30px */
+  --blog-post-description: clamp(1.125rem, 1.3vw,1.25rem);        /* 18px -> 20px */
+  --blog-post-description-leading: clamp(1.75rem, 2vw, 2rem);     /* 26px -> 26px */
+  --blog-post-h2: clamp(1.25rem, 2vw, 1.75rem);                   /* 20px -> 28px */
+  --blog-post-h3: clamp(1.125rem, 1.5vw, 1.5rem);                 /* 18px -> 24px */
 }
 
 .scroll-hidden::-webkit-scrollbar {
@@ -414,6 +423,60 @@ body {
     font-size: var(--blog-category-button); 
     line-height: var(--blog-category-button-leading); 
   }
+
+  /* Blog Typography Classes */
+.text-blog-hero-title {
+  font-size: var(--blog-hero-title);
+  line-height: var(--blog-hero-title-leading);
+}
+
+.text-blog-hero-description {
+  font-size: var(--blog-hero-description);
+  line-height: var(--blog-hero-description-leading);
+}
+
+.text-blog-featured-title {
+  font-size: var(--blog-featured-title);
+  line-height: var(--blog-featured-title-leading);
+}
+
+.text-blog-card-title {
+  font-size: var(--blog-card-title);
+  line-height: var(--blog-card-title-leading);
+}
+
+.text-blog-card-meta {
+  font-size: var(--blog-card-meta);
+  line-height: var(--blog-card-meta-leading);
+}
+
+.text-blog-category-button {
+  font-size: var(--blog-category-button);
+  line-height: var(--blog-category-button-leading);
+}
+
+.text-blog-post-title {
+  font-size: var(--blog-post-title);
+  line-height: var(--blog-post-title-leading);
+}
+
+.text-blog-post-content {
+  font-size: var(--blog-post-content);
+  line-height: var(--blog-post-content-leading);
+}
+
+.text-blog-post-description {
+  font-size: var(--blog-post-description);
+  line-height: var(--blog-post-description-leading);
+}
+
+.text-blog-post-h2 {
+  font-size: var(--blog-post-h2);
+}
+
+.text-blog-post-h3 {
+  font-size: var(--blog-post-h3);
+}
   
   /* Common Figma Combinations */
   .text-figma-sm-normal { 

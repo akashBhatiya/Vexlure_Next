@@ -19,7 +19,7 @@ const CONTACTS = {
 export default function ContactUsPage() {
   const [country, setCountry] = useState<"India" | "Germany">("India");
   return (
-    <main className="w-full pt-25 pb-16 px-5 md:px-8 flex flex-col items-center bg-[var(--white)]">
+    <main className="w-full pt-25 pb-16 px-5 md:px-16 flex flex-col items-center bg-[var(--white)]">
       <div className="max-w-[1440px] w-full mx-auto">
         <div className="text-center max-w-[930px] mx-auto mb-10">
           <span className="text-sm  md:text-base leading-[22px] md:leading-6 font-medium text-[var(--black)] mb-4 block">• Contact Us</span>

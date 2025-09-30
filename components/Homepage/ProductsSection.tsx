@@ -158,9 +158,9 @@ const ProductsSection: React.FC = () => {
             return (
               <AnimatedCardMobile key={i} index={i} delay={0.2}>
                 <div
-                  className={`bg-[#F4F4F6] rounded-2xl overflow-hidden group
+                  className={`bg-[#F4F4F6] rounded-2xl overflow-hidden
                       flex flex-row-reverse items-stretch h-[328px]
-                      transition-transform duration-300 hover:scale-105 cursor-pointer
+                      transition-transform duration-300  cursor-pointer
                       ${
                         isLarge
                           ? "w-full max-w-[630px] 2xl:max-w-[820px]"
@@ -174,7 +174,7 @@ const ProductsSection: React.FC = () => {
                     alt={p.title}
                     width={400}
                     height={320}
-                    className="object-cover w-full rounded-2xl h-full max-w-[240px] transition-transform duration-300 group-hover:scale-110"
+                    className="object-cover w-full rounded-2xl h-full max-w-[240px] transition-transform duration-300 "
                   />
                 </div>
 

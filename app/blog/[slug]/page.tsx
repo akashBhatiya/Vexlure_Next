@@ -106,10 +106,10 @@ export default function BlogPost() {
           </div>
           
           {/* Loading Text with Animation */}
-          <div className="text-xl font-medium text-[var(--black)] mb-2 animate-pulse">
+          <div className="text-blog-card-title font-medium text-[var(--black)] mb-2 animate-pulse">
             Loading Blog...
           </div>
-          <div className="text-sm text-[var(--gray-text)]">
+          <div className="text-blog-card-meta text-[var(--gray-text)]">
             Please wait while we fetch the content
           </div>
           
@@ -221,7 +221,7 @@ export default function BlogPost() {
         const element = (
           <p
             key={`p-${elementIndex++}`}
-            className="text-base md:text-lg text-[var(--gray-text)] leading-relaxed mb-6"
+            className="text-blog-post-content text-[var(--gray-text)] mb-6"
           >
             {content}
           </p>
@@ -244,7 +244,7 @@ export default function BlogPost() {
         const element = (
           <h3
             key={`h3-${elementIndex++}`}
-            className="text-xl font-bold text-[var(--black)] mb-4 mt-8"
+            className="text-blog-post-h3 font-bold text-[var(--black)] mb-4 mt-8"
           >
             {line.substring(4)}
           </h3>
@@ -255,7 +255,7 @@ export default function BlogPost() {
         const element = (
           <h2
             key={`h2-${elementIndex++}`}
-            className="text-2xl font-bold text-[var(--black)] mb-4 mt-8"
+            className="text-blog-post-h2 font-bold text-[var(--black)] mb-4 mt-8"
           >
             {line.substring(3)}
           </h2>
@@ -266,7 +266,7 @@ export default function BlogPost() {
         const element = (
           <h1
             key={`h1-${elementIndex++}`}
-            className="text-3xl font-bold text-[var(--black)] mb-6 mt-8"
+            className="text-blog-featured-title font-bold text-[var(--black)] mb-6 mt-8"
           >
             {line.substring(2)}
           </h1>
@@ -279,7 +279,7 @@ export default function BlogPost() {
             key={`quote-${elementIndex++}`}
             className="border-l-4 border-[var(--orange)] pl-6 py-4 my-8 bg-orange-50 rounded-r-lg"
           >
-            <p className="text-lg italic text-[var(--black)] font-medium">
+            <p className="text-blog-hero-description italic text-[var(--black)] font-medium">
               "{line.substring(2)}"
             </p>
           </blockquote>
@@ -303,9 +303,9 @@ export default function BlogPost() {
       {/* Blog Post Content */}
       <section className="pt-20 bg-[var(--white)] relative">
         {/* Floating Social Share Icons - Desktop Only */}
+        <div className="max-w-5xl mx-auto p-5 relative flex">
         <div
-          className="hidden xl:flex fixed left-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-6"
-          style={{ maxHeight: "60vh" }}
+          className="hidden xl:flex sticky top-32 self-start mr-10 flex-col gap-6"
         >
           <a
             href="https://facebook.com/"
@@ -366,15 +366,15 @@ export default function BlogPost() {
         </div>
 
         {/* Main Content */}
-        <div className="max-w-5xl mx-auto p-5">
           {/* Blog Header */}
+          <div className="flex-1">
           <div className="flex flex-col gap-3 mb-8 text-center">
-            <span className="md:text-left text-sm font-medium text-[var(--black)]">
+            <span className="md:text-left text-blog-card-meta font-medium text-[var(--black)]">
               • {blog.category}
             </span>
 
             <div className="md:text-left flex flex-col gap-4">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--black)] leading-tight">
+              <h1 className="text-blog-post-title font-bold text-[var(--black)]">
                 {blog.title}
               </h1>
 
@@ -386,7 +386,7 @@ export default function BlogPost() {
                       VS
                     </span>
                   </div>
-                  <p className="font-medium text-[var(--black)]">
+                  <p className="text-blog-card-meta font-medium text-[var(--black)]">
                     {blog.author || "Vexlure Staff"}
                   </p>
 
@@ -394,7 +394,7 @@ export default function BlogPost() {
                   <span className="text-[var(--gray-text)] hidden md:inline">
                     •
                   </span>
-                  <span className="text-[var(--gray-text)]">
+                  <span className="text-blog-card-meta text-[var(--gray-text)]">
                     {formatDateTop(blog.createdAt)}
                   </span>
                 </div>
@@ -486,7 +486,7 @@ export default function BlogPost() {
           {/* Blog Content with Figma Layout */}
           <article className="prose prose-lg max-w-none">
             {/* Description */}
-            <div className="text-lg md:text-xl text-[var(--gray-text)] leading-relaxed mb-8 font-light">
+            <div className="text-blog-post-description text-[var(--gray-text)] mb-8 font-light">
               {blog.description}
             </div>
 
@@ -526,14 +526,14 @@ export default function BlogPost() {
           {/* Tags Section */}
           {blog.tags && blog.tags.length > 0 && (
             <div className="mt-12">
-              <h3 className="text-lg font-semibold text-[var(--black)] mb-4">
+              <h3 className="text-blog-hero-description font-semibold text-[var(--black)] mb-4">
                 Tags
               </h3>
               <div className="flex flex-wrap gap-3">
                 {blog.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-4 py-2 bg-[var(--secondary-bg)] text-[var(--black)] rounded-full text-sm hover:bg-[var(--orange)]/10 transition-colors cursor-pointer"
+                    className="px-4 py-2 bg-[var(--secondary-bg)] text-[var(--black)] rounded-full text-blog-category-button hover:bg-[var(--orange)]/10 transition-colors cursor-pointer"
                   >
                     {tag}
                   </span>
@@ -543,15 +543,16 @@ export default function BlogPost() {
           )}
 
           {/* Related Posts */}
+          </div>
         </div>
       </section>
-      <section className="w-full py-8 md:py-25 px-5 md:px-8 bg-[var(--white)]">
+      <section className="w-full py-12 px-5 md:px-16 bg-[var(--white)]">
         <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-18">
-            <span className="text-sm leading-[22px] md:text-base md:leading-6 font-medium text-[var(--black)] mb-3 block">
+            <span className="text-product-label font-medium text-[var(--black)] mb-3 block">
               • The Blog
             </span>
-            <h2 className="text-2xl leading-9 md:text-[40px] md:leading-13 font-bold text-[var(--black)]">
+            <h2 className="text-product-title font-bold text-[var(--black)]">
               You may also like these
             </h2>
           </div>
@@ -574,22 +575,22 @@ export default function BlogPost() {
                       e.currentTarget.src = "/image/industry-agriculture.png";
                     }}
                   />
-                  <div className="absolute top-4 right-4 bg-[#99999980] text-[var(--white)] px-3 py-2 rounded-full text-xs leading-5 font-medium border border-[var(--border)]">
+                  <div className="absolute top-4 right-4 bg-[#99999980] text-[var(--white)] px-3 py-2 rounded-full text-blog-card-meta font-medium border border-[var(--border)]">
                     {formatDate(blog.createdAt)}
                   </div>
                 </div>
                 <div className="flex flex-col gap-[10px] px-1">
                   <div className="flex gap-3">
 
-                  <span className="text-base leading-6 text-[var(--gray-text)] font-medium">
+                  <span className="text-blog-card-meta text-[var(--gray-text)] font-medium">
                     {relatedBlog.category}
                   </span>
-                  <span className="text-base leading-6 text-[var(--gray-text)]">
+                  <span className="text-blog-card-meta text-[var(--gray-text)]">
                     {" "}
                     • {relatedBlog.readTime || '5 min read'}
                   </span>
                   </div>
-                  <h3 className="text-2xl leading-9 font-semibold text-[var(--black)] group-hover:text-[var(--orange)] transition-colors line-clamp-2">
+                  <h3 className="text-blog-card-title font-semibold text-[var(--black)] group-hover:text-[var(--orange)] transition-colors line-clamp-2">
                     {relatedBlog.title}
                   </h3>
                 </div>

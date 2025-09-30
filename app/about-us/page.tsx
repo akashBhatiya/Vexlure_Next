@@ -5,15 +5,16 @@ import { HiArrowUpRight } from "react-icons/hi2";
 import Link from "next/link";
 import AnimatedSection from "@/components/Animation/AnimatedSection";
 import CertificateLogos from "@/components/CertificateLogos";
+import { valuesData } from "@/data/aboutUsData";
 
 export default function AboutUsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="w-full py-25 px-5 md:px-16 flex flex-col items-center bg-[var(--white)]">
-        <div className="w-full max-w-[1440px] flex flex-col items-center gap-8">
+      <section className="w-full min-h-[calc(100vh-80px)] pt-25 px-5 md:px-16 flex flex-col items-center justify-center bg-[var(--white)]">
+        <div className="w-full max-w-[1440px] flex flex-col items-center gap-6 md:gap-8">
           {/* Content */}
-          <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6">
+          <AnimatedSection className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-2.5 md:gap-6">
             {/* Left Content */}
             <div>
               <span className="text-product-label font-medium text-[var(--black)] mb-2 md:mb-3 block">
@@ -25,36 +26,39 @@ export default function AboutUsPage() {
             </div>
 
             {/* Right Content */}
-            <div className="md:pt-17 md:pl-14 ">
+            <div className="md:ml-auto md:self-end">
               <p className="text-about-hero-description text-[var(--gray-text)] max-w-2xl">
                 We connect farmers to global markets with trust and efficiency.
                 Delivering premium agricultural products worldwide.
               </p>
             </div>
-          </div>
+          </AnimatedSection>
 
-          {/* Image Below */}
-          <div className="w-full py-16">
-            <Image
-              src="/about-us/about-hero.png"
-              alt="Agricultural products and farming"
-              width={800}
-              height={500}
-              className="rounded-2xl w-full max-h-[580px] object-cover shadow-lg"
-            />
+          {/* Hero Image - Responsive Height */}
+          <div className="w-full pb-8">
+            <div className="relative w-full h-[35vh] sm:h-[40vh] md:h-[45vh] lg:h-[59vh] max-h-[580px]">
+              <Image
+                src="/about-us/about-hero.png"
+                alt="Agricultural products and farming"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1440px"
+                className="rounded-2xl object-cover shadow-lg"
+                priority
+              />
+              </div>
           </div>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="w-full py-12 md:py-25 px-5 md:px-16 bg-[var(--secondary-bg)]">
+      <section className="w-full py-12  px-5 md:px-16 bg-[var(--secondary-bg)]">
         <AnimatedSection className="w-full max-w-[1440px] mx-auto text-center" delay={0.2} staggerDelay={0.2}>
           <h2 className="text-about-section-title font-semibold text-[var(--black)] mb-8 max-w-5xl mx-auto">
             Vexlure International is more than an exporter — we are the bridge
             between India's farms and the world's markets.
           </h2>
 
-          <div className="my-12 md:my-25">
+          <div className="my-8">
             <p className="text-fluid-xs text-[var(--gray-text)] mb-8 md:mb-16 max-w-2xl mx-auto">
               WE FOLLOW THE HIGHEST GLOBAL STANDARDS AND CERTIFICATIONS.
             </p>
@@ -129,7 +133,7 @@ export default function AboutUsPage() {
         </AnimatedSection>
       </section>
 
-      <section className="w-full py-14 md:py-25 px-5 md:px-16 bg-[var(--white)]">
+      <section className="w-full py-14  px-5 md:px-16 bg-[var(--white)]">
         <AnimatedSection className="w-full max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-30 xl:gap-50">
             {/* Left Content */}
@@ -173,7 +177,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* Our Vision Section */}
-      <section className="w-full py-12 md:py-25 px-5 md:px-16 bg-[var(--secondary-bg)]">
+      <section className="w-full py-12  px-5 md:px-16 bg-[var(--secondary-bg)]">
         <AnimatedSection className="w-full max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Right Content - Shows first on mobile */}
@@ -194,7 +198,7 @@ export default function AboutUsPage() {
                 are on a mission to ensure Indian products are recognized for
                 their authenticity, quality, and global standards.
               </p>
-              <blockquote className="text-about-quote font-medium text-[var(--black)]">
+              <blockquote className="text-about-small-text font-medium text-[var(--black)]">
                 "To make Indian agriculture and spices a trusted choice in every
                 global market."
               </blockquote>
@@ -216,7 +220,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* Our Team Section */}
-      <section className="w-full py-14  md:py-25 px-5 md:px-16 bg-[var(--white)]">
+      <section className="w-full py-14  px-5 md:px-16 bg-[var(--white)]">
         <AnimatedSection className="w-full max-w-[1440px] mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
@@ -236,8 +240,8 @@ export default function AboutUsPage() {
           {/* Team Cards */}
           <AnimatedSection className="grid grid-cols-1 md:grid-cols-3 gap-8" delay={0.3} staggerDelay={0.1}>
             {/* Agricultural Specialists */}
-            <div className="bg-[var(--secondary-bg)] rounded-2xl p-8">
-              <div className="w-full h-[190px] rounded-2xl flex mb-6">
+            <div className="bg-[var(--secondary-bg)] rounded-2xl p-6">
+              <div className="w-full h-[190px] rounded-2xl flex mb-2">
                 <Image
                   src="/about-us/about-team.png"
                   alt="Authenticity"
@@ -246,7 +250,9 @@ export default function AboutUsPage() {
                   className="rounded-2xl object-cover"
                 />
               </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)] mb-4">
+              <div className="flex flex-col gap-2">
+
+              <h3 className="text-about-quote font-semibold text-[var(--black)]">
                 Agricultural Specialists
               </h3>
               <p className="text-about-small-text text-[var(--gray-text)]">
@@ -254,11 +260,12 @@ export default function AboutUsPage() {
                 export through precise crop selection, soil management, and
                 harvest optimization.
               </p>
+              </div>
             </div>
 
             {/* Export Operations */}
-            <div className="bg-[var(--secondary-bg)] rounded-2xl p-8">
-              <div className="w-full h-[190px] rounded-2xl flex mb-6">
+            <div className="bg-[var(--secondary-bg)] rounded-2xl p-6">
+              <div className="w-full h-[190px] rounded-2xl flex mb-2">
                 <Image
                   src="/about-us/about-team.png"
                   alt="Authenticity"
@@ -267,7 +274,9 @@ export default function AboutUsPage() {
                   className="rounded-2xl object-cover"
                 />
               </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)] mb-4">
+              <div className="flex flex-col gap-2">
+
+              <h3 className="text-about-quote font-semibold text-[var(--black)]">
                 Export Operations
               </h3>
               <p className="text-about-small-text text-[var(--gray-text)]">
@@ -275,11 +284,12 @@ export default function AboutUsPage() {
                 through efficient supply chain management, customs clearance,
                 and delivery optimization.
               </p>
+              </div>
             </div>
 
             {/* Quality Assurance */}
-            <div className="bg-[var(--secondary-bg)] rounded-2xl p-8">
-              <div className="w-full h-[190px] rounded-2xl flex mb-6">
+            <div className="bg-[var(--secondary-bg)] rounded-2xl p-6">
+              <div className="w-full h-[190px] rounded-2xl flex mb-2">
                 <Image
                   src="/about-us/about-team.png"
                   alt="Authenticity"
@@ -288,20 +298,23 @@ export default function AboutUsPage() {
                   className="rounded-2xl object-cover"
                 />
               </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)] mb-4">
+              <div className="flex flex-col gap-2">
+
+              <h3 className="text-about-quote font-semibold text-[var(--black)]">
                 Quality Assurance
               </h3>
               <p className="text-about-small-text text-[var(--gray-text)]">
                 Certification experts ensure compliance with global standards
                 through rigorous documentation, audits, and quality assurance.
               </p>
+              </div>
             </div>
           </AnimatedSection>
         </AnimatedSection>
       </section>
 
       {/* Our Values Section */}
-      <section className="w-full py-14 md:py-25 px-5 md:px-16 bg-[var(--white)]">
+      <section className="w-full py-14  px-5 md:px-16 bg-[var(--white)]">
         <AnimatedSection className="w-full max-w-[1440px] mx-auto">
           {/* Section Header */}
           <div className=" mb-12">
@@ -313,121 +326,30 @@ export default function AboutUsPage() {
             </h2>
           </div>
 
-          {/* Values Grid */}
-          <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-14 gap-x-[120px]" delay={0.3} staggerDelay={0.15}>
-            {/* Authenticity */}
-            <div className="flex flex-col items-start space-y-4 rounded-2xl">
-              <div className="w-16 h-16 rounded-full mb-4 flex items-center justify-center">
-                <Image
-                  src="/about-us/Authenticity.svg"
-                  alt="Authenticity"
-                  width={64}
-                  height={64}
-                />
+          {/* Values Grid - Data Driven Approach */}
+          <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" delay={0.3} staggerDelay={0.15}>
+            {valuesData.map((value) => (
+              <div 
+                key={value.id} 
+                className="flex flex-col items-start space-y-4 rounded-2xl group hover:bg-[var(--lite-bg)] p-1 transition-all duration-300"
+              >
+                <div className="w-16 h-16 rounded-full mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src={value.icon}
+                    alt={`${value.title} icon`}
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <h3 className="text-about-quote font-semibold text-[var(--black)]">
+                  {value.title}
+                </h3>
+                <p className="text-about-small-text text-[var(--gray-text)]">
+                  {value.description}
+                </p>
               </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)]">
-                Authenticity
-              </h3>
-              <p className="text-about-small-text text-[var(--gray-text)]">
-                Staying true to our farming roots and India's agricultural
-                heritage.
-              </p>
-            </div>
-
-            {/* Excellence */}
-            <div className="flex flex-col items-start space-y-4 rounded-2xl">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image
-                  src="/about-us/Excellence.svg"
-                  alt="Excellence"
-                  width={64}
-                  height={64}
-                />
-              </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)]">
-                Excellence
-              </h3>
-              <p className="text-about-small-text text-[var(--gray-text)]">
-                Staying true to our farming roots and India's agricultural
-                heritage.
-              </p>
-            </div>
-
-            {/* Sustainability */}
-            <div className="flex flex-col items-start space-y-4 rounded-2xl">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image
-                  src="/about-us/Sustainability.svg"
-                  alt="Sustainability"
-                  width={64}
-                  height={64}
-                />
-              </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)]">
-                Sustainability
-              </h3>
-              <p className="text-about-small-text text-[var(--gray-text)]">
-                Supporting farmers, promoting eco-friendly practices, and
-                investing in ethical supply chains.{" "}
-              </p>
-            </div>
-
-            {/* Trust */}
-            <div className="flex flex-col items-start space-y-4 rounded-2xl">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image
-                  src="/about-us/Trust.svg"
-                  alt="Trust"
-                  width={64}
-                  height={64}
-                />
-              </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)]">
-                Trust
-              </h3>
-              <p className="text-about-small-text text-[var(--gray-text)]">
-                Building long-term partnerships through transparency and
-                reliability.
-              </p>
-            </div>
-
-            {/* Innovation */}
-            <div className="flex flex-col items-start space-y-4 rounded-2xl">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image
-                  src="/about-us/Innovation.svg"
-                  alt="Innovation"
-                  width={64}
-                  height={64}
-                />
-              </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)]">
-                Innovation
-              </h3>
-              <p className="text-about-small-text text-[var(--gray-text)]">
-                Transforming traditional products into modern global solutions
-                like superfoods and nutraceuticals.
-              </p>
-            </div>
-
-            {/* Tailored Business Solutions */}
-            <div className="flex flex-col items-start space-y-4 rounded-2xl">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                <Image
-                  src="/about-us/Solutions.svg"
-                  alt="Tailored Business Solutions"
-                  width={64}
-                  height={64}
-                />
-              </div>
-              <h3 className="text-about-quote font-semibold text-[var(--black)]">
-                Tailored Business Solutions
-              </h3>
-              <p className="text-about-small-text text-[var(--gray-text)]">
-                From packaging styles to shipment sizes, we adapt to your exact
-                needs — ensuring cost efficiency without compromising quality.
-              </p>
-            </div>
+            ))}
           </AnimatedSection>
         </AnimatedSection>
       </section>
