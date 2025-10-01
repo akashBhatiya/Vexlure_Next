@@ -65,7 +65,7 @@
   
   /* About Us Page Specific - Exact Current Design Match */
   --about-hero-title: clamp(2rem, 4vw, 2.5rem);                     /* 32px -> 40px */
-  --about-hero-title-leading: clamp(2rem, 5vw, 2.72rem);          /* 44px -> 64px */
+  --about-hero-title-leading:  clamp(2.4rem, 5vw, 3.4rem);          /* 44px -> 64px */
   --about-hero-description: clamp(0.875rem, 1.2vw, 1rem);        /* 14px -> 16px */
   --about-hero-description-leading:  clamp(1.375rem, 1.8vw, 1.5rem); /* 22px -> 28px */
   --about-section-title: clamp(1.25rem, 3vw, 1.75rem);            /* 20px -> 28px */
@@ -106,10 +106,10 @@
   --product-detail-feature-text-leading: clamp(1.5rem, 1.8vw, 1.5rem); /* 24px fixed */
   
   /* Blog Page Specific - Exact Current Design Match */
-  --blog-hero-title: clamp(2rem, 4vw, 3rem);                      /* 32px -> 48px */
-  --blog-hero-title-leading: clamp(2.75rem, 5vw, 4rem);           /* 44px -> 64px */
-  --blog-hero-description: clamp(1rem, 2vw, 1.25rem);             /* 16px -> 20px */
-  --blog-hero-description-leading: clamp(1.5rem, 2.5vw, 2rem);    /* 24px -> 32px */
+  --blog-hero-title: clamp(2rem, 4vw, 2.5rem);                      /* 32px -> 48px */
+  --blog-hero-title-leading: clamp(2.4rem, 5vw, 3.4rem);           /* 44px -> 64px */
+  --blog-hero-description: clamp(0.875rem, 2vw, 1rem);             /* 16px -> 20px */
+  --blog-hero-description-leading: clamp(1.375rem, 1.8vw, 1.5rem);    /* 24px -> 32px */
   --blog-featured-title: clamp(1.5rem, 3vw, 2rem);                /* 24px -> 32px */
   --blog-featured-title-leading: clamp(2.25rem, 4vw, 2.75rem);    /* 36px -> 44px */
   --blog-card-title: clamp(1.25rem, 2.5vw, 1.5rem);               /* 20px -> 24px */
@@ -127,6 +127,20 @@
   --blog-post-description-leading: clamp(1.75rem, 2vw, 2rem);     /* 26px -> 26px */
   --blog-post-h2: clamp(1.25rem, 2vw, 1.75rem);                   /* 20px -> 28px */
   --blog-post-h3: clamp(1.125rem, 1.5vw, 1.5rem);                 /* 18px -> 24px */
+
+  /* Contact Us Page Specific */
+  --contact-hero-title: clamp(2rem, 4vw, 2.5rem);                 /* 24px -> 48px */
+  --contact-hero-title-leading: clamp(2.4rem, 5vw, 3.4rem);        /* 36px -> 64px */
+  --contact-hero-description: clamp(1rem, 1.5vw, 1.25rem);        /* 16px -> 20px */
+  --contact-hero-description-leading: clamp(1.5rem, 2.5vw, 2rem); /* 24px -> 32px */
+  --contact-section-title: clamp(1.5rem, 3vw, 2rem);              /* 24px -> 32px */
+  --contact-section-title-leading: clamp(2.25rem, 4vw, 2.75rem); /* 36px -> 44px */
+  --contact-subsection-title: clamp(1.25rem, 2vw, 1.5rem);        /* 20px -> 24px */
+  --contact-subsection-title-leading: clamp(1.875rem, 3vw, 2.25rem); /* 30px -> 36px */
+  --contact-text: clamp(0.875rem, 1.2vw, 1.125rem);               /* 14px -> 18px */
+  --contact-text-leading: clamp(1.375rem, 1.8vw, 1.75rem);        /* 22px -> 28px */
+  --contact-label: clamp(0.875rem, 1vw, 1rem);                    /* 14px -> 16px */
+  --contact-label-leading: clamp(1.375rem, 1.5vw, 1.5rem);        /* 22px -> 24px */
 }
 
 .scroll-hidden::-webkit-scrollbar {
@@ -424,7 +438,38 @@ body {
     line-height: var(--blog-category-button-leading); 
   }
 
-  /* Blog Typography Classes */
+  /* Contact Typography Classes */
+.text-contact-hero-title {
+  font-size: var(--contact-hero-title);
+  line-height: var(--contact-hero-title-leading);
+}
+
+.text-contact-hero-description {
+  font-size: var(--contact-hero-description);
+  line-height: var(--contact-hero-description-leading);
+}
+
+.text-contact-section-title {
+  font-size: var(--contact-section-title);
+  line-height: var(--contact-section-title-leading);
+}
+
+.text-contact-subsection-title {
+  font-size: var(--contact-subsection-title);
+  line-height: var(--contact-subsection-title-leading);
+}
+
+.text-contact-text {
+  font-size: var(--contact-text);
+  line-height: var(--contact-text-leading);
+}
+
+.text-contact-label {
+  font-size: var(--contact-label);
+  line-height: var(--contact-label-leading);
+}
+
+/* Blog Typography Classes */
 .text-blog-hero-title {
   font-size: var(--blog-hero-title);
   line-height: var(--blog-hero-title-leading);

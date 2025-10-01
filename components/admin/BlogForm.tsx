@@ -283,29 +283,30 @@ const BlogForm: React.FC<BlogFormProps> = ({
                       <button
                         type="button"
                         onClick={() => onFormDataChange({ image: '' })}
-                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm"
+                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600 transition-colors"
                       >
                         ×
                       </button>
                     </div>
                   ) : (
-                    <div className="text-center">
-                      <HiUpload className="mx-auto h-12 w-12 text-gray-400" />
-                      <div className="mt-2">
-                        <label htmlFor="main-image" className="cursor-pointer">
+                    <label htmlFor="main-image" className="cursor-pointer block">
+                      <div className="text-center py-8 hover:bg-gray-50 rounded-lg transition-all duration-200 hover:scale-[1.02]">
+                        <HiUpload className="mx-auto h-12 w-12 text-gray-400 hover:text-gray-600" />
+                        <div className="mt-3">
                           <span className="mt-2 block text-sm font-medium text-gray-900">
                             Upload main image
                           </span>
-                          <input
-                            id="main-image"
-                            type="file"
-                            className="sr-only"
-                            accept="image/*"
-                            onChange={(e) => handleFileChange(e, 'image')}
-                          />
-                        </label>
+                          <span className="text-xs text-gray-400 mt-1 block">PNG, JPG up to 5MB</span>
+                        </div>
                       </div>
-                    </div>
+                      <input
+                        id="main-image"
+                        type="file"
+                        className="sr-only"
+                        accept="image/*"
+                        onChange={(e) => handleFileChange(e, 'image')}
+                      />
+                    </label>
                   )}
                 </div>
               </div>
@@ -328,29 +329,30 @@ const BlogForm: React.FC<BlogFormProps> = ({
                       <button
                         type="button"
                         onClick={() => onFormDataChange({ subImage: '' })}
-                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm"
+                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600 transition-colors"
                       >
                         ×
                       </button>
                     </div>
                   ) : (
-                    <div className="text-center">
-                      <HiUpload className="mx-auto h-12 w-12 text-gray-400" />
-                      <div className="mt-2">
-                        <label htmlFor="sub-image" className="cursor-pointer">
+                    <label htmlFor="sub-image" className="cursor-pointer block">
+                      <div className="text-center py-8 hover:bg-gray-50 rounded-lg transition-all duration-200 hover:scale-[1.02]">
+                        <HiUpload className="mx-auto h-12 w-12 text-gray-400 hover:text-gray-600" />
+                        <div className="mt-3">
                           <span className="mt-2 block text-sm font-medium text-gray-900">
                             Upload sub image
                           </span>
-                          <input
-                            id="sub-image"
-                            type="file"
-                            className="sr-only"
-                            accept="image/*"
-                            onChange={(e) => handleFileChange(e, 'subImage')}
-                          />
-                        </label>
+                          <span className="text-xs text-gray-400 mt-1 block">PNG, JPG up to 5MB</span>
+                        </div>
                       </div>
-                    </div>
+                      <input
+                        id="sub-image"
+                        type="file"
+                        className="sr-only"
+                        accept="image/*"
+                        onChange={(e) => handleFileChange(e, 'subImage')}
+                      />
+                    </label>
                   )}
                 </div>
               </div>

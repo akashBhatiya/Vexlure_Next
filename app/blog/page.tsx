@@ -1,4 +1,6 @@
 "use client";
+import AnimatedSection from "@/components/Animation/AnimatedSection";
+import AnimatedFlexSection from "@/components/Animation/AnimatedFlexSection";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -164,11 +166,15 @@ export default function BlogPage() {
     <>
       {/* Hero Section */}
       <section className="w-full pt-20 pb-8 px-5 md:px-16 flex flex-col items-center bg-[var(--white)]">
-        <div className="w-full max-w-[1440px] flex flex-col items-center text-center">
-          <span className="text-product-label font-medium text-[var(--black)] mb-4 block">
+        <AnimatedSection className="w-full max-w-[1440px] flex flex-col items-center text-center">
+          <div className="flex flex-col items-center gap-3">
+
+          <span className="text-product-label font-medium text-[var(--black)] block">
             • Our Blog
           </span>
-          <h1 className="text-blog-hero-title font-semibold text-[var(--black)] max-w-4xl mb-4 md:mb-6">
+          <div className="flex flex-col items-center gap-4">
+
+          <h1 className="text-blog-hero-title font-semibold text-[var(--black)] max-w-4xl ">
             Fresh From the Fields
           </h1>
           <p className="text-blog-hero-description text-[var(--gray-text)] max-w-3xl">
@@ -176,16 +182,41 @@ export default function BlogPage() {
             agriculture bringing you the latest trends, trade strategies, and
             the authentic journey of Indian produce to global markets.
           </p>
-        </div>
+          </div>
+          </div>
+        </AnimatedSection>
       </section>
 
       {/* Featured Article Section */}
       <section className="w-full py-8 px-5 md:px-16 bg-[var(--white)]">
         <div className="w-full max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row gap-6 lg:gap-8 items-start">
+          <AnimatedFlexSection className="flex flex-col md:flex-row gap-6 lg:gap-8 items-start" delay={0.2}>
             {/* Featured Article Image */}
             <div className="relative flex justify-between rounded-3xl w-full md:w-[65%] xl:w-[972px] h-[400px] xl:h-[432px] order-2 md:order-1">
-              {featuredBlog ? (
+              {loading ? (
+                // Skeleton loader for featured blog
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-3xl animate-pulse">
+                  <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 lg:p-8">
+                    {/* Top skeleton content */}
+                    <div className="max-w-full lg:max-w-[448px]">
+                      <div className="flex items-center gap-3 mb-3 md:mb-4">
+                        <div className="h-5 w-24 bg-gray-400/50 rounded animate-pulse"></div>
+                        <div className="h-5 w-2 bg-gray-400/50 rounded animate-pulse"></div>
+                        <div className="h-5 w-20 bg-gray-400/50 rounded animate-pulse"></div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="h-8 w-full bg-gray-400/50 rounded animate-pulse"></div>
+                        <div className="h-8 w-3/4 bg-gray-400/50 rounded animate-pulse"></div>
+                      </div>
+                    </div>
+                    {/* Bottom skeleton content */}
+                    <div className="flex flex-col gap-2">
+                      <div className="h-4 w-16 bg-gray-400/50 rounded animate-pulse"></div>
+                      <div className="h-4 w-24 bg-gray-400/50 rounded animate-pulse"></div>
+                    </div>
+                  </div>
+                </div>
+              ) : featuredBlog ? (
                 <>
                   <Link href={`/blog/${featuredBlog.slug}`} className="absolute inset-0 block group cursor-pointer">
                     <Image
@@ -259,14 +290,14 @@ export default function BlogPage() {
                 </button>
               </div>
             </div>
-          </div>
+          </AnimatedFlexSection>
         </div>
       </section>
 
       {/* Blog Articles Grid Section */}
       <section className="w-full py-6 px-5 md:px-16 bg-[var(--white)]">
         <div className="w-full max-w-[1440px] mx-auto">
-          <div className="flex flex-col lg:flex-row gap-18">
+          <AnimatedFlexSection className="flex flex-col lg:flex-row gap-18" delay={0.3}>
             {/* Categories Sidebar */}
             <div
   className={`w-full lg:w-[454px] bg-[var(--secondary-bg)] rounded-2xl border border-[var(--border)] px-5 md:px-8 py-[22px] md:py-7 transition-all duration-300 overflow-hidden
@@ -334,30 +365,35 @@ export default function BlogPage() {
             {/* Articles Grid */}
             <div className="flex-1" id="blog-articles">
               {loading ? (
-                <div className="text-center py-12">
-                  {/* Animated Loader */}
-                  <div className="relative mb-6">
-                    <div className="w-16 h-16 mx-auto">
-                      <div className="w-16 h-16 border-4 border-[var(--orange)]/20 border-t-[var(--orange)] rounded-full animate-spin"></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Generate 4 skeleton cards */}
+                  {[...Array(4)].map((_, index) => (
+                    <div key={index} className="bg-transparent">
+                      <div className="relative mb-4">
+                        <div className="w-full h-[272px] bg-gray-200 rounded-2xl animate-pulse" />
+                        <div className="absolute top-4 right-4 bg-gray-300 px-3 py-2 rounded-full">
+                          <div className="h-4 w-20 bg-gray-400/50 rounded animate-pulse" />
+                        </div>
+                      </div>
+                      <div className="space-y-3 px-1">
+                        <div className="flex items-center gap-2">
+                          <div className="h-4 w-24 bg-gray-200 rounded animate-pulse" />
+                          <div className="h-4 w-2 bg-gray-200 rounded animate-pulse" />
+                          <div className="h-4 w-20 bg-gray-200 rounded animate-pulse" />
+                        </div>
+                        <div className="space-y-2">
+                          <div className="h-6 w-full bg-gray-200 rounded animate-pulse" />
+                          <div className="h-6 w-3/4 bg-gray-200 rounded animate-pulse" />
+                        </div>
+                      </div>
                     </div>
-                    <div className="absolute inset-0 w-16 h-16 mx-auto">
-                      <div className="w-12 h-12 mt-2 ml-2 border-4 border-transparent border-t-[var(--orange)]/60 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '0.8s'}}></div>
-                    </div>
-                  </div>
-                  
-                  {/* Loading Text with Animation */}
-                  <div className="text-xl font-medium text-[var(--black)] mb-2 animate-pulse">
-                    Loading Blogs...
-                  </div>
-                  <div className="text-sm text-[var(--gray-text)]">
-                    Please wait while we fetch the latest articles
-                  </div>
+                  ))}
                 </div>
               ) : currentBlogs.length === 0 ? (
                 <div className="text-center py-12">
                   <div className="text-xl text-gray-600 mb-4">
                     {selectedCategory === 'All Categories' 
-                      ? 'No blogs published yet.' 
+                      ? 'No blogs published yet.'
                       : `No blogs found in "${selectedCategory}" category.`
                     }
                   </div>
@@ -370,18 +406,18 @@ export default function BlogPage() {
                 </div>
               ) : (
                 <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 gap-6" staggerDelay={0.1}>
                     {currentBlogs.map((blog) => (
                       <ArticleCard
                         key={blog._id}
                         blog={blog}
                       />
                     ))}
-                  </div>
+                  </AnimatedSection>
                   
                   {/* Pagination */}
                   {totalPages > 1 && (
-                    <div className="mt-12 flex justify-center items-center gap-2">
+                    <AnimatedFlexSection className="mt-12 flex justify-center items-center gap-2" delay={0.5}>
                       {/* Previous Button */}
                       <button
                         onClick={() => handlePageChange(currentPage - 1)}
@@ -435,12 +471,12 @@ export default function BlogPage() {
                       >
                         <h1>Next</h1>
                       </button>
-                    </div>
+                    </AnimatedFlexSection>
                   )}
                 </>                
               )}
             </div>
-          </div>
+          </AnimatedFlexSection>
         </div>
       </section>
     </>

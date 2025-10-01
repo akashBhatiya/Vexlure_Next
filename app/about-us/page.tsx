@@ -4,8 +4,10 @@ import Image from "next/image";
 import { HiArrowUpRight } from "react-icons/hi2";
 import Link from "next/link";
 import AnimatedSection from "@/components/Animation/AnimatedSection";
+import AnimatedFlexSection from "@/components/Animation/AnimatedFlexSection";
 import CertificateLogos from "@/components/CertificateLogos";
 import { valuesData } from "@/data/aboutUsData";
+import { blockquote } from "framer-motion/client";
 
 export default function AboutUsPage() {
   return (
@@ -14,7 +16,7 @@ export default function AboutUsPage() {
       <section className="w-full min-h-[calc(100vh-80px)] pt-25 px-5 md:px-16 flex flex-col items-center justify-center bg-[var(--white)]">
         <div className="w-full max-w-[1440px] flex flex-col items-center gap-6 md:gap-8">
           {/* Content */}
-          <AnimatedSection className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-2.5 md:gap-6">
+          <AnimatedFlexSection className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-2.5 md:gap-6">
             {/* Left Content */}
             <div>
               <span className="text-product-label font-medium text-[var(--black)] mb-2 md:mb-3 block">
@@ -32,7 +34,7 @@ export default function AboutUsPage() {
                 Delivering premium agricultural products worldwide.
               </p>
             </div>
-          </AnimatedSection>
+          </AnimatedFlexSection>
 
           {/* Hero Image - Responsive Height */}
           <div className="w-full pb-8">
