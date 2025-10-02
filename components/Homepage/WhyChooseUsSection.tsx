@@ -51,7 +51,7 @@ const WhyChooseUsSection: React.FC = () => {
       className="w-full bg-[var(--white)] pt-5 md:pt-14 pb-14 px-5 md:px-16"
     >
       <div className="max-w-[1440px] mx-auto">
-        <AnimatedSection className="flex flex-col lg:flex-row lg:items-center lg:justify-between  gap-2 mb-5" delay={0.2} staggerDelay={0.3}>
+        <AnimatedSection className="flex flex-col lg:flex-row lg:items-center lg:justify-between  gap-4 mb-5" delay={0.2} staggerDelay={0.3}>
           <div className="flex flex-col">
             <span className="block text-product-label font-medium text-[var(--black)]">
               • Why Choose Us

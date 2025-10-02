@@ -180,7 +180,7 @@ style={{ height: sectionHeight }}
             {/* Hover content */}
             <div className="absolute inset-0 flex flex-col justify-between p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="flex-shrink-0">
-                <h3 className="text-industry-card-title mb-3 font-semibold">
+                <h3 className="text-industry-card-title mb-5 font-semibold">
                   {cat.title.split(" & ").map((part, index, array) => (
                     <span key={index}>
                       {part}

@@ -82,6 +82,7 @@ export default function BlogPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [categoryLoading, setCategoryLoading] = useState(false);
   const [featuredBlog, setFeaturedBlog] = useState<BlogPost | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
@@ -111,15 +112,23 @@ export default function BlogPage() {
     fetchBlogs();
   }, []);
 
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = async (category: string) => {
+    setCategoryLoading(true);
     setSelectedCategory(category);
     setCurrentPage(1); // Reset to first page on category change
+    
+    // Add small delay for smooth transition
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
     if (category === 'All Categories') {
       setFilteredBlogs(blogs);
     } else {
       const filtered = blogs.filter(blog => blog.category === category);
       setFilteredBlogs(filtered);
     }
+    
+    setCategoryLoading(false);
+    
     // Close modal on mobile after selection (keep open on desktop)
     if (window.innerWidth < 1024) {
       setIsCategoriesOpen(false);
@@ -364,26 +373,28 @@ export default function BlogPage() {
 
             {/* Articles Grid */}
             <div className="flex-1" id="blog-articles">
-              {loading ? (
+              {loading || categoryLoading ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Generate 4 skeleton cards */}
                   {[...Array(4)].map((_, index) => (
                     <div key={index} className="bg-transparent">
                       <div className="relative mb-4">
-                        <div className="w-full h-[272px] bg-gray-200 rounded-2xl animate-pulse" />
-                        <div className="absolute top-4 right-4 bg-gray-300 px-3 py-2 rounded-full">
+                        <div className="w-full h-[272px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-2xl animate-pulse overflow-hidden">
+                          <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                        </div>
+                        <div className="absolute top-4 right-4 bg-gray-300/80 px-3 py-2 rounded-full">
                           <div className="h-4 w-20 bg-gray-400/50 rounded animate-pulse" />
                         </div>
                       </div>
                       <div className="space-y-3 px-1">
                         <div className="flex items-center gap-2">
-                          <div className="h-4 w-24 bg-gray-200 rounded animate-pulse" />
-                          <div className="h-4 w-2 bg-gray-200 rounded animate-pulse" />
-                          <div className="h-4 w-20 bg-gray-200 rounded animate-pulse" />
+                          <div className="h-4 w-24 bg-gradient-to-r from-gray-200 to-gray-300 rounded animate-pulse" />
+                          <div className="h-4 w-2 bg-gray-300 rounded animate-pulse" />
+                          <div className="h-4 w-20 bg-gradient-to-r from-gray-200 to-gray-300 rounded animate-pulse" />
                         </div>
                         <div className="space-y-2">
-                          <div className="h-6 w-full bg-gray-200 rounded animate-pulse" />
-                          <div className="h-6 w-3/4 bg-gray-200 rounded animate-pulse" />
+                          <div className="h-6 w-full bg-gradient-to-r from-gray-200 to-gray-300 rounded animate-pulse" />
+                          <div className="h-6 w-3/4 bg-gradient-to-r from-gray-200 to-gray-300 rounded animate-pulse" />
                         </div>
                       </div>
                     </div>
