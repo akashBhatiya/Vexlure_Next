@@ -90,7 +90,7 @@ const BlogSchema: Schema = new Schema({
 });
 
 // Create indexes for better performance
-BlogSchema.index({ slug: 1 });
+// Note: slug already has index from unique: true
 BlogSchema.index({ published: 1 });
 BlogSchema.index({ createdAt: -1 });
 

@@ -104,7 +104,7 @@ const NavigationBar: React.FC = () => {
           <div
             className={`flex justify-between items-center transition-all duration-700 ease-out ${
               scrolled
-                ? "bg-[#F3F3F3CC] rounded-full px-6 py-3 shadow-lg backdrop-blur-md"
+                ? "bg-white/40 rounded-full px-6 py-3 shadow-lg backdrop-blur-md"
                 : "bg-[var(--white)]"
             }`}
           >
@@ -169,7 +169,8 @@ const NavigationBar: React.FC = () => {
 
                 {/* Product Dropdown Menu */}
                 {isProductDropdownOpen && (
-                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[980px] max-w-[980px] bg-white/80 rounded-2xl shadow-xl border border-gray-100 p-3 sm:p-4 md:p-5 z-50">
+                  
+                  <div className="fixed top-[80px] left-1/2 transform -translate-x-1/2 w-[95vw] sm:w-[90vw] md:w-[85vw] lg:w-[980px] max-w-[980px] backdrop-blur-md bg-white/40 rounded-2xl shadow-xl  p-3 sm:p-4 md:p-5 z-50">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                       {/* First Column */}
                       <div className="space-y-2 sm:space-y-3 md:space-y-4 col-span-1 sm:col-span-2 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">

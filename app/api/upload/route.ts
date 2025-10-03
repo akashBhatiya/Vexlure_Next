@@ -1,24 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { existsSync } from 'fs';
-import path from 'path';
-
-// Ensure upload directory exists
-async function ensureUploadDirectory() {
-  const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'blogs');
-  if (!existsSync(uploadDir)) {
-    await mkdir(uploadDir, { recursive: true });
-  }
-  return uploadDir;
-}
-
-// Generate unique filename
-function generateFileName(originalName: string): string {
-  const timestamp = Date.now();
-  const randomString = Math.random().toString(36).substring(2, 15);
-  const extension = path.extname(originalName);
-  return `${timestamp}-${randomString}${extension}`;
-}
+import { uploadToCloudinary } from '@/lib/cloudinary';
 
 // POST - Upload image
 export async function POST(request: NextRequest) {
@@ -52,31 +33,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Ensure upload directory exists
-    const uploadDir = await ensureUploadDirectory();
-
-    // Generate unique filename
-    const fileName = generateFileName(file.name);
-    const filePath = path.join(uploadDir, fileName);
-
-    // Convert file to buffer and save
+    // Convert file to base64 for Cloudinary upload
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    await writeFile(filePath, buffer);
+    const base64Image = `data:${file.type};base64,${buffer.toString('base64')}`;
 
-    // Return the public URL
-    const publicUrl = `/uploads/blogs/${fileName}`;
+    // Upload to Cloudinary
+    const folder = type === 'subImage' ? 'vexlure/blogs/sub' : 'vexlure/blogs/main';
+    const uploadResult = await uploadToCloudinary(base64Image, folder);
+
+    if (!uploadResult.success) {
+      return NextResponse.json(
+        { success: false, error: uploadResult.error || 'Failed to upload to Cloudinary' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
       data: {
-        url: publicUrl,
-        fileName,
+        url: uploadResult.url,
+        public_id: uploadResult.public_id,
         originalName: file.name,
         size: file.size,
         type: file.type
       },
-      message: 'File uploaded successfully'
+      message: 'File uploaded successfully to Cloudinary'
     });
   } catch (error) {
     console.error('Error uploading file:', error);

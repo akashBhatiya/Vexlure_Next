@@ -292,7 +292,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Chickpeas (Kabuli, Desi)',
         description: 'India is among the largest producers of chickpeas, grown extensively in Madhya Pradesh, Maharashtra, Rajasthan.',
-        image: '/agriculture/Chickpeas.png',
+        image: '/agriculture/Chickpeas.jpg',
         features: [
           'Varieties: Kabuli (large, cream-colored), Desi (smaller, brown)',
           'Size: 6 mm to 12 mm (Kabuli grades: 40/42, 44/46, 58/60 counts per ounce)',
@@ -304,7 +304,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Pigeon Peas (Tur / Arhar Dal)',
         description: 'Primarily cultivated in Maharashtra, Gujarat, Karnataka, India is the world\'s largest producer of pigeon peas.',
-        image: '/agriculture/PigeonPeas.png',
+        image: '/agriculture/PigeonPeas.jpg',
         features: [
           'Form: Whole, split (polished & unpolished)',
           'Packing: 25 kg / 50 kg PP bags',
@@ -315,7 +315,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Green Gram (Moong)',
         description: 'Moong is a premium Indian pulse, cultivated in Rajasthan, Maharashtra, Karnataka.',
-        image: '/agriculture/GreenGram.png',
+        image: '/agriculture/GreenGram.jpg',
         features: [
           'Varieties: Whole green gram, Split (yellow moong dal)',
           'Size: 3 mm to 5 mm',
@@ -327,7 +327,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Black Gram (Urad)',
         description: 'Urad is widely grown in Madhya Pradesh, Uttar Pradesh, Tamil Nadu and exported to South & Southeast Asia.',
-        image: '/agriculture/BlackGram.png',
+        image: '/agriculture/BlackGram.jpg',
         features: [
           'Forms: Whole (black skin), Split (white interior, polished/unpolished)',
           'Packing: 25 kg / 50 kg PP bags',
@@ -338,7 +338,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Horse Gram',
         description: 'A traditional legume grown in Karnataka, Tamil Nadu, Andhra Pradesh, known for high protein and medicinal value.',
-        image: '/agriculture/HorseGram.png',
+        image: '/agriculture/HorseGram.jpg',
         features: [
           'Size: Small oval grains, 3 mm to 4 mm',
           'Packing: 25 kg / 50 kg PP bags',
@@ -349,7 +349,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Moth Beans',
         description: 'Mainly cultivated in the arid regions of Rajasthan and Gujarat, moth beans are resilient and protein-rich.',
-        image: '/agriculture/MothBeans.png',
+        image: '/agriculture/MothBeans.jpg',
         features: [
           'Size: 3 mm to 4 mm small round grains',
           'Packing: 25 kg / 50 kg PP bags',
@@ -377,7 +377,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Basmati Rice (1121, 1509, Pusa, Traditional)',
         description: 'Basmati rice, grown in the fertile plains of Punjab, Haryana, Uttar Pradesh, is India\'s most premium grain export.',
-        image: '/agriculture/BasmatiRice.png',
+        image: '/agriculture/BasmatiRice.jpg',
         features: [
           'Varieties: 1121 (long grain), 1509 (slender), Pusa, Traditional Basmati',
           'Length: 7.40 mm to 8.40 mm (extra-long slender kernels)',
@@ -389,7 +389,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Non-Basmati Parboiled Rice (IR64, Sona Masoori, Parboiled, Broken)',
         description: 'India is the world\'s leading exporter of parboiled rice, grown across Andhra Pradesh, Chhattisgarh, Odisha, West Bengal.',
-        image: '/agriculture/ParboiledRice.png',
+        image: '/agriculture/ParboiledRice.jpg',
         features: [
           'Varieties: IR64, Sona Masoori, 100% Broken, Parboiled White & Golden',
           'Packing: 25 kg / 50 kg PP bags, bulk containerized shipments',
@@ -400,7 +400,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Maize (Corn) (Yellow, White, Sweet Corn)',
         description: 'Maize is cultivated widely in Karnataka, Andhra Pradesh, Maharashtra, Bihar.',
-        image: '/agriculture/Maize.png',
+        image: '/agriculture/Maize.jpg',
         features: [
           'Forms: Feed-grade yellow maize, white maize, and sweet corn',
           'Packing: 25 kg / 50 kg PP bags, bulk container loads',
@@ -411,7 +411,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Sorghum (Jowar) (White, Yellow, Red)',
         description: 'Sorghum is grown in dryland regions of Maharashtra, Karnataka, Rajasthan, making India a steady supplier.',
-        image: '/agriculture/Sorghum.png',
+        image: '/agriculture/Sorghum.jpg',
         features: [
           'Varieties: White sorghum (human consumption), Yellow & Red (feed/industrial)',
           'Packing: 25 kg / 50 kg PP bags, bulk',
@@ -422,7 +422,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Millets (Pearl/Bajra, Finger/Ragi, Foxtail, Kodo, Little, Proso, Barnyard)',
         description: 'India is the global leader in millet production, particularly in Rajasthan, Karnataka, Andhra Pradesh.',
-        image: '/agriculture/Millets.png',
+        image: '/agriculture/Millets.jpg',
         features: [
           'Types: Pearl (Bajra), Finger (Ragi), Foxtail, Kodo, Little, Proso, Barnyard',
           'Packing: 25 kg / 50 kg PP or jute bags',
@@ -456,7 +456,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Turmeric (Fingers, Powder)',
         description: 'India is the world\'s largest producer of turmeric, mainly from Andhra Pradesh, Tamil Nadu, Maharashtra, Odisha.',
-        image: '/agriculture/Turmeric.png',
+        image: '/agriculture/Turmeric.jpg',
         features: [
           'Forms: Whole fingers, ground powder',
           'Curcumin Content: 2% to 5% (variety-based)',
@@ -468,7 +468,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Cumin Seeds (Whole, Ground)',
         description: 'Grown in Rajasthan & Gujarat, India accounts for ~70% of global cumin exports.',
-        image: '/agriculture/Cumin.png',
+        image: '/agriculture/Cumin.jpg',
         features: [
           'Forms: Whole seeds, ground powder',
           'Purity: 98%–99.9% machine-cleaned',
@@ -491,7 +491,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Coriander Seeds (Whole, Ground)',
         description: 'Cultivated in Rajasthan, Gujarat, Madhya Pradesh, coriander is one of India\'s core spice exports.',
-        image: '/agriculture/Coriander.png',
+        image: '/agriculture/Coriander.jpg',
         features: [
           'Forms: Whole seeds, cracked, ground powder',
           'Packing: 25 kg / 50 kg PP bags',
@@ -502,7 +502,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Cardamom (Green – selective, premium branding)',
         description: 'Premium-quality cardamom is grown in the Western Ghats of Kerala & Karnataka.',
-        image: '/agriculture/Cardamom.png',
+        image: '/agriculture/Cardamom.jpg',
         features: [
           'Size: 6 mm to 8 mm capsules',
           'Packing: 5 kg / 10 kg cartons or pouches (vacuum-packed for freshness)',
@@ -513,7 +513,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Fenugreek (Seeds, Powder, Kasuri Methi)',
         description: 'Widely cultivated in Rajasthan & Gujarat, fenugreek is valued for culinary and medicinal uses.',
-        image: '/agriculture/Fenugreek.png',
+        image: '/agriculture/Fenugreek.jpg',
         features: [
           'Forms: Seeds, ground powder, dried leaves (Kasuri Methi)',
           'Packing: 25 kg / 50 kg PP bags (seeds/powder), 5 kg cartons (leaves)',
@@ -524,7 +524,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Fennel Seeds (Whole, Ground)',
         description: 'Primarily produced in Rajasthan & Gujarat, Indian fennel has sweet aroma and cooling effect.',
-        image: '/agriculture/Fennel.png',
+        image: '/agriculture/Fennel.jpg',
         features: [
           'Forms: Whole seeds, ground powder',
           'Packing: 25 kg / 50 kg PP/jute bags',
@@ -535,7 +535,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Mustard Seeds (Yellow, Black, Brown)',
         description: 'Grown in Rajasthan, Uttar Pradesh, Madhya Pradesh, mustard is used for oil and spice blends.',
-        image: '/agriculture/Mustard.png',
+        image: '/agriculture/Mustard.jpg',
         features: [
           'Varieties: Yellow (mild), Black & Brown (pungent)',
           'Packing: 25 kg / 50 kg PP bags',
@@ -600,7 +600,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Psyllium Husk & Seeds (India = world\'s #1 supplier, >80% share)',
         description: 'Psyllium is cultivated almost exclusively in Gujarat and Rajasthan, making India the global leader.',
-        image: '/agriculture/Psyllium.png',
+        image: '/agriculture/Psyllium.jpg',
         features: [
           'Forms: Psyllium Husk (whole, powder), Psyllium Seeds',
           'Size: Husk mesh sizes 30# to 100#',
@@ -612,7 +612,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Moringa (Powder, Tea Cut)',
         description: 'Moringa, often called the "Miracle Tree," is widely grown in Southern India & Gujarat.',
-        image: '/agriculture/Moringa.png',
+        image: '/agriculture/Moringa.jpg',
         features: [
           'Forms: Powder (fine green), Tea cut (dried leaves, flakes)',
           'Packing: 10 kg / 25 kg cartons with inner liners',
@@ -623,7 +623,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Aloe Vera (Powder, Extract, Gel)',
         description: 'Aloe vera is cultivated on large scales in Rajasthan, Gujarat, Uttar Pradesh.',
-        image: '/agriculture/AloeVera.png',
+        image: '/agriculture/AloeVera.jpg',
         features: [
           'Forms: Spray-dried powder, Extract (200:1 concentration), Gel (stabilized)',
           'Packing: 25 kg HDPE drums (powder), 1–5 kg retail packs on request',
@@ -634,7 +634,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Stevia Leaves & Powder',
         description: 'Stevia is an emerging Indian crop, cultivated in Madhya Pradesh, Karnataka.',
-        image: '/agriculture/Stevia.png',
+        image: '/agriculture/Stevia.jpg',
         features: [
           'Forms: Dried stevia leaves, Stevia extract powder (Rebaudioside A >97%)',
           'Packing: 10 kg / 20 kg cartons with poly liners',
@@ -645,7 +645,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Neem (Powder, Dried Leaves)',
         description: 'Neem is a traditional Ayurvedic herb, grown abundantly in Rajasthan, Uttar Pradesh, Andhra Pradesh.',
-        image: '/agriculture/Neem.png',
+        image: '/agriculture/Neem.jpg',
         features: [
           'Forms: Dried neem leaves, Neem powder',
           'Packing: 20 kg / 25 kg PP bags or cartons with poly liner',
@@ -656,7 +656,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Tulsi (Holy Basil – Dried Leaves, Powder, Tea Cut)',
         description: 'Tulsi, known as the "Queen of Herbs," is widely cultivated in Uttar Pradesh, Madhya Pradesh, Rajasthan.',
-        image: '/agriculture/Tulsi.png',
+        image: '/agriculture/Tulsi.jpg',
         features: [
           'Forms: Dried whole leaves, Tea cut, Fine powder',
           'Packing: 10 kg / 20 kg cartons with poly liner',
@@ -667,7 +667,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Ashwagandha (Root Powder)',
         description: 'Ashwagandha, a powerful adaptogen, is primarily grown in Madhya Pradesh, Rajasthan.',
-        image: '/agriculture/Ashwagandha.png',
+        image: '/agriculture/Ashwagandha.jpg',
         features: [
           'Forms: Dried roots, Root powder',
           'Packing: 25 kg PP bags, bulk cartons with liners',
@@ -678,7 +678,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Giloy (Guduchi – Ayurvedic Immunity Booster)',
         description: 'Giloy is a climbing shrub harvested across Central & South India.',
-        image: '/agriculture/Giloy.png',
+        image: '/agriculture/Giloy.jpg',
         features: [
           'Forms: Dried stems, Stem powder',
           'Packing: 25 kg PP bags or fiber drums',
@@ -689,7 +689,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Amla (Powder, Dried)',
         description: 'Amla (Indian Gooseberry) is cultivated in Uttar Pradesh, Gujarat, Madhya Pradesh and valued for its Vitamin C.',
-        image: '/agriculture/Amla.png',
+        image: '/agriculture/Amla.jpg',
         features: [
           'Forms: Dried whole, Dehydrated flakes, Powder',
           'Packing: 25 kg PP bags, HDPE drums with poly liner',
@@ -715,7 +715,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Guar Gum (Food Grade, Industrial Grade – India = world\'s #1 supplier)',
         description: 'Guar gum is India\'s most powerful agro derivative, with cultivation concentrated in Rajasthan, Gujarat, Haryana. India contributes ~80% of global guar exports.',
-        image: '/agriculture/GuarGum.png',
+        image: '/agriculture/GuarGum.jpg',
         features: [
           'Forms: Food-grade powder, Industrial-grade powder',
           'Viscosity: 2000–8000 cps (variety-dependent)',
@@ -727,7 +727,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Tamarind Concentrate (India = global leader in tamarind-based exports)',
         description: 'India is the largest producer of tamarind, mainly in Tamil Nadu, Andhra Pradesh, Karnataka. Tamarind concentrate is derived from pulp, offering high tanginess.',
-        image: '/agriculture/TamarindConcentrate.png',
+        image: '/agriculture/TamarindConcentrate.jpg',
         features: [
           'Forms: Tamarind pulp concentrate (65–72° Brix)',
           'Packing: 5 kg / 20 kg aseptic bags in drums, 250 kg HDPE barrels',
@@ -738,7 +738,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Dehydrated Vegetables (Onion Flakes, Garlic Flakes, Ginger Flakes)',
         description: 'India is a top global supplier of dehydrated vegetables, with production hubs in Maharashtra & Gujarat.',
-        image: '/agriculture/DehydratedVegetables.png',
+        image: '/agriculture/DehydratedVegetables.jpg',
         features: [
           'Products: Onion (flakes, kibbled, powder), Garlic (flakes, powder), Ginger (flakes, powder)',
           'Packing: 20 kg / 25 kg cartons lined with food-grade poly bags',
@@ -770,7 +770,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Banana Powder (Growing Demand – Baby Foods, Bakery)',
         description: 'Banana powder is produced mainly in Tamil Nadu, Maharashtra, Kerala using fully ripened bananas.',
-        image: '/agriculture/BananaPowder.png',
+        image: '/agriculture/BananaPowder.jpg',
         features: [
           'Forms: Spray-dried fine powder',
           'Packing: 20 kg / 25 kg food-grade cartons or HDPE drums with liners',
@@ -781,7 +781,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Beetroot Powder (Health & Nutraceutical Markets)',
         description: 'Beetroot powder is widely processed in Maharashtra, Gujarat, Karnataka, meeting global superfood demand.',
-        image: '/agriculture/BeetrootPowder.png',
+        image: '/agriculture/BeetrootPowder.jpg',
         features: [
           'Forms: Spray-dried powder, dehydrated flakes, fine powder',
           'Packing: 20 kg cartons, HDPE drums with poly liners',
@@ -792,7 +792,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Spinach Powder (Superfood Blends)',
         description: 'Spinach is dehydrated and processed into powder, mainly sourced from Uttar Pradesh, Maharashtra.',
-        image: '/agriculture/SpinachPowder.png',
+        image: '/agriculture/SpinachPowder.jpg',
         features: [
           'Forms: Fine dehydrated powder, flakes',
           'Packing: 20 kg cartons with inner liner',
@@ -803,7 +803,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Pumpkin Powder (Functional Foods)',
         description: 'Pumpkins grown in Uttar Pradesh, Madhya Pradesh, Karnataka are processed into fine powder.',
-        image: '/agriculture/PumpkinPowder.png',
+        image: '/agriculture/PumpkinPowder.jpg',
         features: [
           'Forms: Spray-dried powder, flakes',
           'Packing: 20 kg food-grade cartons or fiber drums',
@@ -814,7 +814,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Mango Powder (Amchur & Fruit Powder)',
         description: 'Produced from raw and ripe mangoes in Uttar Pradesh, Gujarat, Maharashtra, India is a leading supplier.',
-        image: '/agriculture/MangoPowder.png',
+        image: '/agriculture/MangoPowder.jpg',
         features: [
           'Forms: Amchur (raw mango powder), Spray-dried ripe mango powder',
           'Packing: 20 kg cartons, HDPE drums with liners',
@@ -825,7 +825,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Papaya Powder (Digestive & Nutraceuticals)',
         description: 'Papaya is cultivated widely in Maharashtra, Gujarat, Andhra Pradesh, and processed into powder for global nutraceutical demand.',
-        image: '/agriculture/PapayaPowder.png',
+        image: '/agriculture/PapayaPowder.jpg',
         features: [
           'Forms: Spray-dried papaya powder, enzyme-rich papain extract',
           'Packing: 20 kg / 25 kg cartons, HDPE drums with food-grade liners',
@@ -836,7 +836,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Turmeric Curcumin Extract (High-Value Nutraceutical Export)',
         description: 'Curcumin is extracted from turmeric roots grown in Andhra Pradesh, Tamil Nadu, Maharashtra.',
-        image: '/agriculture/Turmeric.png',
+        image: '/agriculture/Turmeric.jpg',
         features: [
           'Forms: Standardized extracts (Curcumin 95%), oleoresins, powders',
           'Packing: 25 kg fiber drums, vacuum-sealed bags',
@@ -847,7 +847,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Ashwagandha Powder (Adaptogen – Huge Global Demand)',
         description: 'Ashwagandha, an adaptogenic herb, is cultivated in Madhya Pradesh & Rajasthan.',
-        image: '/agriculture/Ashwagandha.png',
+        image: '/agriculture/Ashwagandha2.jpg',
         features: [
           'Forms: Root powder, standardized extracts (withanolides 2.5%–5%)',
           'Packing: 25 kg PP bags, fiber drums with poly liner',
@@ -858,7 +858,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Moringa Protein Powder (Plant-Based Protein, Trending Worldwide)',
         description: 'Moringa, sourced from Tamil Nadu, Andhra Pradesh, Gujarat, is processed into high-protein powder.',
-        image: '/agriculture/Moringa.png',
+        image: '/agriculture/Moringa.jpg',
         features: [
           'Forms: Protein-rich leaf powder, concentrates',
           'Packing: 20 kg cartons, HDPE drums with liners',

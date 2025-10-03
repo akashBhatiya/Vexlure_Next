@@ -134,13 +134,13 @@ style={{ height: sectionHeight }}
           width: `${totalWidth + EXTRA_PADDING}px`,
           willChange: "transform",
         }}
-        className="flex gap-6 pl-4 sm:pl-8 xl:p-10"
+        className="flex gap-6 px-4 sm:px-10"
       >
         {CATEGORIES_DATA.map((cat, idx) => (
           <div
             key={`${cat.slug}-${idx}`}
             ref={idx === 0 ? firstCardRef : null}
-            className="w-[clamp(240px,85vw,400px)] h-[clamp(300px,70vh,600px)] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-all duration-300"
+            className="w-[clamp(300px,85vw,350px)] h-[clamp(360px,70vh,500px)] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-all duration-300"
             style={{
               marginRight: idx === CATEGORIES_DATA.length - 1 ? `${EXTRA_PADDING}px` : "0px",
             }}

@@ -98,11 +98,11 @@ const BlogAdminPage: React.FC = () => {
             askPassword();
           } else {
             alert('Maximum attempts exceeded. Access denied.');
-            window.location.href = '/admin';
+            window.location.href = '/';
           }
         } else {
           // User cancelled
-          window.location.href = '/admin';
+          window.location.href = '/';
         }
       };
       
@@ -116,27 +116,44 @@ const BlogAdminPage: React.FC = () => {
   const handleFileUpload = async (file: File, type: 'image' | 'subImage') => {
     setUploading(true);
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('type', type);
+      const uploadData = new FormData();
+      uploadData.append('file', file);
+      uploadData.append('type', type);
 
       const response = await fetch('/api/upload', {
         method: 'POST',
-        body: formData
+        body: uploadData
       });
 
       const result = await response.json();
-      if (result.success) {
-        setFormData(prev => ({
-          ...prev,
-          [type]: result.data.url
-        }));
+      if (result.success && result.data?.url) {
+        // Use functional update to avoid conflicts
+        setFormData((prevData) => {
+          return {
+            ...prevData,
+            [type]: result.data.url
+          };
+        });
+        setNotification({
+          type: 'success',
+          message: 'Image uploaded successfully to Cloudinary!'
+        });
+        // Clear notification after 3 seconds
+        setTimeout(() => setNotification(null), 3000);
       } else {
-        alert(result.error || 'Upload failed');
+        setNotification({
+          type: 'error',
+          message: result.error || 'Upload failed'
+        });
+        setTimeout(() => setNotification(null), 5000);
       }
     } catch (error) {
       console.error('Upload error:', error);
-      alert('Upload failed');
+      setNotification({
+        type: 'error',
+        message: 'Failed to upload image. Please try again.'
+      });
+      setTimeout(() => setNotification(null), 5000);
     } finally {
       setUploading(false);
     }

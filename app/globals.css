@@ -60,7 +60,7 @@
   /* Industry Section Specific - Exact Current Design Match */
   --industry-card-title: clamp(1.75rem, 3vw, 2rem);         /* 22px -> 28px */
   --industry-card-title-leading: clamp(2rem, 3vw, 3.25rem);       /* 32px -> 36px */
-  --industry-card-description: clamp(1.35rem, 1.2vw, 1.5rem);        /* 14px -> 18px */
+  --industry-card-description: clamp(1.1rem, 1.2vw, 1.35rem);        /* 14px -> 18px */
   --industry-card-description-leading: clamp(1.5rem, 1.8vw, 2rem); /* 22px -> 28px */
   
   /* About Us Page Specific - Exact Current Design Match */

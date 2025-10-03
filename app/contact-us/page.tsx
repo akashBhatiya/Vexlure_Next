@@ -20,6 +20,115 @@ const CONTACTS = {
 
 export default function ContactUsPage() {
   const [country, setCountry] = useState<"India" | "Germany">("India");
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    mobile: '',
+    message: ''
+  });
+  const [errors, setErrors] = useState<any>({});
+  const [loading, setLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
+  const validateForm = () => {
+    const newErrors: any = {};
+    
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+
+    // Mobile validation (optional but if provided, should be valid)
+    if (formData.mobile && !/^[0-9+\-\s()]+$/.test(formData.mobile)) {
+      newErrors.mobile = 'Please enter a valid phone number';
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors((prev: any) => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: data.message || 'Thank you for contacting us! We will get back to you soon.'
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          company: '',
+          email: '',
+          mobile: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: data.message || 'Something went wrong. Please try again.'
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Failed to send message. Please check your connection and try again.'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="w-full pt-25 pb-16 px-5 md:px-16 flex flex-col items-center bg-[var(--white)]">
       <div className="max-w-[1440px] w-full mx-auto">
@@ -128,22 +237,25 @@ export default function ContactUsPage() {
           
           {/* Right: Form */}
           <section className="bg-gray-100 rounded-2xl p-8 flex flex-col order-1 lg:order-2">
-            <form className="flex flex-col gap-6 md:gap-10">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6 md:gap-10">
               <AnimatedSection className="space-y-4 md:space-y-5" staggerDelay={0.1}>
                 <div>
                   <label
                     htmlFor="name"
                     className="block text-contact-text font-medium mb-1"
                   >
-                    Your Name
+                    Your Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="name"
                     name="name"
                     type="text"
                     placeholder="Your Name"
-                    className="w-full text-contact-text border border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className={`w-full border text-contact-text border-${errors.name ? 'red-500' : '[var(--border)]'} rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white`}
                   />
+                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                 </div>
                 <div>
                   <label
@@ -156,7 +268,9 @@ export default function ContactUsPage() {
                     id="company"
                     name="company"
                     type="text"
-                    placeholder="Company Name"
+                    placeholder="Company Name (Optional)"
+                    value={formData.company}
+                    onChange={handleInputChange}
                     className="w-full border text-contact-text border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
                   />
                 </div>
@@ -166,30 +280,37 @@ export default function ContactUsPage() {
                       htmlFor="email"
                       className="block text-contact-text font-medium mb-1"
                     >
-                      Email
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="email"
                       name="email"
                       type="email"
                       placeholder="Email"
-                      className="w-full border text-contact-text border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={`w-full border text-contact-text border-${errors.email ? 'red-500' : '[var(--border)]'} rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white`}
+                      required
                     />
+                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                   </div>
                   <div className="flex-1">
                     <label
                       htmlFor="mobile"
                       className="block text-contact-text font-medium mb-1"
                     >
-                      Mobile No.
+                      Mobile
                     </label>
                     <input
                       id="mobile"
                       name="mobile"
                       type="tel"
-                      placeholder="Mobile No."
-                      className="w-full border text-contact-text border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                      placeholder="Mobile (Optional)"
+                      value={formData.mobile}
+                      onChange={handleInputChange}
+                      className={`w-full border text-contact-text border-${errors.mobile ? 'red-500' : '[var(--border)]'} rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white`}
                     />
+                    {errors.mobile && <p className="text-red-500 text-sm mt-1">{errors.mobile}</p>}
                   </div>
                 </div>
                 <div>
@@ -197,15 +318,18 @@ export default function ContactUsPage() {
                     htmlFor="message"
                     className="block text-contact-text font-medium mb-1"
                   >
-                    Message
+                    Message <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     placeholder="What would you like to know about"
                     rows={3}
-                    className="w-full border text-contact-text border-[var(--border)] rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className={`w-full border text-contact-text border-${errors.message ? 'red-500' : '[var(--border)]'} rounded-md px-5 py-[14px] outline-none focus:ring-2 focus:ring-orange-400 bg-white`}
                   />
+                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                 </div>
                 <div className="text-contact-label text-gray-500 mb-2">
                   <span className="text-orange-500 mr-1">*</span>We promise not to
@@ -214,11 +338,30 @@ export default function ContactUsPage() {
                 <div>
                   <button
                     type="submit"
-                    className="bg-[var(--orange)] text-[var(--white)] px-6 sm:px-8 py-2 rounded-full text-contact-text font-medium hover:bg-orange-600 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
+                    disabled={loading}
+                    className={`bg-[var(--orange)] text-[var(--white)] px-6 sm:px-8 py-2 rounded-full text-contact-text font-medium hover:bg-orange-600 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
-                    Send Message <span className="ml-1">↗</span>
+                    {loading ? (
+                      <>
+                        <span className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                        Sending...
+                      </>
+                    ) : (
+                      <>Send Message <span className="ml-1">↗</span></>
+                    )}
                   </button>
                 </div>
+                
+                {/* Status Messages */}
+                {submitStatus.type && (
+                  <div className={`mt-4 p-4 rounded-lg ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-50 border border-green-200 text-green-700' 
+                      : 'bg-red-50 border border-red-200 text-red-700'
+                  }`}>
+                    {submitStatus.message}
+                  </div>
+                )}
               </AnimatedSection>
             </form>
           </section>
