@@ -55,6 +55,17 @@ export default function BlogPost() {
   const [blog, setBlog] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [relatedBlogs, setRelatedBlogs] = useState<BlogPost[]>([]);
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    const currentUrl = `${window.location.origin}/blog/${slug}`;
+    navigator.clipboard.writeText(currentUrl).then(() => {
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2000); // Reset after 2 seconds
+    }).catch((err) => {
+      console.error('Failed to copy link:', err);
+    });
+  };
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -308,7 +319,7 @@ export default function BlogPost() {
           className="hidden xl:flex sticky top-32 self-start mr-10 flex-col gap-6"
         >
           <a
-            href="https://facebook.com/"
+            href="https://facebook.com/vexlureinternational"
             target="_blank"
             rel="noopener noreferrer"
             className="w-12 h-12 bg-[var(--secondary-bg)] rounded-full flex items-center justify-center hover:bg-[var(--orange)] group transition-all duration-300"
@@ -322,7 +333,7 @@ export default function BlogPost() {
             />
           </a>
           <a
-            href="https://twitter.com/"
+            href="https://x.com/vexlure"
             target="_blank"
             rel="noopener noreferrer"
             className="w-12 h-12 bg-[var(--secondary-bg)] rounded-full flex items-center justify-center hover:bg-[var(--orange)] group transition-all duration-300"
@@ -336,7 +347,7 @@ export default function BlogPost() {
             />
           </a>
           <a
-            href="https://linkedin.com/"
+            href="https://linkedin.com/company/vexlure-international"
             target="_blank"
             rel="noopener noreferrer"
             className="w-12 h-12 bg-[var(--secondary-bg)] rounded-full flex items-center justify-center hover:bg-[var(--orange)] group transition-all duration-300"
@@ -349,20 +360,40 @@ export default function BlogPost() {
               className="group-hover:brightness-0 group-hover:invert"
             />
           </a>
-          <a
-            href="https://wa.me/918320659236"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-12 h-12 bg-[var(--secondary-bg)] rounded-full flex items-center justify-center hover:bg-[var(--orange)] group transition-all duration-300"
+          <button
+            onClick={handleCopyLink}
+            className="w-12 h-12 bg-[var(--secondary-bg)] rounded-full flex items-center justify-center hover:bg-[var(--orange)] group transition-all duration-300 relative"
+            title={linkCopied ? "Link Copied!" : "Copy Link"}
           >
-            <Image
-              src="/blog/Frame.svg"
-              alt="WhatsApp"
-              width={24}
-              height={24}
-              className="group-hover:brightness-0 group-hover:invert"
-            />
-          </a>
+            {linkCopied ? (
+              <svg 
+                className="w-6 h-6 text-white" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M5 13l4 4L19 7" 
+                />
+              </svg>
+            ) : (
+              <Image
+                src="/blog/Frame.svg"
+                alt="Copy Link"
+                width={24}
+                height={24}
+                className="group-hover:brightness-0 group-hover:invert"
+              />
+            )}
+            {linkCopied && (
+              <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                Link Copied!
+              </span>
+            )}
+          </button>
         </div>
 
         {/* Main Content */}
@@ -450,26 +481,39 @@ export default function BlogPost() {
                       className="group-hover:brightness-0 group-hover:invert"
                     />
                   </a>
-                  <a
-                    href="https://wa.me/918320659236"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--gray-text)] hover:text-white hover:bg-[var(--orange)] hover:border-[var(--orange)] group transition-all"
+                  <button
+                    onClick={handleCopyLink}
+                    className="w-10 h-10 rounded-full bg-[var(--secondary-bg)] flex items-center justify-center text-[var(--gray-text)] hover:text-white hover:bg-[var(--orange)] hover:border-[var(--orange)] group transition-all relative"
+                    title={linkCopied ? "Link Copied!" : "Copy Link"}
                   >
-                    <Image
-                      src="/blog/Frame.svg"
-                      alt="WhatsApp"
-                      width={20}
-                      height={20}
-                      className="group-hover:brightness-0 group-hover:invert"
-                    />
-                  </a>
+                    {linkCopied ? (
+                      <svg 
+                        className="w-5 h-5 text-green-600" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M5 13l4 4L19 7" 
+                        />
+                      </svg>
+                    ) : (
+                      <Image
+                        src="/blog/Frame.svg"
+                        alt="Copy Link"
+                        width={20}
+                        height={20}
+                        className="group-hover:brightness-0 group-hover:invert"
+                      />
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Hero Image */}
           <div className="mb-8">
             <Image
               src={blog.image}
