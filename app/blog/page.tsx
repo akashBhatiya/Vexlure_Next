@@ -88,6 +88,14 @@ export default function BlogPage() {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 8;
+  
+  // Newsletter form states
+  const [email, setEmail] = useState('');
+  const [subscribing, setSubscribing] = useState(false);
+  const [subscribeStatus, setSubscribeStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -154,6 +162,64 @@ export default function BlogPage() {
     setIsCategoriesOpen(!isCategoriesOpen);
   };
 
+  // Handle newsletter subscription
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Reset status
+    setSubscribeStatus({ type: null, message: '' });
+    
+    // Validate email
+    if (!email) {
+      setSubscribeStatus({ type: 'error', message: 'Please enter your email address' });
+      return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setSubscribeStatus({ type: 'error', message: 'Please enter a valid email address' });
+      return;
+    }
+    
+    setSubscribing(true);
+    
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setSubscribeStatus({ 
+          type: 'success', 
+          message: 'Thank you for subscribing to our newsletter!' 
+        });
+        setEmail(''); // Clear email field
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSubscribeStatus({ type: null, message: '' });
+        }, 5000);
+      } else {
+        setSubscribeStatus({ 
+          type: 'error', 
+          message: result.error || 'Failed to subscribe. Please try again.' 
+        });
+      }
+    } catch (error) {
+      console.error('Subscribe error:', error);
+      setSubscribeStatus({ 
+        type: 'error', 
+        message: 'An error occurred. Please try again later.' 
+      });
+    } finally {
+      setSubscribing(false);
+    }
+  };
+
   // Initialize categories as open on desktop, closed on mobile
   useEffect(() => {
     const handleResize = () => {
@@ -172,9 +238,9 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <>
+    <main className="w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="w-full pt-20 pb-8 px-5 md:px-16 flex flex-col items-center bg-[var(--white)]">
+      <section className="w-full pt-20 pb-8 px-5 md:px-16 flex flex-col items-center bg-[var(--white)] overflow-hidden">
         <AnimatedSection className="w-full max-w-[1440px] flex flex-col items-center text-center">
           <div className="flex flex-col items-center gap-3">
 
@@ -197,11 +263,11 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Article Section */}
-      <section className="w-full py-8 px-5 md:px-16 bg-[var(--white)]">
+      <section className="w-full py-8 px-5 md:px-16 bg-[var(--white)] overflow-hidden">
         <div className="w-full max-w-[1440px] mx-auto">
           <AnimatedFlexSection className="flex flex-col md:flex-row gap-6 lg:gap-8 items-start" delay={0.2}>
             {/* Featured Article Image */}
-            <div className="relative flex justify-between rounded-3xl w-full md:w-[65%] xl:w-[972px] h-[400px] xl:h-[432px] order-2 md:order-1">
+            <div className="relative flex justify-between rounded-3xl w-full md:w-[65%] xl:w-[65%] max-w-[972px] h-[400px] xl:h-[432px] order-2 md:order-1">
               {loading ? (
                 // Skeleton loader for featured blog
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-3xl animate-pulse">
@@ -280,7 +346,7 @@ export default function BlogPage() {
             </div>
 
             {/* Newsletter Section */}
-            <div className="w-full md:w-[35%] xl:w-[400px] space-y-4 md:space-y-6 bg-[var(--secondary-bg)] p-6 md:p-8 rounded-2xl order-1 md:order-2">
+            <div className="w-full md:w-[35%] xl:w-[35%] max-w-[400px] space-y-4 md:space-y-6 bg-[var(--secondary-bg)] p-6 md:p-8 rounded-2xl order-1 md:order-2">
               <h3 className="text-xl md:text-2xl font-semibold text-[var(--black)]">
                 Spam Free Newsletter
               </h3>
@@ -288,28 +354,59 @@ export default function BlogPage() {
                 Get the latest insights and strategies to stay ahead in global
                 trade.
               </p>
-              <div className="space-y-3 md:space-y-4">
+              
+              {/* Success/Error Message */}
+              {subscribeStatus.type && (
+                <div
+                  className={`p-3 rounded-lg text-sm ${
+                    subscribeStatus.type === 'success'
+                      ? 'bg-green-100 text-green-700 border border-green-300'
+                      : 'bg-red-100 text-red-700 border border-red-300'
+                  }`}
+                >
+                  {subscribeStatus.message}
+                </div>
+              )}
+              
+              <form onSubmit={handleSubscribe} className="space-y-3 md:space-y-4">
                 <input
                   type="email"
                   placeholder="Email"
-                  className="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-[var(--border)] focus:outline-none focus:ring-2 focus:ring-[var(--orange)] text-sm md:text-base"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={subscribing}
+                  className="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg border border-[var(--border)] focus:outline-none focus:ring-2 focus:ring-[var(--orange)] text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                 />
-                <button className="w-full bg-[var(--orange)] text-white py-2 md:py-3 rounded-3xl font-medium hover:bg-opacity-90 transition-colors text-sm md:text-base">
-                  Subscribe now
+                <button 
+                  type="submit"
+                  disabled={subscribing}
+                  className="w-full bg-[var(--orange)] text-white py-2 md:py-3 rounded-3xl font-medium hover:bg-opacity-90 transition-colors text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {subscribing ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Subscribing...
+                    </>
+                  ) : (
+                    'Subscribe now'
+                  )}
                 </button>
-              </div>
+              </form>
             </div>
           </AnimatedFlexSection>
         </div>
       </section>
 
       {/* Blog Articles Grid Section */}
-      <section className="w-full py-6 px-5 md:px-16 bg-[var(--white)]">
+      <section className="w-full py-6 px-5 md:px-16 bg-[var(--white)] overflow-hidden">
         <div className="w-full max-w-[1440px] mx-auto">
-          <AnimatedFlexSection className="flex flex-col lg:flex-row gap-18" delay={0.3}>
+          <AnimatedFlexSection className="flex flex-col lg:flex-row gap-6 lg:gap-8" delay={0.3}>
             {/* Categories Sidebar */}
             <div
-  className={`w-full lg:w-[454px] bg-[var(--secondary-bg)] rounded-2xl border border-[var(--border)] px-5 md:px-8 py-[22px] md:py-7 transition-all duration-300 overflow-hidden
+  className={`w-full lg:w-[350px] xl:w-[400px] 2xl:w-[454px] bg-[var(--secondary-bg)] rounded-2xl border border-[var(--border)] px-5 md:px-8 py-[22px] md:py-7 transition-all duration-300 overflow-hidden flex-shrink-0
     ${isCategoriesOpen ? 'max-h-[330px]' : 'max-h-[90px]'}
   `}
 >
@@ -372,7 +469,7 @@ export default function BlogPage() {
             </div>
 
             {/* Articles Grid */}
-            <div className="flex-1" id="blog-articles">
+            <div className="flex-1 min-w-0" id="blog-articles">
               {loading || categoryLoading ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Generate 4 skeleton cards */}
@@ -490,6 +587,6 @@ export default function BlogPage() {
           </AnimatedFlexSection>
         </div>
       </section>
-    </>
+    </main>
   );
 }

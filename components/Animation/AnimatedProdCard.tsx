@@ -17,26 +17,22 @@ const AnimatedProdCard: React.FC<AnimatedProdCardProps> = ({
   delay = 0,
   direction = "fade",
 }) => {
-  // Reduced offset for mobile/tablet, normal for desktop
-  const offset = direction === "left" || direction === "right" ? 60 : 40;
-
-  // ✅ Variants object with direction handling
+  // Use scale and fade instead of horizontal movement to prevent overflow
   const cardVariants: Variants = {
     hidden:
-      direction === "left"
-        ? { opacity: 0, x: -offset }
-        : direction === "right"
-        ? { opacity: 0, x: offset }
+      direction === "left" || direction === "right"
+        ? { opacity: 0, scale: 0.95 } // Use scale instead of x-offset
         : direction === "up"
-        ? { opacity: 0, y: 30 } // Much smaller y offset for mobile/tablet
+        ? { opacity: 0, y: 20, scale: 0.98 } // Reduced y offset
         : direction === "down"
-        ? { opacity: 0, y: -30 }
-        : { opacity: 0 }, // Simple fade without scale
+        ? { opacity: 0, y: -20, scale: 0.98 }
+        : { opacity: 0, scale: 0.95 }, // Simple fade with scale
 
     visible: {
       opacity: 1,
       x: 0,
       y: 0,
+      scale: 1,
       transition: {
         type: "tween", // Changed from spring to tween for smoother animation
         ease: "easeOut",

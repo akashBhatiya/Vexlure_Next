@@ -48,7 +48,7 @@ const ProductsSection: React.FC = () => {
   return (
     <section
       id="products"
-      className="w-full py-12  px-5 md:px-8 flex flex-col items-center bg-[var(--white)]"
+      className="w-full py-12  px-5 md:px-8 flex flex-col items-center bg-[var(--white)] overflow-hidden"
     >
       
         {/* Header */}      
@@ -65,12 +65,12 @@ const ProductsSection: React.FC = () => {
         </AnimatedSection>
 
       {/* Product Grid - Responsive Layout */}
-      <div className="w-full max-w-[1440px] mx-auto">
+      <div className="w-full max-w-[1440px] mx-auto overflow-hidden">
         {/* Mobile: Single column */}
         <div className="grid grid-cols-1 md:hidden gap-6">
           {products.map((p, i) => (
             <AnimatedProdCard key={i} index={i} delay={0} direction="fade">
-              <div className="w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group flex flex-col items-stretch h-full transition-transform duration-300 hover:scale-105 cursor-pointer">
+              <div className="w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group flex flex-col items-stretch h-full transition-transform duration-300 hover:scale-[1.02] cursor-pointer">
                 {/* Mobile Content - Single Container */}
                 <div className="flex-1 flex flex-col p-5 gap-3">
                   {/* Mobile Image */}
@@ -80,7 +80,7 @@ const ProductsSection: React.FC = () => {
                       alt={p.title}
                       width={400}
                       height={200}
-                      className="object-cover w-full rounded-2xl h-48 transition-transform duration-300 group-hover:scale-110"
+                      className="object-cover w-full rounded-2xl h-48 transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   
@@ -112,7 +112,7 @@ const ProductsSection: React.FC = () => {
         <div className="hidden md:grid xl:hidden grid-cols-2 gap-6">
           {products.map((p, i) => (
             <AnimatedProdCard key={i} index={i} delay={0.1} direction = {i % 2 === 0 ? "left" : "right"}>
-              <div className="w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group flex flex-col items-stretch h-full transition-transform duration-300 hover:scale-105 cursor-pointer">
+              <div className="w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group flex flex-col items-stretch h-full transition-transform duration-300 hover:scale-[1.02] cursor-pointer">
                 {/* Tablet Content - Single Container */}
                 <div className="flex-1 flex flex-col p-5 gap-3">
                   {/* Tablet Image */}
@@ -122,7 +122,7 @@ const ProductsSection: React.FC = () => {
                       alt={p.title}
                       width={400}
                       height={220}
-                      className="object-cover w-full rounded-2xl h-52 transition-transform duration-300 group-hover:scale-110"
+                      className="object-cover w-full rounded-2xl h-52 transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   

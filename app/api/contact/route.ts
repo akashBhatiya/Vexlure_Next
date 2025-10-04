@@ -67,12 +67,21 @@ export async function POST(request: NextRequest) {
       html: getAdminEmailTemplate({ name, company, email, mobile, message }),
     };
 
-    // Send both emails
-    await Promise.all([
+    // Send emails in background (fire and forget approach for faster response)
+    Promise.allSettled([
       transporter.sendMail(userMailOptions),
       transporter.sendMail(adminMailOptions)
-    ]);
+    ]).then(results => {
+      results.forEach((result, index) => {
+        if (result.status === 'rejected') {
+          console.error(`Error sending email ${index === 0 ? 'to user' : 'to admin'}:`, result.reason);
+        }
+      });
+    }).catch(error => {
+      console.error('Error in email sending process:', error);
+    });
 
+    // Return success immediately without waiting for emails
     return NextResponse.json(
       { 
         success: true, 
