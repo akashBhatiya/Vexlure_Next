@@ -480,7 +480,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Chilli (Whole, Powder – Guntur, Byadgi, Kashmiri)',
         description: 'India leads the world in chilli exports, with major growing regions in Andhra Pradesh, Karnataka, Madhya Pradesh.',
-        image: '/agriculture/Chilli.png',
+        image: '/agriculture/Chilli.jpg',
         features: [
           'Varieties: Guntur (high heat), Byadgi (deep red color), Kashmiri (mild, bright red)',
           'Packing: 25 kg / 50 kg jute/PP bags',

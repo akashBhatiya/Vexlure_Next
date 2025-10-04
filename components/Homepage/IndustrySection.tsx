@@ -2,13 +2,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, useInView } from "framer-motion";
 import SplitText from "../Animation/SplitText";
 import AnimatedSection from "../Animation/AnimatedSection";
 import { CATEGORIES_DATA } from "../categoriesData";
 
 const CARD_GAP = 24; // gap-6
-const EXTRA_PADDING = 68; // keep last card visible (extra right space)
+const EXTRA_PADDING = 200; // keep last card visible (extra right space)
 
 const IndustrySection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -138,13 +138,27 @@ const IndustrySection: React.FC = () => {
               width: `${totalWidth}px`,
               willChange: "transform",
             }}
-            className="flex gap-6 px-4 sm:px-8 "
+            className="flex gap-6 px-4 sm:px-5 "
           >
             {CATEGORIES_DATA.map((cat, idx) => (
-              <div
+              <motion.div
                 key={`${cat.slug}-${idx}`}
                 ref={idx === 0 ? firstCardRef : null}
-                className="w-[clamp(300px,85vw,350px)] h-[clamp(360px,70vh,500px)] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-all duration-300"
+                className="w-[clamp(300px,85vw,350px)] h-[clamp(360px,70vh,500px)] flex-shrink-0 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  scale: 1
+                }}
+                viewport={{ 
+                  once: false, 
+                  amount: 0.05
+                }}
+                transition={{
+                  duration: 0.4,
+                  delay: idx * 0.10,
+                  ease: [0.22, 1, 0.36, 1] // Smooth easing
+                }}
               >
                 <Image
                   src={cat.image}
@@ -216,7 +230,7 @@ const IndustrySection: React.FC = () => {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>

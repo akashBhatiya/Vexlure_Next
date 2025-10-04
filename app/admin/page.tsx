@@ -6,8 +6,8 @@ const AdminRedirect = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to blogs page immediately
-    router.replace('/admin/blogs');
+    // Redirect to blogs admin page immediately
+    router.replace('/blog/admin');
   }, [router]);
 
   return (
