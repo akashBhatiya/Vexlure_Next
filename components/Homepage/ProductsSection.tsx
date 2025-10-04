@@ -5,7 +5,7 @@ import Link from "next/link";
 import { LuMoveRight } from "react-icons/lu";
 import SplitText from "../Animation/SplitText";
 import AnimatedSection from "../Animation/AnimatedSection";
-import AnimatedCardMobile from "../Animation/AnimatedCardMobile";
+import AnimatedProdCard from "../Animation/AnimatedProdCard";
 
 interface Product {
   title: string;
@@ -69,7 +69,7 @@ const ProductsSection: React.FC = () => {
         {/* Mobile: Single column */}
         <div className="grid grid-cols-1 md:hidden gap-6">
           {products.map((p, i) => (
-            <AnimatedCardMobile key={i} index={i} delay={0.2}>
+            <AnimatedProdCard key={i} index={i} delay={0} direction="fade">
               <div className="w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group flex flex-col items-stretch h-full transition-transform duration-300 hover:scale-105 cursor-pointer">
                 {/* Mobile Content - Single Container */}
                 <div className="flex-1 flex flex-col p-5 gap-3">
@@ -104,14 +104,14 @@ const ProductsSection: React.FC = () => {
                   </Link>
                 </div>
               </div>
-            </AnimatedCardMobile>
+            </AnimatedProdCard>
           ))}
         </div>
 
         {/* Tablet: Two columns */}
         <div className="hidden md:grid xl:hidden grid-cols-2 gap-6">
           {products.map((p, i) => (
-            <AnimatedCardMobile key={i} index={i} delay={0.2}>
+            <AnimatedProdCard key={i} index={i} delay={0.1} direction = {i % 2 === 0 ? "left" : "right"}>
               <div className="w-full bg-[#F4F4F6] rounded-2xl overflow-hidden group flex flex-col items-stretch h-full transition-transform duration-300 hover:scale-105 cursor-pointer">
                 {/* Tablet Content - Single Container */}
                 <div className="flex-1 flex flex-col p-5 gap-3">
@@ -146,7 +146,7 @@ const ProductsSection: React.FC = () => {
                   </Link>
                 </div>
               </div>
-            </AnimatedCardMobile>
+            </AnimatedProdCard>
           ))}
         </div>
 
@@ -154,9 +154,11 @@ const ProductsSection: React.FC = () => {
         <div className="hidden xl:flex flex-wrap gap-5 justify-center">
           {products.map((p, i) => {
             const isLarge = i % 4 === 0 || i % 4 === 3;
+            // Left items (0, 2) come from left, right items (1, 3) come from right
+            const direction = i % 2 === 0 ? "left" : "right";
 
             return (
-              <AnimatedCardMobile key={i} index={i} delay={0.2}>
+              <AnimatedProdCard key={i} index={i} delay={0.1} direction={direction}>
                 <div
                   className={`bg-[#F4F4F6] rounded-2xl overflow-hidden
                       flex flex-row-reverse items-stretch h-[328px]
@@ -197,21 +199,21 @@ const ProductsSection: React.FC = () => {
                   </Link>
                 </div>
                 </div>
-              </AnimatedCardMobile>
+              </AnimatedProdCard>
             );
           })}
         </div>
       </div>
 
       {/* CTA Button */}
-      <div className="flex w-full justify-center mt-[clamp(2rem,4vw,2.5rem)]">
+      <AnimatedSection className="flex w-full justify-center mt-[clamp(2rem,4vw,2.5rem)]" delay={0.2} staggerDelay={0.3}>
         <Link
           href="/product"
           className="bg-[var(--orange)] font-medium hover:bg-[var(--orange)]/90 text-[var(--white)] px-[clamp(1.5rem,3vw,1.75rem)] py-[clamp(0.625rem,1.5vw,0.75rem)] rounded-full flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] text-fluid-sm transition-all justify-center focus:outline-none focus:ring-0"
         >
           View the Product <HiArrowUpRight className="w-[clamp(1rem,1.5vw,1.25rem)] h-[clamp(1rem,1.5vw,1.25rem)]" />
         </Link>
-      </div>
+      </AnimatedSection>
     </section>
   );
 };

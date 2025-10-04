@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import SplitText from "../Animation/SplitText";
 import AnimatedSection from "../Animation/AnimatedSection";
-import AnimatedCard from "../Animation/AnimatedCard";
+import AnimatedTestimonialsCard from "../Animation/AnimatedTestimonialsCard";
 import AnimatedCardMobile from "../Animation/AnimatedCardMobile";
 
 interface Testimonial {
@@ -155,11 +155,11 @@ const TestimonialsSection: React.FC = () => {
         {/* Desktop staggered grid */}
         <div className="hidden xl:flex gap-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory w-full">
           {testimonials.map((t, i) => (
-            // <AnimatedCard
-            <div
+            <AnimatedTestimonialsCard
               key={i}
-              // index={i}
-              // delay={0.3}
+              index={i}
+              delay={0.2}
+              direction={i % 2 === 0 ? "up" : "down"}
               className={`flex flex-col justify-between p-8 shadow-md rounded-2xl transition-colors duration-200 cursor-pointer
         ${t.cardStyle} w-[420px] h-[320px]
         ${i % 2 ? "mt-0 mb-20" : "mt-20 mb-0"} hover:bg-[var(--black)] hover:text-white group`}
@@ -181,9 +181,8 @@ const TestimonialsSection: React.FC = () => {
                   <div className={`text-fluid-sm font-normal leading-normal text-[var(--gray-text)] group-hover:text-white/80`}>{t.company}</div>
                 </div>
               </div>
-              </div>
+            </AnimatedTestimonialsCard>
           ))}
-          {/* </AnimatedCard> */}
         </div>
 
         {/* Mobile & Tablet scroll slider */}

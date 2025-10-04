@@ -206,7 +206,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Peanuts (Raw, Blanched)',
         description: 'India is one of the top peanut exporters, mainly cultivated in Gujarat, Rajasthan, Andhra Pradesh.',
-        image: '/agriculture/Peanuts.png',
+        image: '/agriculture/Peanuts.jpg',
         features: [
           'Varieties: Bold, Java, Red Skin, Blanched',
           'Size: 35/40, 38/42, 40/50, 50/60 counts per ounce',
@@ -218,7 +218,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Sesame Seeds (White, Black, Hulled, Unhulled)',
         description: 'India is a leading global supplier of sesame, grown across Gujarat, West Bengal, Madhya Pradesh.',
-        image: '/agriculture/Sesame.png',
+        image: '/agriculture/Sesame.jpg',
         features: [
           'Varieties: White, Black, Brown, Hulled & Unhulled',
           'Purity: 99% to 99.99%',
@@ -230,7 +230,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Soybeans (Whole, Soymeal, Processed)',
         description: 'Soybeans are a vital Indian export, cultivated mainly in Madhya Pradesh, Maharashtra.',
-        image: '/agriculture/Soybeans.png',
+        image: '/agriculture/Soybeans.jpg',
         features: [
           'Forms: Whole beans, Soymeal (de-oiled cake), Protein concentrates',
           'Packing: 25 kg / 50 kg PP bags, bulk containerized',
@@ -241,7 +241,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Mustard Seeds (Yellow, Black, Brown)',
         description: 'Grown widely in Rajasthan, Uttar Pradesh, Madhya Pradesh, Indian mustard is known for pungency & oil content.',
-        image: '/agriculture/Mustard.png',
+        image: '/agriculture/Mustard-oil.jpg',
         features: [
           'Varieties: Yellow (mild), Black & Brown (pungent)',
           'Packing: 25 kg / 50 kg PP/jute bags',
@@ -252,7 +252,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Castor Seeds (India = World\'s No.1 exporter)',
         description: 'India supplies over 80% of global castor exports, primarily from Gujarat.',
-        image: '/agriculture/Castor.png',
+        image: '/agriculture/Castor.jpg',
         features: [
           'Size: 8 mm to 12 mm',
           'Packing: 25 kg / 50 kg PP bags, bulk jumbo bags',
@@ -263,7 +263,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Coconut (Whole, Copra, Desiccated)',
         description: 'Coconuts are cultivated in Kerala, Tamil Nadu, Karnataka, Andhra Pradesh.',
-        image: '/agriculture/Coconut.png',
+        image: '/agriculture/Coconut.jpg',
         features: [
           'Forms: Fresh whole nuts, Copra (dried kernel), Desiccated coconut powder',
           'Packing: Whole nuts in mesh bags | Copra/Desiccated in 25 kg PP bags',

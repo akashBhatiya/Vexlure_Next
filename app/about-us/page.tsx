@@ -96,7 +96,7 @@ export default function AboutUsPage() {
             {/* Right Image */}
             <div className="relative">
               <Image
-                src="/about-us/about-second.png"
+                src="/about-us/about-world-food.jpg"
                 alt="Indian spices and agricultural products"
                 width={600}
                 height={400}
@@ -146,6 +146,7 @@ export default function AboutUsPage() {
               <h1 className="text-about-main-title font-semibold text-[var(--black)]">
                 Rooted in Soil, Growing Globally with Heritage
               </h1>
+              
             </div>
 
             {/* Right Content */}
@@ -210,11 +211,11 @@ export default function AboutUsPage() {
             {/* Left Image - Shows second on mobile */}
             <div className="relative lg:order-1">
               <Image
-                src="/about-us/about-second.png"
+                src="/about-us/world-food-vision.jpg"
                 alt="Indian spices and herbs"
-                width={600}
-                height={760}
-                className="rounded-2xl w-full h-[400px] md:h-[760px] object-cover shadow-lg"
+                width={680}
+                height={590}
+                className="rounded-2xl w-full h-[400px] md:h-[590px] object-cover shadow-lg"
               />
             </div>
           </div>
@@ -245,7 +246,7 @@ export default function AboutUsPage() {
             <div className="bg-[var(--secondary-bg)] rounded-2xl p-6">
               <div className="w-full h-[190px] rounded-2xl flex mb-2">
                 <Image
-                  src="/about-us/about-team.png"
+                  src="/about-us/adult-harvesting-coffee.jpg"
                   alt="Authenticity"
                   width={625}
                   height={625}
@@ -269,7 +270,7 @@ export default function AboutUsPage() {
             <div className="bg-[var(--secondary-bg)] rounded-2xl p-6">
               <div className="w-full h-[190px] rounded-2xl flex mb-2">
                 <Image
-                  src="/about-us/about-team.png"
+                  src="/about-us/lifestyle-ecofriendly-people.jpg"
                   alt="Authenticity"
                   width={625}
                   height={625}
@@ -293,7 +294,7 @@ export default function AboutUsPage() {
             <div className="bg-[var(--secondary-bg)] rounded-2xl p-6">
               <div className="w-full h-[190px] rounded-2xl flex mb-2">
                 <Image
-                  src="/about-us/about-team.png"
+                  src="/about-us/female-agricultural-engineer.jpg"
                   alt="Authenticity"
                   width={625}
                   height={625}
