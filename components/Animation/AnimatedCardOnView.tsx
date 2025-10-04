@@ -51,8 +51,8 @@ const AnimatedCardOnView: React.FC<AnimatedCardOnViewProps> = ({
       },
     },
     hover: {
-      y: -8,
-      scale: 1.02,
+      // y: -8,
+      // scale: 1.02,
       transition: {
         type: "spring",
         damping: 12,
@@ -70,9 +70,9 @@ const AnimatedCardOnView: React.FC<AnimatedCardOnViewProps> = ({
       whileInView="visible"
       whileHover="hover"
       viewport={{ 
-        once: true, // Animate only once when entering viewport
+        once: false, // Animate only once when entering viewport
         margin: "-100px", // Start animation 100px before entering viewport
-        amount: 0.05 // Trigger when 10% of component is visible for earlier start
+        amount: 0.01 // Trigger when 10% of component is visible for earlier start
       }}
       style={{ perspective: 1000 }} // Add 3D perspective for rotateX
     >

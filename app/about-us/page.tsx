@@ -100,7 +100,7 @@ export default function AboutUsPage() {
                 alt="Indian spices and agricultural products"
                 width={600}
                 height={400}
-                className="rounded-2xl w-full h-[400px] object-cover shadow-lg"
+                className="rounded-2xl w-full h-[200px] md:h-[400px] object-cover shadow-lg"
               />
               {/* Quality Assured Badge */}
               <div className="absolute top-4 right-4 bg-white rounded-[8px] px-3 py-1 shadow-md flex items-center gap-2">
@@ -137,16 +137,27 @@ export default function AboutUsPage() {
 
       <section className="w-full py-14  px-5 md:px-16 bg-[var(--white)]">
         <AnimatedSection className="w-full max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-30 xl:gap-50">
-            {/* Left Content */}
-            <div className="space-y-2">
-              <span className="text-product-label font-medium text-[var(--black)] block">
-                • Our Story
-              </span>
-              <h1 className="text-about-main-title font-semibold text-[var(--black)]">
-                Rooted in Soil, Growing Globally with Heritage
-              </h1>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            {/* Left Column - Title and Image */}
+            <div>
+              <div className="mb-8 md:mb-18">
+                <span className="text-product-label font-medium text-[var(--black)] block mb-2">
+                  • Our Story
+                </span>
+                <h1 className="text-about-main-title font-semibold text-[var(--black)]">
+                  Rooted in Soil, Growing Globally with Heritage
+                </h1>
+              </div>
               
+              <div className="relative">
+                <Image
+                  src="/about-us/community-people-working-together-agriculture-grow-food.jpg"
+                  alt="Community working together in agriculture"
+                  width={600}
+                  height={400}
+                  className="rounded-2xl w-full h-[200px] md:h-[380px] object-cover shadow-lg"
+                />
+              </div>
             </div>
 
             {/* Right Content */}
@@ -215,7 +226,7 @@ export default function AboutUsPage() {
                 alt="Indian spices and herbs"
                 width={680}
                 height={590}
-                className="rounded-2xl w-full h-[400px] md:h-[590px] object-cover shadow-lg"
+                className="rounded-2xl w-full h-[200px] md:h-[590px] object-cover shadow-lg"
               />
             </div>
           </div>
@@ -248,7 +259,7 @@ export default function AboutUsPage() {
                 <Image
                   src="/about-us/adult-harvesting-coffee.jpg"
                   alt="Authenticity"
-                  width={625}
+                  width={770}
                   height={625}
                   className="rounded-2xl object-cover"
                 />
@@ -272,7 +283,7 @@ export default function AboutUsPage() {
                 <Image
                   src="/about-us/lifestyle-ecofriendly-people.jpg"
                   alt="Authenticity"
-                  width={625}
+                  width={770}
                   height={625}
                   className="rounded-2xl object-cover"
                 />
@@ -296,7 +307,7 @@ export default function AboutUsPage() {
                 <Image
                   src="/about-us/female-agricultural-engineer.jpg"
                   alt="Authenticity"
-                  width={625}
+                  width={770}
                   height={625}
                   className="rounded-2xl object-cover"
                 />
