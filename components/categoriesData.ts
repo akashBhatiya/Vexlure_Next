@@ -45,7 +45,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Onions (Red, White, Yellow, Pink, Shallots)',
         description: 'Sourced mainly from Maharashtra & Gujarat, our onions are known for strong aroma and firm texture.',
-        image: '/agriculture/Onions.png',
+        image: '/agriculture/Onions-Fresh.jpg',
         features: [
           'Size: 25 mm to 70 mm',
           'Color: Red, White, Yellow, Pink',
@@ -57,7 +57,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Garlic (White, Red, Elephant)',
         description: 'Cultivated in Madhya Pradesh & Gujarat, Indian garlic is prized for its strong flavor and medicinal value.',
-        image: '/agriculture/Garlic.png',
+        image: '/agriculture/Garlic-Fresh.jpg',
         features: [
           'Size: 25 mm to 55 mm (Elephant garlic up to 70 mm)',
           'Color: White & Red varieties',
@@ -69,7 +69,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Chilli (Green, Red – Byadgi, Guntur, Kashmiri)',
         description: 'India is the world\'s largest chilli exporter, with production concentrated in Andhra Pradesh, Karnataka & Rajasthan.',
-        image: '/agriculture/Chilli.png',
+        image: '/agriculture/Chilli-Fresh.jpg',
         features: [
           'Varieties: Guntur (high heat), Byadgi (deep red color), Kashmiri (mild, bright red)',
           'Packing: 5 kg / 10 kg / 25 kg jute & poly bags',
@@ -80,7 +80,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Ginger (Fresh, Baby)',
         description: 'Primarily sourced from Northeast India, Karnataka & Kerala, Indian ginger is known for its pungent taste and high oil content.',
-        image: '/agriculture/Ginger.jpg',
+        image: '/agriculture/Ginger-Fresh.jpg',
         features: [
           'Size: 50 mm+ (baby ginger smaller tender roots)',
           'Color: Pale brown outer skin, fibrous flesh',
@@ -140,7 +140,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Carrot (Orange, Red, Black)',
         description: 'Indian carrots, grown in Haryana, Punjab, Maharashtra, are valued for sweetness and vibrant colors.',
-        image: '/agriculture/Carrot.jpg',
+        image: '/agriculture/Carrot-Fresh.jpg',
         features: [
           'Size: 10 cm to 25 cm length',
           'Varieties: Orange (universal), Red (Delhi carrot), Black (rare, high anthocyanin)',
@@ -164,7 +164,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Beans (French, Cluster, Broad)',
         description: 'Indian beans are widely grown in Karnataka, Maharashtra, Tamil Nadu with high export demand.',
-        image: '/agriculture/Beans.jpg',
+        image: '/agriculture/Beans-Fresh.jpg',
         features: [
           'Size: 8 cm to 15 cm pods',
           'Varieties: French beans, Cluster beans (Guar), Broad beans',
@@ -176,7 +176,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Peas (Green, Snow, Sugar Snap)',
         description: 'Primarily grown in Uttar Pradesh, Punjab, Himachal Pradesh, Indian peas are known for sweetness and high protein.',
-        image: '/agriculture/Peas.jpg',
+        image: '/agriculture/Peas-Fresh.jpg',
         features: [
           'Size: 8 mm to 12 mm diameter',
           'Varieties: Green peas, Snow peas, Sugar snap peas',
@@ -218,7 +218,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Sesame Seeds (White, Black, Hulled, Unhulled)',
         description: 'India is a leading global supplier of sesame, grown across Gujarat, West Bengal, Madhya Pradesh.',
-        image: '/agriculture/Sesame.jpg',
+        image: '/agriculture/Sesame-Update.jpg',
         features: [
           'Varieties: White, Black, Brown, Hulled & Unhulled',
           'Purity: 99% to 99.99%',
@@ -230,7 +230,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Soybeans (Whole, Soymeal, Processed)',
         description: 'Soybeans are a vital Indian export, cultivated mainly in Madhya Pradesh, Maharashtra.',
-        image: '/agriculture/Soybeans.jpg',
+        image: '/agriculture/Soybeans-Update.jpg',
         features: [
           'Forms: Whole beans, Soymeal (de-oiled cake), Protein concentrates',
           'Packing: 25 kg / 50 kg PP bags, bulk containerized',
@@ -241,7 +241,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Mustard Seeds (Yellow, Black, Brown)',
         description: 'Grown widely in Rajasthan, Uttar Pradesh, Madhya Pradesh, Indian mustard is known for pungency & oil content.',
-        image: '/agriculture/Mustard-oil.jpg',
+        image: '/agriculture/Mustard-oil-Update.jpg',
         features: [
           'Varieties: Yellow (mild), Black & Brown (pungent)',
           'Packing: 25 kg / 50 kg PP/jute bags',
@@ -557,7 +557,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Garlic Powder',
         description: 'Made from dehydrated garlic cloves sourced in Madhya Pradesh & Gujarat.',
-        image: '/agriculture/Garlic.png',
+        image: '/agriculture/Garlic.jpg',
         features: [
           'Forms: Granules, flakes, fine powder',
           'Packing: 20 kg / 25 kg cartons, PP-lined bags',
@@ -568,7 +568,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
       {
         title: 'Onion Powder',
         description: 'Produced from dehydrated onions mainly in Maharashtra & Gujarat.',
-        image: '/agriculture/Onions.png',
+        image: '/agriculture/Onions.jpg',
         features: [
           'Forms: Flakes, kibbled, fine powder',
           'Packing: 20 kg / 25 kg cartons with inner poly liner',

@@ -8,6 +8,7 @@ import AnimatedSection from "@/components/Animation/AnimatedSection";
 import AnimatedCard from "@/components/Animation/AnimatedCard";
 import SplitText from "@/components/Animation/SplitText";
 import { use } from 'react';
+import Image from 'next/image';
 
 export default function ProductDetailsPage({ params }) {
   const resolvedParams = use(params);
@@ -37,7 +38,16 @@ export default function ProductDetailsPage({ params }) {
       <section className="w-full py-25 px-5 md:px-8 flex flex-col items-center bg-[var(--white)]">
         {/* Hero Image & Title */}
         <section className="w-full max-w-[1440px] relative flex flex-col items-center m-4">
-          <img src={product.image} alt={product.title} className="rounded-2xl w-full h-[420px] md:h-[580px] object-cover shadow" />
+          <div className="relative w-full h-[420px] md:h-[580px] rounded-2xl overflow-hidden shadow">
+            <Image 
+              src={product.image} 
+              alt={product.title} 
+              fill
+              sizes="(max-width: 768px) 100vw, 1440px"
+              className="object-cover"
+              priority
+            />
+          </div>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
             <div className="w-full h-full absolute inset-0 rounded-2xl bg-[#18181880]" />
             <AnimatedCard className="relative max-w-[920px] z-10 flex flex-col items-center justify-center" delay={0.3} direction="fade">
@@ -61,13 +71,17 @@ export default function ProductDetailsPage({ params }) {
               className={`flex flex-col md:flex-row ${idx % 2 !== 1 ? 'md:flex-row-reverse' : ''} items-stretch gap-4`}
             >
               {/* Image - no bg, just rounded */}
-              <AnimatedSection className="w-full md:w-1/2 flex items-center justify-center" delay={0.2 + idx * 0.1}>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="rounded-2xl w-full h-full object-cover shadow-none"
-                  style={{ background: 'none' }}
-                />
+              <AnimatedSection className="w-full md:w-1/2 flex items-center justify-center relative" delay={0.3 + idx * 0.1}>
+                <div className=" w-full h-[250px] md:h-[350px] lg:h-[400px]">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="rounded-2xl object-cover shadow-none"
+                    priority={idx === 0}
+                  />
+                </div>
               </AnimatedSection>
               {/* Info Box - gray bg */}
               <AnimatedSection className="w-full md:w-1/2 bg-[var(--secondary-bg)] rounded-2xl shadow p-4 md:p-8 flex flex-col justify-center" delay={0.3 + idx * 0.1}>

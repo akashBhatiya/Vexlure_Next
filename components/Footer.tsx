@@ -188,7 +188,7 @@ const Footer = () => {
             ))}
           </AnimatedCard>
           <AnimatedCard index={1} delay={0.3} className="font-medium text-[var(--gray-text)] order-2 md:order-1">
-            &copy; Copyrigth {new Date().getFullYear()} Vexlure International, All
+            &copy; Copyright 2018 Vexlure International, All
             Rights Reserved.
           </AnimatedCard>
           <AnimatedCard index={2} delay={0.4} className="flex gap-10 order-1 md:order-2">

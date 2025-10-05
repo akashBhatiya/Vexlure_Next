@@ -18,29 +18,29 @@ const products: Product[] = [
     title: "Guar Gum",
     description:
       "Supplying nearly 80% of the world’s demand, guar gum is more than just an export it is a backbone for industries from food to oil drilling. Consistency, viscosity control, and reliability make it one of the strongest global commodities.",
-    image: "/products/Guar-Gum.png",
-    link: "#",
+    image: "/agriculture/GuarGum.jpg",
+    link: "/product/agro-derivatives-additives",
   },
   {
     title: "Psyllium Husk",
     description:
       "Recognized worldwide for purity and swelling index, psyllium husk remains unmatched in dietary fiber and pharmaceutical applications. With steady production bases, it secures a dominant position in international wellness supply chains.",
-    image: "/products/Psyllium-Husk.png",
-    link: "#",
+    image: "/agriculture/Psyllium.jpg",
+    link: "/product/natural-health-plant-products",
   },
   {
     title: "Peanuts",
     description:
       "With high oil content and uniform grading, peanuts remain one of the most versatile exports from snacks and confectionery to edible oils. Reliable sourcing and strict aflatoxin control ensure trust across bulk food markets.",
-    image: "/products/Peanuts.png",
-    link: "#",
+    image: "/agriculture/Peanuts.jpg",
+    link: "/product/oilseeds-nuts",
   },
   {
     title: "Garlic Powder",
     description:
       "Dehydrated garlic stands out for its pungency and long shelf life, serving as a staple for seasoning blends, ready meals, and industrial food production. Clean processing and consistent aroma make it a quiet global essential.",
-    image: "/products/Garlic-Powder.png",
-    link: "#",
+    image: "/agriculture/Garlic.jpg",
+    link: "/product/whole-ground-spices",
   },
 ];
 
