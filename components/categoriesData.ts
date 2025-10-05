@@ -1,4 +1,3 @@
-// categoriesData.ts
 // Shared data structure for categories and products
 
 export interface ProductFeature {
