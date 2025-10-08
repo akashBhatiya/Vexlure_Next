@@ -84,7 +84,7 @@ export default function ProductDetailsPage({ params }) {
                 </div>
               </AnimatedSection>
               {/* Info Box - gray bg */}
-              <AnimatedSection className="w-full md:w-1/2 bg-[var(--secondary-bg)] rounded-2xl shadow p-4 md:p-8 flex flex-col justify-center" delay={0.3 + idx * 0.1}>
+              <AnimatedSection className="w-full md:w-1/2 bg-[var(--secondary-bg)] rounded-2xl shadow p-4 md:p-8 flex flex-col justify-center" delay={0.2 + idx * 0.1}>
                 <h3 className="text-product-detail-card-title font-semibold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-product-detail-card-description text-gray-700 mb-4 font-normal">{item.description}</p>
                 <ul className="space-y-2">

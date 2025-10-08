@@ -180,7 +180,7 @@ export const getUserEmailTemplate = (data: any) => `
 
       <p>In the meantime, feel free to explore our website for more information about our offerings.</p>
 
-      <a href="https://vexlure-next.vercel.app/" class="button">Visit Vexlure</a>
+      <a href="https://www.vexlureinternational.com/" class="button">Visit Vexlure</a>
     </div>
 
     <!-- Footer -->

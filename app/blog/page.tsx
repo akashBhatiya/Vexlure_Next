@@ -403,68 +403,71 @@ export default function BlogPage() {
       {/* Blog Articles Grid Section */}
       <section className="w-full py-6 px-5 md:px-16 bg-[var(--white)] overflow-hidden">
         <div className="w-full max-w-[1440px] mx-auto">
-          <AnimatedFlexSection className="flex flex-col lg:flex-row gap-6 lg:gap-8" delay={0.3}>
+          <AnimatedFlexSection className="flex flex-col lg:flex-row gap-6 lg:gap-8 lg:items-start" delay={0.3}>
             {/* Categories Sidebar */}
-            <div
-  className={`w-full lg:w-[350px] xl:w-[400px] 2xl:w-[454px] bg-[var(--secondary-bg)] rounded-2xl border border-[var(--border)] px-5 md:px-8 py-[22px] md:py-7 transition-all duration-300 overflow-hidden flex-shrink-0
-    ${isCategoriesOpen ? 'max-h-[330px]' : 'max-h-[90px]'}
-  `}
->
-              <div className="flex flex-col gap-6">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
-                  Categories
-                </h3>
-                <button
-                  onClick={toggleCategories}
-                  className="p-1 hover:bg-gray-200 rounded transition-colors cursor-pointer"
-                >
-                  <Image
-                    src="/Dropdown-Icon.svg"
-                    alt="Dropdown Icon"
-                    width={20}
-                    height={20}
-                    className={`w-5 h-5 transition-transform duration-200 ${
-                      isCategoriesOpen ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-              </div>
-              {/* Categories Content - Collapsible on all devices */}
-              <div className={`${
-                isCategoriesOpen ? 'block' : 'hidden'
-              } transition-all duration-300`}>
-                {/* All Categories Button - Separate */}
-                <div className="mb-3">
+            <div className="w-full lg:w-[350px] xl:w-[400px] 2xl:w-[454px] bg-[var(--secondary-bg)] rounded-2xl border border-[var(--border)] px-5 md:px-8 py-5 md:py-6 flex-shrink-0 h-fit lg:sticky ">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-2xl leading-9 font-semibold text-[var(--black)]">
+                    Categories
+                  </h3>
                   <button
-                    onClick={() => handleCategoryChange('All Categories')}
-                    className={`px-5 py-[10px] rounded-full text-blog-category-button font-medium transition-colors ${
-                      selectedCategory === 'All Categories'
-                        ? 'bg-black text-white'
-                        : 'bg-white text-gray-800 hover:bg-gray-100'
-                    }`}
+                    onClick={toggleCategories}
+                    className="p-1 hover:bg-gray-200 rounded transition-colors cursor-pointer"
                   >
-                    All Categories
+                    <Image
+                      src="/Dropdown-Icon.svg"
+                      alt="Dropdown Icon"
+                      width={20}
+                      height={20}
+                      className={`w-5 h-5 transition-transform duration-300 ${
+                        isCategoriesOpen ? 'rotate-180' : ''
+                      }`}
+                    />
                   </button>
                 </div>
                 
-                {/* Other Categories */}
-                <div className="flex flex-wrap gap-3">
-                  {BLOG_CATEGORIES.filter(category => category !== 'All Categories').map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => handleCategoryChange(category)}
-                      className={`px-5 py-[10px] rounded-full text-blog-category-button font-medium transition-colors ${
-                        selectedCategory === category
-                          ? 'bg-black text-white'
-                          : 'bg-white text-gray-800 hover:bg-gray-100'
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  ))}
+                {/* Categories Content - Expandable with smooth animation */}
+                <div 
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    isCategoriesOpen 
+                      ? 'max-h-[400px] opacity-100' 
+                      : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="space-y-3">
+                    {/* All Categories Button - Separate */}
+                    <div>
+                      <button
+                        onClick={() => handleCategoryChange('All Categories')}
+                        className={`px-5 py-[10px] rounded-full text-blog-category-button font-medium transition-colors ${
+                          selectedCategory === 'All Categories'
+                            ? 'bg-black text-white'
+                            : 'bg-white text-gray-800 hover:bg-gray-100'
+                        }`}
+                      >
+                        All Categories
+                      </button>
+                    </div>
+                    
+                    {/* Other Categories */}
+                    <div className="flex flex-wrap gap-2.5">
+                      {BLOG_CATEGORIES.filter(category => category !== 'All Categories').map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => handleCategoryChange(category)}
+                          className={`px-5 py-[10px] rounded-full text-blog-category-button font-medium transition-colors ${
+                            selectedCategory === category
+                              ? 'bg-black text-white'
+                              : 'bg-white text-gray-800 hover:bg-gray-100'
+                          }`}
+                        >
+                          {category}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
 

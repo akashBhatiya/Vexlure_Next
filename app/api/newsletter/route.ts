@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
               Stay connected with us for valuable content delivered straight to your inbox.
             </p>
             <div style="text-align: center; margin-top: 30px;">
-              <a href="https://vexlure-next.vercel.app/" style="display: inline-block; background: #FD601A; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: bold;">Visit Our Website</a>
+              <a href="https://www.vexlureinternational.com/" style="display: inline-block; background: #FD601A; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: bold;">Visit Our Website</a>
             </div>
           </div>
           <div style="text-align: center; padding: 20px; color: #999; font-size: 12px;">

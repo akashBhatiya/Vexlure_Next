@@ -26,22 +26,22 @@ const NAV_LINKS: { name: string; path: string }[] = [
 
 const SOCIAL_LINKS: { href: string; icon: string; label: string }[] = [
   {
-    href: "https://facebook.com/vexlureinternational", // Replace with your real link
+    href: "https://facebook.com/vexlureinternational", // Replace with  real link
     icon: "/face-book.svg",
     label: "Facebook",
   },
   {
-    href: "https://x.com/vexlure", // Replace with your real link
+    href: "https://x.com/vexlure", // Replace with  real link
     icon: "/x.svg",
     label: "X (Twitter)",
   },
   {
-    href: "https://instagram.com/vexlureinternational/", // Replace with your real link
+    href: "https://instagram.com/vexlureinternational/", // Replace with  real link
     icon: "/insta.svg",
     label: "Instagram",
   },
   {
-    href: "https://linkedin.com/company/vexlure-international", // Replace with your real link
+    href: "https://linkedin.com/company/vexlure-international", // Replace with  real link
     icon: "/linkedin.svg",
     label: "LinkedIn",
   },
